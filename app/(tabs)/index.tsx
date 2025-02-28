@@ -1,24 +1,13 @@
-import { Link } from 'expo-router';
 import { useState } from 'react';
-import { Image, StyleSheet, Platform, Text } from 'react-native';
-import { View, type ViewProps } from 'react-native';
+import { Button, StyleSheet, TextInput } from 'react-native';
+import { View } from 'react-native';
+import SignIn from '@/components/Signin';
+import 'expo-router/entry';
 
 export default function HomeScreen() {
-  const [flameCount, setFlameCount] = useState<number>(0);
-  const [starCount, setStarCount] = useState<number>(0);
-  const [heartCount, setHeartCount] = useState<number>(0);
-  const [currentUnit, setCurrentUnit] = useState<number>(0);
-  const [currentChapter, setCurrentChapter] = useState<number>(0);
-  const [currentChapterName, setCurrentChapterName] = useState<string>("Le bug réseau");
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-
   return (
     <View style={styles.container}>
-      <Link style={styles.stepContainer} href={"/(tabs)/courses"}>
-        Chapitre {currentChapter}, Unité {currentUnit}
-      </Link>
+      <SignIn />
     </View>
   );
 }
@@ -32,6 +21,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'purple',
     color: 'white',
     alignItems: 'center',
+  },
+  input: {
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingLeft: 10,
+    fontSize: 16,
   },
 
 });

@@ -1,12 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
-import { Image, StyleSheet, Platform, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { View } from 'react-native';
-import coursesData from '../assets/courses/Courses.json';
+import coursesData from '../../assets/courses/Courses.json';
 import Webcam from 'react-webcam';
 import axios from 'axios';
-import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../../components/ProgressBar';
 import { Link } from 'expo-router';
-import { useRoute } from '@react-navigation/native';
 
 export default function CoursesScreen() {
   const webcamRef = useRef<Webcam>(null);
@@ -130,11 +129,11 @@ export default function CoursesScreen() {
             <View className='coursesJourney'>
                 <View className="View">
                     <Link href={"/(tabs)"} className="cross-button">
-                        <Image src={'../assets/icons/cross.png'} alt="cross-Image" className="icon" />
+                        <Image source={require(`@assets/icons/cross-button.png`)} style={styles.icon} alt="cross-Image" className="icon" />
                     </Link>
                     <ProgressBar currentStep={step} />
                     <View className="icon-container">
-                        <Image src={'../assets/icons/life.png'} alt="Life" className="icon" />
+                        <Image source={require(`@assets/icons/life.png`)} alt="Life" style={styles.icon} className="icon" />
                         <Text className="text">5</Text>
                         {/* {heartCount} */}
                     </View>
@@ -145,13 +144,13 @@ export default function CoursesScreen() {
                         <View className='tuto'>
                             <Text>{currentExo.question}</Text>
                             <Image
-                                src={
-                                    typeof currentExo.reponse[0] === 'object' && 'name' in currentExo.reponse[0]
-                                        ? `/assets/hands/a.jpg`
-                                        : console.log()
-                                }
+                                source={require(`@assets/hands/a.jpg`)}
+                                style={styles.image}
                                 alt={'image'}
-                                onError={console.log('no')}
+                                onError={(e) => {
+                                    console.log("error: " + e);
+
+                                }}
                             />
                             <TouchableOpacity className="pushable" onPress={handleNextExo}>
                                 <Text className="front">
@@ -265,6 +264,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
   stepContainer: {
     backgroundColor: 'purple',

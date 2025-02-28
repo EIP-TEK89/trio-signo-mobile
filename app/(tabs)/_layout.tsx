@@ -1,34 +1,29 @@
-import { Tabs } from 'expo-router';
+import { Stack, Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
 
 export default function TabLayout() {
 
   return (
-    <Tabs
+    <Stack
+      initialRouteName='index'
       screenOptions={{
-        tabBarActiveTintColor: 'light',
         headerShown: false,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        
       }}>
-      <Tabs.Screen
+      <Stack.Screen
         name="index"
         options={{
-          title: 'Home'
+          title: 'Home',
+          headerShown: false,
         }}
       />
-      <Tabs.Screen
-        name="courses"
+      <Stack.Screen
+        name="(courses)"
         options={{
-          title: 'Courses'
+          title: 'Courses',
+          headerShown: false,
         }}
       />
-    </Tabs>
+    </Stack>
   );
 }
