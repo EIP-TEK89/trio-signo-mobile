@@ -4,9 +4,9 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./app/*"],
-      "@components/*": ["./app/components/*"],
-      "@utils/*": ["./app/utils/*"],
-      "@assets/*": ["./app/assets/*"]
+      "@utils/*": ["./utils/*"],
+      "@assets/*": ["./assets/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   },
   "include": [
