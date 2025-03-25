@@ -1,5 +1,5 @@
 import { useAuth } from "context/AuthContext";
-import { Link } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
 import CustomTextInput from "./components/CustomTextInput";
@@ -29,30 +29,39 @@ export default function LoginScreen() {
     }
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Connexion</Text>
             <CustomTextInput
-                placeholder="Email"
+                placeholder="E-mail"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
             />
         
             <CustomTextInput
+                type="password"
                 placeholder="Mot de passe"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <CustomButton title="Se connecter" onPress={login} />
-            <CustomLink href="/register" title="S'inscrire"/>
+            <CustomButton title="SE CONNECTER" onPress={login} />
+            <CustomButton title="S'INSCRIRE" onPress={() => {router.replace('/register')}} style={{backgroundColor: '#afafaf'}}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#RER',
-    }
+        flex: 1,
+        backgroundColor: '#0D1117',
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: '600',
+        color: '#FFFFFF',
+        marginBottom: 30,
+      },
   });

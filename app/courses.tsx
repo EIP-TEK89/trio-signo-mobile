@@ -123,7 +123,7 @@ export default function CoursesScreen() {
 
             <View style={styles.body}>
                 <View style={styles.header}>
-                    <Link href={"/(app)"} className="cross-button">
+                    <Link href={"/(app)/(coursesJourney)"} className="cross-button">
                         <Image source={require(`@assets/icons/cross-button.png`)} style={styles.icon} alt="cross-Image" className="icon" />
                     </Link>
                     <ProgressBar currentStep={step} />
