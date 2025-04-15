@@ -3,10 +3,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./app/*"],
-      "@utils/*": ["./utils/*"],
-      "@assets/*": ["./assets/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@context/*": ["./src/context/*"],
     }
   },
   "include": [
