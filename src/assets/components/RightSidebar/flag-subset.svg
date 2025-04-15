@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="flagClip">
+      <rect x="0" y="0" width="512" height="512" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#flagClip)">
+    <use href="flag.svg#flag" transform="translate(0, 0)" />
+  </g>
+</svg> 
