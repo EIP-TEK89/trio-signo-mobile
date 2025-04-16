@@ -1,17 +1,19 @@
 import Block from "@/components/Block";
 import CustomButton from "@/components/CustomButton";
 import Title from "@/components/Title";
-import { getSignImage } from "@/services/dictionnary";
+import { getSignImageRequest } from "@/services/dictionnary";
+import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface WordToImageProps extends ExerciseWithSign {
-    onFail: () => void;
+interface WordToImageProps {
     onNext: () => void;
+    exercise: ExerciseWithSign
 }
 
-const WordToImage: React.FC<WordToImageProps> = ({ onFail, onNext, ...props }) => {
+const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     const [loading, setLoading] = useState(true);
     const [signsImages, setSignsImages] = useState<string[]>([]);
     const [responded, setResponded] = useState(false);
@@ -19,8 +21,8 @@ const WordToImage: React.FC<WordToImageProps> = ({ onFail, onNext, ...props }) =
     useEffect(() => {
         const loadSign = async () => {
             const images = await Promise.all(
-                props.options.map(async (word) => {
-                    return getSignImage(word);
+                exercise.options.map(async (word) => {
+                    return getSignImageRequest(word);
                 })
             );
             setSignsImages(images);
@@ -30,15 +32,15 @@ const WordToImage: React.FC<WordToImageProps> = ({ onFail, onNext, ...props }) =
     }, []);
 
     const CheckExercise = async (word: string) => {
-        setLoading(true);
-        if (word !== props.sign.word)
-            onFail();
-        else
-            setResponded(true);
-        setLoading(false);
-        onNext();
-    }
-
+            setLoading(true);
+            const result = await CheckExerciseRequest(exercise.id, word, true)
+            if (result === null)
+              router.back()
+            if (result.isCorrect)
+                setResponded(true);
+            setLoading(false);
+        }
+    
     if (loading) {
         return (
           <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -49,9 +51,9 @@ const WordToImage: React.FC<WordToImageProps> = ({ onFail, onNext, ...props }) =
 
     return (
       <Block style={styles.courses}>
-          <Title>{props.prompt}</Title>
+          <Title>{exercise.prompt}</Title>
           <View style={styles.container}>
-            {props.options.map((word, index) => (
+            {exercise.options.map((word, index) => (
                 <TouchableOpacity key={index} onPress={() => {CheckExercise(word)}}>
                     <Image
                       source={{ uri: signsImages[index] }}

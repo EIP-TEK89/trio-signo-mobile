@@ -1,3 +1,5 @@
+
+
 export interface Sign {
     id: string;
     word: string;

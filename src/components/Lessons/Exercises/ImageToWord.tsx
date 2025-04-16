@@ -1,27 +1,29 @@
 import Block from "@/components/Block";
 import CustomButton from "@/components/CustomButton";
 import Title from "@/components/Title";
+import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface ImageToWordProps extends ExerciseWithSign {
-    onFail: () => void;
+interface ImageToWordProps {
     onNext: () => void;
+    exercise: ExerciseWithSign
 }
 
-const ImageToWord: React.FC<ImageToWordProps> = ({ onFail, onNext, ...props }) => {
+const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
     const [loading, setLoading] = useState(true);
     const [responded, setResponded] = useState(false);
 
     const CheckExercise = async (word: string) => {
         setLoading(true);
-        if (word !== props.sign.word)
-            onFail();
-        else
+        const result = await CheckExerciseRequest(exercise.id, word, true)
+        if (result === null)
+          router.back()
+        if (result.isCorrect)
             setResponded(true);
         setLoading(false);
-        onNext();
     }
 
     if (loading) {
@@ -34,15 +36,15 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onFail, onNext, ...props }) =
 
     return (
       <Block style={styles.courses}>
-          <Title>{props.prompt}</Title>
+          <Title>{exercise.prompt}</Title>
           <View>
             <Image
-              source={{ uri: props.sign.mediaUrl }}
+              source={{ uri: exercise.sign.mediaUrl }}
               style={styles.image}
             />
           </View>
           <View style={styles.container}>
-            {props.options.map((word, index) => (
+            {exercise.options.map((word, index) => (
                 <TouchableOpacity key={index} onPress={() => {CheckExercise}}>
                     <Text>{word}</Text>
                 </TouchableOpacity>
