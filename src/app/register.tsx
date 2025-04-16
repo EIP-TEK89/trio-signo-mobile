@@ -11,24 +11,16 @@ export default function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<String | undefined>(undefined);
-    const { onLogin, onRegister } = useAuth();
-
-
-    const login = async () => {
-        const result = await onLogin!( email, password );
-        if (result && result.error) {
-            setError(result.msg);
-        }
-    }
+    const { onRegister } = useAuth();
 
     const register = async () => {
         const result = await onRegister!( username, email, password );
         if (result && result.error) {
             setError(result.msg);
-        } else {
-            login();
         }
+        router.push('/(app)/(tabs)');
     }
+
     return (
         <View style={styles.container}>
             <CustomTextInput
@@ -54,8 +46,8 @@ export default function LoginScreen() {
                 secureTextEntry
             />
             {error && <Text style={{color: 'red', marginBottom: 10}}>{error}</Text>}
-            <CustomButton title="S'inscrire" onPress={login} />
-            <CustomButton title="SE CONNECTER" onPress={() => {router.replace('/auth/login')}} style={{backgroundColor: '#afafaf'}}/>
+            <CustomButton title="S'inscrire" onPress={register} />
+            <CustomButton title="SE CONNECTER" onPress={() => {router.replace('/login')}} style={{backgroundColor: '#afafaf'}}/>
         </View>
     )
 }

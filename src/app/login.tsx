@@ -18,6 +18,7 @@ export default function LoginScreen() {
         if (result && result.error) {
             setError(result.msg);
         }
+        router.push('/(app)/(tabs)');
     }
 
     return (
@@ -38,7 +39,7 @@ export default function LoginScreen() {
             />
             {error && <Text style={{color: 'red', marginBottom: 10}}>{error}</Text>}
             <CustomButton title="SE CONNECTER" onPress={login} />
-            <CustomButton title="S'INSCRIRE" onPress={() => {router.replace('/auth/register')}} style={{backgroundColor: '#afafaf'}}/>
+            <CustomButton title="S'INSCRIRE" onPress={() => {router.replace('/register')}} style={{backgroundColor: '#afafaf'}}/>
         </Block>
     )
 }

@@ -1,4 +1,4 @@
-import { getSigns } from "@/services/dictionnary";
+import { getSignsRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import { router } from "expo-router";
@@ -11,7 +11,7 @@ export default function Dictionary() {
 
   useEffect(() => {
     const loadSigns = async () => {
-      const response = await getSigns();
+      const response = await getSignsRequest();
       setSigns(response);
       setLoading(false);
     }
@@ -32,7 +32,7 @@ export default function Dictionary() {
         contentContainerStyle={{ padding: 10 }}
       >
       {signs.map((letter, index) => (
-        <TouchableOpacity key={index} style={{ margin: 10 }} onPress={() => router.push({pathname: '/(app)/[sign]', params: {word: letter.word}})}>
+        <TouchableOpacity key={index} style={{ margin: 10 }} onPress={() => router.push({pathname: '/(app)/[sign]', params: {sign: letter.word}})}>
           <Text>{letter.word}</Text>
         </TouchableOpacity>
       ))}

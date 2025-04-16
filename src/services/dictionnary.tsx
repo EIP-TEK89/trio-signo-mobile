@@ -13,7 +13,6 @@ export const getSignsRequest = async (): Promise<Sign[]>  => {
 
 export const getSignRequest = async (word: string): Promise<Sign | null>  => {
     try {
-        console.log(process.env.EXPO_PUBLIC_API_URL + "/signs/search/" + word)
         const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "/signs/search/" + word)
         return response.data;
     } catch (e) {

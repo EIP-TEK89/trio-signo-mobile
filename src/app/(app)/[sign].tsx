@@ -6,18 +6,19 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
 export default function SignScreen() {
-    const { word } = useLocalSearchParams();
+    const { sign } = useLocalSearchParams();
     const [loading, setLoading] = useState<boolean>(true);
-    const [sign, setSign] = useState<Sign | undefined>(undefined);
+    const [signDisplayed, setSignDisplayed] = useState<Sign | undefined>(undefined);
 
     useEffect(() => {
+      console.log(sign)
         const loadSign = async () => {
-            const response = await getSignRequest(word as string);
+            const response = await getSignRequest(sign as string);
             if (response === null) {
               router.back();
               return;
             }
-            setSign(response[0]);
+            setSignDisplayed(response[0]);
             setLoading(false);
         }
         loadSign();
@@ -33,8 +34,8 @@ export default function SignScreen() {
 
     return (
       <View>
-        <Image source={{uri: sign?.mediaUrl}}  style={{ width: 200, height: 200 }}/>
-        <Text>{word}</Text>
+        <Image source={{uri: signDisplayed?.mediaUrl}}  style={{ width: 200, height: 200 }}/>
+        <Text>{sign}</Text>
       </View>
     );
 }

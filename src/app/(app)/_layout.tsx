@@ -16,6 +16,6 @@ export default function LogLayout() {
     );
   }
   return (
-      !authState?.authenticated ? <Redirect href={"/(app)/auth/login"}/> : <Slot />
+      !authState?.authenticated ? <Redirect href={"/login"}/> : <Slot />
   );
 }

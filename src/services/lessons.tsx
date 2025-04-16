@@ -13,7 +13,7 @@ export const getLessonsRequest = async (): Promise<Lesson[]>  => {
 
 export const getLessonRequest = async (lessonId: string): Promise<LessonWithExercises | null> => {
     try {
-        const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "lessons/" + lessonId)
+        const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "/lessons/" + lessonId)
         return response.data;
     } catch (e) {
         console.error(e.toJSON())
