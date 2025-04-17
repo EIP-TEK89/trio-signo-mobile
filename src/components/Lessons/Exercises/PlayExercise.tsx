@@ -2,7 +2,7 @@ import { getExerciseWithSignRequest } from "@/services/lessons";
 import { Exercise, ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import WordToImage from "./WordToImage";
 import ImageToWord from "./ImageToWord";
 
@@ -23,16 +23,24 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
             setExercisesWithSign(result)
             setLoading(false);
         }
-        loadExercise
+        loadExercise()
     }, [])
+
+    if (loading) {
+        return (
+            <View>
+                <Text>Loading...</Text>
+            </View>
+        )
+    }
 
     return (
         <View>
             {exerciseWithSign.type === 'WORD_TO_IMAGE' &&
-                <WordToImage onNext={onNext} exercise={exerciseWithSign}/>
+                <WordToImage onNext={() => onNext()} exercise={exerciseWithSign}/>
             }
             {exerciseWithSign.type === 'IMAGE_TO_WORD' &&
-                <ImageToWord onNext={onNext} exercise={exerciseWithSign}/>
+                <ImageToWord onNext={() => onNext()} exercise={exerciseWithSign}/>
             }
         </View>
     )

@@ -46,7 +46,7 @@ export const CheckExerciseRequest = async (exerciseId: string, answer: string, m
         const response = await axios.post(process.env.EXPO_PUBLIC_API_URL + "/exercises/" + exerciseId + "/check", {answer, mutlipleChoice})
         return (response.data)
     } catch (e) {
-        console.error(e.toJSON)
+        console.error(e.toJSON())
         return (null)
     }
 }
