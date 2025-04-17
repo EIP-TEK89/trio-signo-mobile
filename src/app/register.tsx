@@ -24,14 +24,12 @@ export default function LoginScreen() {
   return (
     <Block className="flex-1 justify-center items-center px-5 bg-white dark:bg-black">
       <CustomTextInput
-        className="h-12 border border-gray-300 dark:border-gray-600 rounded mb-5 px-3 text-base w-full max-w-md"
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
       />
 
       <CustomTextInput
-        className="h-12 border border-gray-300 dark:border-gray-600 rounded mb-5 px-3 text-base w-full max-w-md"
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
@@ -39,7 +37,6 @@ export default function LoginScreen() {
       />
 
       <CustomTextInput
-        className="h-12 border border-gray-300 dark:border-gray-600 rounded mb-5 px-3 text-base w-full max-w-md"
         placeholder="Mot de passe"
         value={password}
         onChangeText={setPassword}
@@ -53,7 +50,7 @@ export default function LoginScreen() {
       <CustomButton
         title="SE CONNECTER"
         onPress={() => router.replace("/login")}
-        style={{ backgroundColor: "#afafaf" }} // si tu veux le passer en Tailwind, on peut adapter le bouton aussi
+        style={{ backgroundColor: "#afafaf" }}
       />
     </Block>
   );
