@@ -32,10 +32,10 @@ export default function LoginScreen() {
       />
 
       <CustomTextInput
-        type="password"
         placeholder="Mot de passe"
         value={password}
         onChangeText={setPassword}
+        secureTextEntry
       />
 
       {error && <Text className="text-red-500 mb-2">{error}</Text>}
