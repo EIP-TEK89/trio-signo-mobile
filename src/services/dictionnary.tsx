@@ -16,7 +16,7 @@ export const getSignRequest = async (word: string): Promise<Sign | null>  => {
         const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "/signs/search/" + word)
         return response.data;
     } catch (e) {
-        console.log(e.toJSON())
+        console.error(e.toJSON())
         return null;
     }
 }
@@ -26,7 +26,7 @@ export const getSignImageRequest = async (word: string): Promise<string>  => {
         const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "/signs/search/" + word)
         return response.data.mediaUrl;
     } catch (e) {
-        console.log(e.toJSON())
+        console.error(e.toJSON())
         return "";
     }
 }

@@ -32,7 +32,7 @@ export default function Dictionary() {
         contentContainerStyle={{ padding: 10 }}
       >
       {signs.map((letter, index) => (
-        <TouchableOpacity key={index} style={{ margin: 10 }} onPress={() => router.push({pathname: '/(app)/[sign]', params: {sign: letter.word}})}>
+        <TouchableOpacity key={index} style={{ margin: 10 }} onPress={() => router.push({pathname: '/(app)/sign/[sign]', params: {sign: letter.word}})}>
           <Text>{letter.word}</Text>
         </TouchableOpacity>
       ))}
