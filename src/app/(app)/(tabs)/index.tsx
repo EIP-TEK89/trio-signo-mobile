@@ -1,12 +1,9 @@
-import ProgressBar from "@/components/ProgressBar";
 import { useAuth } from "@/context/AuthContext";
 import { getLessonsRequest } from "@/services/lessons";
 import { Lesson } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import CourseButton from "@components/CourseButton";
-import CustomButton from "@components/CustomButton";
-import axios from "axios";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
 
