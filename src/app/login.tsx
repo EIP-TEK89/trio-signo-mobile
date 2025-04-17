@@ -32,7 +32,6 @@ export default function LoginScreen() {
       />
 
       <CustomTextInput
-        type="password"
         placeholder="Mot de passe"
         value={password}
         onChangeText={setPassword}
