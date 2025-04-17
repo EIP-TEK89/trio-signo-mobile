@@ -45,7 +45,7 @@ export default function LoginScreen() {
       <CustomButton
         title="S'INSCRIRE"
         onPress={() => router.replace("/register")}
-        style={{ backgroundColor: "#afafaf" }} // à remplacer si tu veux le gérer avec Tailwind aussi
+        style={{ backgroundColor: "#afafaf" }}
       />
     </Block>
   );
