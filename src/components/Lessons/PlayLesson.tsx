@@ -37,6 +37,7 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson}) => {
           router.back()
         setLessonProgress(result)
         setLoading(false)
+        router.back()
       };
 
       const updateLesson = async () => {

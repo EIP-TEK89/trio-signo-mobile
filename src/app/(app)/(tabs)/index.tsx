@@ -18,8 +18,7 @@ export default function HomeScreen() {
         const checkLogin = async () => {
             const response = await getUserRequest();
             if (response === null) {
-              await SecureStore.deleteItemAsync('token');
-              router.push('/');
+              onLogout();
               return;
             }
         }

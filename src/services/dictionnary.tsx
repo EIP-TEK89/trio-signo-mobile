@@ -24,7 +24,7 @@ export const getSignRequest = async (word: string): Promise<Sign | null>  => {
 export const getSignImageRequest = async (word: string): Promise<string>  => {
     try {
         const response = await axios.get(process.env.EXPO_PUBLIC_API_URL + "/signs/search/" + word)
-        return response.data.mediaUrl;
+        return response.data[0].mediaUrl;
     } catch (e) {
         console.error(e.toJSON())
         return "";
