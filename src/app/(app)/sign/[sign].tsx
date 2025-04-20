@@ -11,7 +11,6 @@ export default function SignScreen() {
     const [signDisplayed, setSignDisplayed] = useState<Sign | undefined>(undefined);
 
     useEffect(() => {
-      console.log(sign)
         const loadSign = async () => {
             const response = await getSignRequest(sign as string);
             if (response === null) {
