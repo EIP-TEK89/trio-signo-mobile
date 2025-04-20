@@ -54,20 +54,20 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
     }
 
     return (
-      <View>
-      <View className="flex flex-col items-center w-full h-full justify-around pt-[5%] pb-[20%]">
-          <Text className="text-2xl font-bold text-center">{exercise.prompt}</Text>
-          <View>
+      <View className="flex-1">
+      <View className="flex-1 flex-col gap-[5%]">
+          <Text className="text-2xl font-bold ml-[2%]">{exercise.prompt}</Text>
+          <View className="flex-1 items-center justify-center">
             <Image
               source={{ uri: exercise.sign.mediaUrl }}
               className="w-[60%] aspect-square rounded-full"
             />
           </View>
-          <View className="flex flex-row w-full flex-wrap justify-center gap-9">
+          <View className="flex-1 flex-row flex-wrap justify-center gap-9">
             {responses.map((response, index) => (
               <View key={index} 
               className={`w-[34%] aspect-[2] rounded-2xl bg-black-500 p-2 border-2 ${response.responded ? ( response.valid ? "border-[#45B6FE]" : 'border-red-500'): "border-gray-300"}`}>
-                <TouchableOpacity key={index} disabled={responded} onPress={() => {!checked && CheckExercise(response.word)}} className="w-full h-full rounded-full p-2 justify-center items-center">
+                <TouchableOpacity key={index} disabled={responded} onPress={() => {!checked && CheckExercise(response.word)}} className="flex-1 rounded-full p-2 justify-center items-center">
                     <Text className="font-black color-[#45B6FE]">{response.word}</Text>
                 </TouchableOpacity>
               </View>

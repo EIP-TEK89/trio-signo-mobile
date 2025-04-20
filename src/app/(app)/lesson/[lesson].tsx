@@ -26,14 +26,14 @@ export default function LessonScreen() {
 
     if (loading){
         return (
-          <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ color: '#fff' }}>Loading...</Text>
-          </Block>
+          </View>
         );
       }
 
     return (
-      <View>
+      <View className='w-full h-full'>
         <PlayLesson lesson={lessonWithExercises}/>
       </View>
     );
