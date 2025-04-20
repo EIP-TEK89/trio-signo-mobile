@@ -1,5 +1,6 @@
 import { useAuth } from "@/context/AuthContext";
 import { getLessonsRequest } from "@/services/lessons";
+import { getUserRequest } from "@/services/user";
 import { Lesson } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import CourseButton from "@components/CourseButton";
@@ -20,12 +21,26 @@ export default function HomeScreen() {
   const { onLogout } = useAuth();
 
   useEffect(() => {
+    const checkLogin = async () => {
+      const response = await getUserRequest();
+      if (response === null) {
+        onLogout();
+        return;
+      }
+    };
+
     const loadLessons = async () => {
       const response = await getLessonsRequest();
       setLessons(response);
+    };
+
+    const init = async () => {
+      await checkLogin();
+      await loadLessons();
       setLoading(false);
     };
-    loadLessons();
+
+    init();
   }, []);
 
   if (loading) {
@@ -41,6 +56,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-black">
       <Block className="flex-1 justify-center items-center w-full">
+        {/* Header */}
         <View className="flex-row w-full h-12 justify-between px-4 items-center">
           <TouchableOpacity onPress={onLogout}>
             <Image
@@ -49,6 +65,7 @@ export default function HomeScreen() {
               alt="cross-Image"
             />
           </TouchableOpacity>
+
           <View className="flex-row items-center gap-2">
             <Image
               source={require("@assets/icons/life.png")}
@@ -59,12 +76,18 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        {/* Scrollable lesson list */}
         <ScrollView contentContainerClassName="mt-12 flex-1 items-center justify-center w-full px-4">
           {lessons.map((lesson) => (
             <CourseButton
               key={lesson.id}
               title={lesson.title}
-              onPress={() => router.push(`/courses`)}
+              onPress={() =>
+                router.push({
+                  pathname: "/(app)/lesson/[lesson]",
+                  params: { lesson: lesson.id },
+                })
+              }
             />
           ))}
         </ScrollView>

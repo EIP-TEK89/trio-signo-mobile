@@ -6,7 +6,8 @@ import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { responseStatus } from "./ImageToWord";
 
 interface WordToImageProps {
     onNext: () => void;
@@ -15,30 +16,37 @@ interface WordToImageProps {
 
 const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     const [loading, setLoading] = useState(true);
-    const [signsImages, setSignsImages] = useState<string[]>([]);
     const [responded, setResponded] = useState(false);
+    const [checked, setChecked] = useState(false);
+    const [responses, setResponses] = useState<responseStatus[]>([]);
 
     useEffect(() => {
         const loadSign = async () => {
-            const images = await Promise.all(
+          const responsesWithImage = await Promise.all(
                 exercise.options.map(async (word) => {
-                    return getSignImageRequest(word);
+                  const mediaUrl = await getSignImageRequest(word);
+                  return ({word, valid: exercise.sign.word === word, responded: false, mediaUrl});
                 })
             );
-            setSignsImages(images);
+            setResponses(responsesWithImage);
             setLoading(false);
         };
         loadSign();
     }, []);
 
     const CheckExercise = async (word: string) => {
-            setLoading(true);
+            setChecked(true);
             const result = await CheckExerciseRequest(exercise.id, word, true)
             if (result === null)
               router.back()
             if (result.isCorrect)
                 setResponded(true);
-            setLoading(false);
+            responses.forEach((response) => {
+                if (response.word === word) {
+                    response.responded = true;
+                }
+            });
+            setChecked(false);
         }
     
     if (loading) {
@@ -50,77 +58,36 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
       }
 
     return (
-      <Block style={styles.courses}>
-          <Title>{exercise.prompt}</Title>
-          <View style={styles.container}>
-            {exercise.options.map((word, index) => (
-                <TouchableOpacity key={index} onPress={() => {CheckExercise(word)}}>
+      <View>
+      <View className="flex flex-col items-center w-full h-full justify-around pt-[10%] pb-[30%]">
+        <Text className="text-2xl font-bold text-center">{exercise.prompt}</Text>
+          <View className="flex flex-row w-full flex-wrap justify-center gap-5">
+            {responses.map((response, index) => (
+              <View key={index} className="flex w-[45%] aspect-square">
+                <TouchableOpacity key={index} onPress={() => { !checked && CheckExercise(response.word)}}
+                disabled={responded}
+                  >
                     <Image
-                      source={{ uri: signsImages[index] }}
-                      style={styles.image}
+                      source={{ uri: response.mediaUrl }}
+                      className={`w-full h-full rounded-full ${response.responded && ( response.valid ? "border-2 border-[#45B6FE]" : 'border-2 border-red-500')}`}
+                      alt={response.word}
                     />
                 </TouchableOpacity>
+              </View>
             ))}
           </View>
-          <CustomButton disabled={!responded} title={"VALIDER"} onPress={() => onNext}/>
-      </Block>
+      </View>
+      <View className="absolute bottom-6 left-0 w-full items-center">
+      <TouchableOpacity 
+        className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-[#45B6FE]'}`}
+        disabled={!responded} onPress={() => onNext()}>
+          <Text className="text-2l font-black text-center">
+            VALIDER
+          </Text>
+        </TouchableOpacity>
+        </View>
+    </View>
     );
 }
 
 export default WordToImage;
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header : {
-    flexDirection: 'row',
-    width: '100%',
-    height: 50,
-    color: 'white',
-    justifyContent: 'space-between',
-    padding: 10,
-    borderWidth: 1,
-  },
-  body: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
- },
- courses: {
-    width: '100%',
-    marginTop: 60,
-    gap: 20,
-    alignItems: 'center',
-},
-  choicesList: {
-    width: '100%',
-    justifyContent: 'center',
-    gap: 20,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-  image: {
-    width: 150,
-    height: 150,
-    borderRadius: 100,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-  stepContainer: {
-    backgroundColor: 'purple',
-    color: 'white',
-    alignItems: 'center',
-  },
-
-  Camera: {
-    width: 300,
-    height: 300,
-    borderRadius: 200,
-    borderWidth: 1,
-  },
-});

@@ -46,7 +46,7 @@ export const CheckExerciseRequest = async (exerciseId: string, answer: string, m
         const response = await axios.post(process.env.EXPO_PUBLIC_API_URL + "/exercises/" + exerciseId + "/check", {answer, mutlipleChoice})
         return (response.data)
     } catch (e) {
-        console.error(e.toJSON)
+        console.error(e.toJSON())
         return (null)
     }
 }
@@ -63,7 +63,7 @@ export const startLessonRequest = async (lessonId: string): Promise<LessonProgre
 
 export const updateLessonRequest = async (lessonId: string, currentStep: number, completed: boolean): Promise<LessonProgress | null> => {
     try {
-        const response = await axios.put(process.env.EXPO_PUBLIC_API_URL + "/lesson-progress/" + {lessonId} +  "/update", { currentStep, completed })
+        const response = await axios.put(process.env.EXPO_PUBLIC_API_URL + "/lesson-progress/" + lessonId +  "/update", { currentStep, completed })
         return response.data;
     }
     catch (e) {
@@ -74,7 +74,7 @@ export const updateLessonRequest = async (lessonId: string, currentStep: number,
 
 export const completeLessonRequest = async (lessonId: string): Promise<LessonProgress | null> => {
     try {
-        const response = await axios.put(process.env.EXPO_PUBLIC_API_URL + "/lesson-progress/" + {lessonId} + "/complete")
+        const response = await axios.put(process.env.EXPO_PUBLIC_API_URL + "/lesson-progress/" + lessonId + "/complete")
         return response.data;
     }
     catch (e) {

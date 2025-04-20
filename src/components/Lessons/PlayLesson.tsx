@@ -3,31 +3,27 @@ import Block from "../Block";
 import { Text, View } from "react-native";
 import Title from "../Title";
 import { completeLessonRequest, getExerciseFromLessonRequest, startLessonRequest, updateLessonRequest } from "@/services/lessons";
-import { Exercise, LessonProgress } from "@/types/LessonInterface";
+import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
 
 interface PlayLessonProps {
-  lessonId: string
+  lesson: LessonWithExercises;
 }
 
-const PlayLesson: React.FC<PlayLessonProps> = ({lessonId}) => {
+const PlayLesson: React.FC<PlayLessonProps> = ({lesson}) => {
     const [loading, setLoading] = useState(true);
     const [LessonProgress, setLessonProgress] = useState<LessonProgress>();
-    const [exercisesList, setExercisesList] = useState<Exercise[]>([])
+    const [exercisesList, setExercisesList] = useState<Exercise[]>(lesson.exercises);
     const [index, setIndex] = useState<number>(0);
 
     useEffect(() => {
         const startLesson = async () => {
-            const result = await startLessonRequest(lessonId);
+            const result = await startLessonRequest(lesson.id);
             if (result === null)
               router.back();
             else
-              setLessonProgress(result)
-            const exercises = await getExerciseFromLessonRequest(lessonId)
-            if (exercises.length === 0)
-              router.back()
-            setExercisesList(exercises)
+              setLessonProgress(result);
             setLoading(false);
         };
         startLesson();
@@ -36,16 +32,19 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lessonId}) => {
     useEffect(() => {
       const finishLesson = async () => {
         setLoading(true)
-        const result = await completeLessonRequest(lessonId)
+        const result = await completeLessonRequest(lesson.id)
         if (result === null)
           router.back()
         setLessonProgress(result)
         setLoading(false)
+        router.back()
       };
 
       const updateLesson = async () => {
+        if (index === 0)
+          return;
         setLoading(true)
-        const result = await updateLessonRequest(lessonId, index, false);
+        const result = await updateLessonRequest(lesson.id, index, false);
         if (result === null)
           router.back()
         setLessonProgress(result)

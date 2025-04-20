@@ -18,7 +18,7 @@ export default function LessonScreen() {
               router.back();
               return;
             }
-            setLessonWithExercises(response[0]);
+            setLessonWithExercises(response);
             setLoading(false);
         }
         loadSign();
@@ -34,7 +34,7 @@ export default function LessonScreen() {
 
     return (
       <View>
-        <PlayLesson lessonId={lessonWithExercises.id}/>
+        <PlayLesson lesson={lessonWithExercises}/>
       </View>
     );
 }
