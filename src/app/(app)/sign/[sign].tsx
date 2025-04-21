@@ -28,33 +28,29 @@ export default function SignScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-black">
-        <Block className="flex-1 justify-center items-center">
-          <Text className="text-white">Chargement...</Text>
-        </Block>
-      </SafeAreaView>
+      <Block className="flex-1 justify-center items-center">
+        <Text className="text-white">Chargement...</Text>
+      </Block>
     );
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
-      <Block className="flex-1 items-center justify-center px-4 relative">
-        <TouchableOpacity
-          onPress={() => router.push("/(app)/(tabs)/dictionary")}
-          className="absolute top-4 left-4 bg-white/10 rounded-xl p-2"
-        >
-          <ArrowLeft color="white" size={24} />
-        </TouchableOpacity>
+    <Block className="flex-1 items-center justify-center px-4 relative">
+      <TouchableOpacity
+        onPress={() => router.push("/(app)/(tabs)/dictionary")}
+        className="absolute top-8 left-4 bg-white/10 rounded-xl p-2"
+      >
+        <ArrowLeft color="white" size={24} />
+      </TouchableOpacity>
 
-        <Image
-          source={{ uri: signDisplayed?.mediaUrl }}
-          className="w-60 h-60 rounded-xl mb-6"
-        />
+      <Image
+        source={{ uri: signDisplayed?.mediaUrl }}
+        className="w-60 h-60 rounded-xl mb-6"
+      />
 
-        <Text className="text-white text-4xl font-bold">
-          {signDisplayed?.word}
-        </Text>
-      </Block>
-    </SafeAreaView>
+      <Text className="text-white text-4xl font-bold">
+        {signDisplayed?.word}
+      </Text>
+    </Block>
   );
 }
