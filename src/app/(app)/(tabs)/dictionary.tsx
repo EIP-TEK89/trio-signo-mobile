@@ -3,7 +3,7 @@ import { Sign } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, ScrollView, Text, TouchableOpacity } from "react-native";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -12,39 +12,57 @@ export default function Dictionary() {
   useEffect(() => {
     const loadSigns = async () => {
       const response = await getSignsRequest();
-      setSigns(response);
+
+      const sorted = response.sort((a, b) =>
+        a.word.localeCompare(b.word, "fr", { sensitivity: "base" })
+      );
+
+      setSigns(sorted);
       setLoading(false);
-    }
+    };
+
     loadSigns();
   }, []);
 
-  if (loading){
+  if (loading) {
     return (
-      <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#fff' }}>Loading...</Text>
-      </Block>
+      <SafeAreaView className="flex-1 bg-black">
+        <Block className="flex-1 justify-center items-center">
+          <Text className="text-white">Chargement du dictionnaire...</Text>
+        </Block>
+      </SafeAreaView>
     );
   }
+
   return (
-    <Block>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ padding: 10 }}
-      >
-      {signs.map((letter, index) => (
-        <TouchableOpacity key={index} style={{ margin: 10 }} onPress={() => router.push({pathname: '/(app)/sign/[sign]', params: {sign: letter.word}})}>
-          <Text>{letter.word}</Text>
-        </TouchableOpacity>
-      ))}
-      </ScrollView>
-    </Block>
+    <SafeAreaView className="flex-1 bg-black">
+      <Block className="flex-1 w-full px-4">
+        <Text className="text-white text-2xl font-bold mt-6 mb-4 text-center">
+          Dictionnaire des signes
+        </Text>
+
+        <ScrollView
+          contentContainerClassName="flex-row flex-wrap justify-center gap-4 pb-10"
+          showsVerticalScrollIndicator={false}
+        >
+          {signs.map((letter, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                router.push({
+                  pathname: "/(app)/sign/[sign]",
+                  params: { sign: letter.word },
+                })
+              }
+              className="w-20 h-20 bg-white/10 rounded-xl justify-center items-center"
+            >
+              <Text className="text-white text-xl font-semibold">
+                {letter.word}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </Block>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  image: {
-    width: 150,
-    height: 150,
-    borderRadius: 100,
-  },
-})
