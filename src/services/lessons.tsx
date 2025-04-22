@@ -82,3 +82,14 @@ export const completeLessonRequest = async (lessonId: string): Promise<LessonPro
         return null;
     }
 }
+
+export const resetLessonRequest = async (lessonId: string): Promise<LessonProgress | null> => {
+    try {
+        const response = await axios.post(process.env.EXPO_PUBLIC_API_URL + "/lesson-progress/" + lessonId + "/reset")
+        return response.data;
+    }
+    catch (e) {
+        console.error(e.toJSON())
+        return null;
+    }
+}

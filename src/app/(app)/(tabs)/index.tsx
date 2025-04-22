@@ -6,6 +6,9 @@ import Block from "@components/Block";
 import CourseButton from "@components/CourseButton";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
+import CrossIcon from '@assets/Courses/cross.svg'
+import HeartIcon from '@assets/Courses/heart.svg'
+
 import {
   Image,
   ScrollView,
@@ -59,19 +62,11 @@ export default function HomeScreen() {
         {/* Header */}
         <View className="flex-row w-full h-12 justify-between px-4 items-center">
           <TouchableOpacity onPress={onLogout}>
-            <Image
-              source={require("@assets/icons/cross-button.png")}
-              className="w-7 h-7"
-              alt="cross-Image"
-            />
+            <CrossIcon width={30} height={30} />
           </TouchableOpacity>
 
           <View className="flex-row items-center gap-2">
-            <Image
-              source={require("@assets/icons/life.png")}
-              className="w-7 h-7"
-              alt="Life"
-            />
+            <HeartIcon width={30} height={30} />
             <Text className="text-white text-base">5</Text>
           </View>
         </View>

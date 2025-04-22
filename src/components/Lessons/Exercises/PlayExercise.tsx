@@ -35,7 +35,7 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
     }
 
     return (
-        <View>
+        <View className="flex-1">
             {exerciseWithSign.type === 'WORD_TO_IMAGE' &&
                 <WordToImage onNext={() => onNext()} exercise={exerciseWithSign}/>
             }
