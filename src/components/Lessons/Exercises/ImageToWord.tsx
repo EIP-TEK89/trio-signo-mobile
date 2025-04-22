@@ -81,9 +81,9 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
             <Text className="text-2l font-black text-center">
               VALIDER
             </Text>
-          </TouchableOpacity>
-          </View>
+        </TouchableOpacity>
       </View>
+    </View>
     );
 }
 

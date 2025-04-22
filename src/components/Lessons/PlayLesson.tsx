@@ -11,11 +11,12 @@ import CrossIcon from '@assets/Courses/cross.svg'
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
+  onComplete: (lessonResult: LessonProgress) => void;
 }
 
-const PlayLesson: React.FC<PlayLessonProps> = ({lesson}) => {
+const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
     const [loading, setLoading] = useState(true);
-    const [LessonProgress, setLessonProgress] = useState<LessonProgress>();
+    const [lessonProgress, setLessonProgress] = useState<LessonProgress>();
     const [exercisesList, setExercisesList] = useState<Exercise[]>(lesson.exercises);
     const [index, setIndex] = useState<number>(0);
 
@@ -41,7 +42,7 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson}) => {
           router.back()
         setLessonProgress(result)
         setLoading(false)
-        router.back()
+        onComplete(lessonProgress)
       };
 
       const updateLesson = async () => {

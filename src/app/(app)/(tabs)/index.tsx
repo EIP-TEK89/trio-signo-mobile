@@ -7,7 +7,7 @@ import CourseButton from "@components/CourseButton";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
-import * as SecureStore from 'expo-secure-store';
+import CrossIcon from '@assets/Courses/cross.svg'
 
 export default function HomeScreen() {
     const [loading, setLoading] = useState(true);
@@ -47,7 +47,7 @@ export default function HomeScreen() {
         <Block style={styles.container}>
             <View style={styles.header}>
                     <TouchableOpacity onPress={onLogout} className="cross-button">
-                        <Image source={require(`@assets/icons/cross-button.png`)} style={styles.icon} alt="cross-Image" className="icon" />
+                        <CrossIcon width={30} height={30} />
                     </TouchableOpacity>
                     <View className="icon-container">
                         <Image source={require(`@assets/icons/life.png`)} alt="Life" style={styles.icon} className="icon" />
