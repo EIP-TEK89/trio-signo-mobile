@@ -6,91 +6,87 @@ import Block from "@components/Block";
 import CourseButton from "@components/CourseButton";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
 import CrossIcon from '@assets/Courses/cross.svg'
+import HeartIcon from '@assets/Courses/heart.svg'
+
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from "react-native";
 
 export default function HomeScreen() {
-    const [loading, setLoading] = useState(true);
-    const [lessons, setLessons] = useState<Lesson[]>([]);
-    const { onLogout } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+  const { onLogout } = useAuth();
 
-      useEffect(() => {
-        const checkLogin = async () => {
-            const response = await getUserRequest();
-            if (response === null) {
-              onLogout();
-              return;
-            }
-        }
+  useEffect(() => {
+    const checkLogin = async () => {
+      const response = await getUserRequest();
+      if (response === null) {
+        onLogout();
+        return;
+      }
+    };
 
-        const loadLessons = async () => {
-            const response = await getLessonsRequest();
-            setLessons(response);
-        }
+    const loadLessons = async () => {
+      const response = await getLessonsRequest();
+      setLessons(response);
+    };
 
-        const init = async () => {
-            await checkLogin();
-            await loadLessons();
-            setLoading(false);
-        }
-        init();
-      }, []);
+    const init = async () => {
+      await checkLogin();
+      await loadLessons();
+      setLoading(false);
+    };
 
-    if (loading) {
-        return (
-          <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: '#fff' }}>Loading...</Text>
-          </Block>
-        );
-    }
+    init();
+  }, []);
+
+  if (loading) {
     return (
-        <Block style={styles.container}>
-            <View style={styles.header}>
-                    <TouchableOpacity onPress={onLogout} className="cross-button">
-                        <CrossIcon width={30} height={30} />
-                    </TouchableOpacity>
-                    <View className="icon-container">
-                        <Image source={require(`@assets/icons/life.png`)} alt="Life" style={styles.icon} className="icon" />
-                        <Text className="text">5</Text>
-                    </View>
-                </View>
-            <ScrollView  contentContainerStyle={styles.scrollView}>
-            {lessons.map((lesson) => (
-                <CourseButton key={lesson.id} title={lesson.title} onPress={() => router.push({pathname: '/(app)/lesson/[lesson]', params: {lesson: lesson.id}})} />
-            ))}
-            </ScrollView>
+      <SafeAreaView className="flex-1 bg-black">
+        <Block className="flex-1 justify-center items-center">
+          <Text className="text-white">Loading...</Text>
         </Block>
+      </SafeAreaView>
     );
-}
+  }
 
-const styles =  StyleSheet.create({
-    header : {
-        flexDirection: 'row',
-        width: '100%',
-        height: 50,
-        color: 'white',
-        justifyContent: 'space-between',
-        padding: 10,
-      },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    scrollView: {
-        marginTop: 50,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    icon: {
-        width: 30,
-        height: 30,
-      },
-    title: {
-        fontSize: 24,
-        marginBottom: 16,
-    },
-});
+  return (
+    <SafeAreaView className="flex-1 bg-black">
+      <Block className="flex-1 justify-center items-center w-full">
+        {/* Header */}
+        <View className="flex-row w-full h-12 justify-between px-4 items-center">
+          <TouchableOpacity onPress={onLogout}>
+            <CrossIcon width={30} height={30} />
+          </TouchableOpacity>
+
+          <View className="flex-row items-center gap-2">
+            <HeartIcon width={30} height={30} />
+            <Text className="text-white text-base">5</Text>
+          </View>
+        </View>
+
+        {/* Scrollable lesson list */}
+        <ScrollView contentContainerClassName="mt-12 flex-1 items-center justify-center w-full px-4">
+          {lessons.map((lesson) => (
+            <CourseButton
+              key={lesson.id}
+              title={lesson.title}
+              onPress={() =>
+                router.push({
+                  pathname: "/(app)/lesson/[lesson]",
+                  params: { lesson: lesson.id },
+                })
+              }
+            />
+          ))}
+        </ScrollView>
+      </Block>
+    </SafeAreaView>
+  );
+}

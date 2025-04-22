@@ -36,6 +36,7 @@ export default function LoginScreen() {
         placeholder="Mot de passe"
         value={password}
         onChangeText={setPassword}
+        secureTextEntry
       />
 
       {error && <Text className="text-red-500 mb-2">{error}</Text>}
@@ -45,7 +46,7 @@ export default function LoginScreen() {
       <CustomButton
         title="S'INSCRIRE"
         onPress={() => router.replace("/register")}
-        style={{ backgroundColor: "#afafaf" }} // à remplacer si tu veux le gérer avec Tailwind aussi
+        style={{ backgroundColor: "#afafaf" }}
       />
     </Block>
   );

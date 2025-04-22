@@ -24,7 +24,7 @@ const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress})
           </View>
           <View className="w-full h-[20%] flex-row flex-wrap justify-center gap-5">
             <View className="w-[30%] h-[50%] bg-[#45B6FE] rounded-2xl items-center pb-1 pl-1 pr-1">
-              <Text className="font-extrabold text-center">SCORE</Text>
+              <Text className="font-extrabold text-center">ACCURACY</Text>
               <View className="flex-1 w-full bg-white rounded-2xl items-center justify-center flex-row">
                 <AccurencyIcon width={25} height={25} />
                 <Text className="texl-2l font-extrabold text-center">{lessonProgress.score}%</Text>
