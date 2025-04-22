@@ -3,7 +3,7 @@ import { Sign } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -26,11 +26,9 @@ export default function Dictionary() {
 
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-black">
-        <Block className="flex-1 justify-center items-center">
-          <Text className="text-white">Chargement du dictionnaire...</Text>
-        </Block>
-      </SafeAreaView>
+      <Block className="flex-1 justify-center items-center">
+        <Text className="text-white">Chargement du dictionnaire...</Text>
+      </Block>
     );
   }
 

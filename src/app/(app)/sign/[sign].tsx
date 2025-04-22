@@ -3,7 +3,7 @@ import { getSignRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { SafeAreaView, Text, Image, TouchableOpacity } from "react-native";
+import { Text, Image, TouchableOpacity } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 
 export default function SignScreen() {
