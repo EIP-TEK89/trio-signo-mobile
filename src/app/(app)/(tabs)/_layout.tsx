@@ -36,6 +36,12 @@ export default function TabLayout() {
           title: 'Dictionary'
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+        }}
+      />
     </Tabs>
   );
 }
