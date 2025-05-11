@@ -1,3 +1,4 @@
+import Category from "@/components/Profile/Category";
 import { useAuth } from "@/context/AuthContext";
 import { getLessonsRequest } from "@/services/lessons";
 import { getUserRequest } from "@/services/user";
@@ -57,45 +58,39 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView className="flex-1">
       <ScrollView className="flex-1">
+        
       <View className="flex-1 ">
-        <Text> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</Text>
+        <View className="bg-gray-200 h-[200] mb-2">
+        </View>
+        <Text className="text-xl font-bold"> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</Text>
         <View className="flex-row items-center">
-          <Text>{"@" + user.username}</Text>
-          <Text className="m-1 mb-2">.</Text>
-          <Text>{"Membre depuis " + formatToMonthYear(user.createdAt)}</Text>
+          <Text className="color-gray-500">{"@" + user.username}</Text>
+          <Text className="color-gray-500 m-1 mb-2">.</Text>
+          <Text className="color-gray-500">{"Membre depuis " + formatToMonthYear(user.createdAt)}</Text>
         </View>
       </View>
       
       <View className="flex-1 items-center">
         <View className="w-[90%]">
-        <View className="flex-1 pb-4">
-          <Text className="text-xl font-bold color-gray-500">Account</Text>
-          <View className="flex-1 rounded-2xl border-2 border-gray-300">
-              <TouchableOpacity className="justify-center p-3">
-                <Text className="text-xl font-bold">Préférences</Text>
-              </TouchableOpacity>
-              <View className="w-[100%] border-t-2 border-gray-300"/>
-              <TouchableOpacity className="justify-center p-3">
-                <Text className="text-xl font-bold">Profil</Text>
-              </TouchableOpacity>
-              <View className="w-[100%] border-t-2 border-gray-300"/>
-              <TouchableOpacity className="justify-center p-3">
-                <Text className="text-xl font-bold">Notifications</Text>
-              </TouchableOpacity>
-          </View>
-        </View>
-        <View className="flex-1 pb-4">
-          <Text className="text-xl font-bold color-gray-500">Assistance</Text>
-          <View className="flex-1 rounded-2xl border-2 border-gray-300">
-              <TouchableOpacity className="justify-center p-3">
-                <Text className="text-xl font-bold">Centre d'aide</Text>
-              </TouchableOpacity>
-              <View className="w-[100%] border-t-2 border-gray-300"/>
-              <TouchableOpacity className="justify-center p-3">
-                <Text className="text-xl font-bold">Nous contacter</Text>
-              </TouchableOpacity>
-          </View>
-        </View>
+        <Category
+          title="Account"
+          objects={
+            [
+              ["Préférences", () => {}],
+              ["Profil", () => {}],
+              ["Notifications", () => {}],
+            ]
+          }
+        />
+        <Category
+          title="Assistance"
+          objects={
+          [
+            ["Centre d'aide", () => {}],
+            ["Nous contacter", () => {}],
+            ["Mentions légales", () => {}],
+          ]
+          }/>
         <View className="flex-1">
           <TouchableOpacity 
             onPress={() => onLogout()}

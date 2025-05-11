@@ -7,8 +7,6 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({title, objects}) => {
     return (
-        <View className="flex-1 items-center">
-                <View className="w-[90%]">
                 <View className="flex-1 pb-4">
                   <Text className="text-xl font-bold color-gray-500">{title}</Text>
                   <View className="flex-1 rounded-2xl border-2 border-gray-300">
@@ -22,8 +20,6 @@ const Category: React.FC<CategoryProps> = ({title, objects}) => {
                         ))}
                   </View>
                 </View>
-            </View>
-        </View>
     );
 }
 
