@@ -4,7 +4,7 @@ import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, Image, TouchableOpacity } from "react-native";
-import { ArrowLeft } from "lucide-react-native";
+import CrossIcon from"@assets/Courses/cross.svg";
 
 export default function SignScreen() {
   const { sign } = useLocalSearchParams();
@@ -40,7 +40,7 @@ export default function SignScreen() {
         onPress={() => router.push("/(app)/(tabs)/dictionary")}
         className="absolute top-8 left-4 bg-white/10 rounded-xl p-2"
       >
-        <ArrowLeft color="white" size={24} />
+        <CrossIcon width={30} height={30} />
       </TouchableOpacity>
 
       <Image
