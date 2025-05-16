@@ -96,7 +96,7 @@ export default function ProfileScreen() {
             onPress={() => onLogout()}
             className="flex-1 p-4 rounded-2xl border-2 border-b-4 border-gray-300">
               <Text className="text-2l font-black color-[#45B6FE] text-center">
-                DISCONNECT
+                SE DECONNECTER
               </Text>
           </TouchableOpacity>
         </View>
