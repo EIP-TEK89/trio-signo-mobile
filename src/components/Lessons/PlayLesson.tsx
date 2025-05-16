@@ -6,7 +6,6 @@ import { completeLessonRequest, getExerciseFromLessonRequest, resetLessonRequest
 import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
-import ProgressBar from "../ProgressBar";
 import CrossIcon from '@assets/Courses/cross.svg'
 
 interface PlayLessonProps {
