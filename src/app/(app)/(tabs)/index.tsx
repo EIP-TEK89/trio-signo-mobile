@@ -21,6 +21,7 @@ import {
 } from "react-native";
 import LessonButton from "@/components/Home/LessonButton";
 import { useTheme } from "@/context/ThemeContext";
+import Recognize from "@/components/AIRecognizer/Recognize";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
