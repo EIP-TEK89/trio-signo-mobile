@@ -6,16 +6,21 @@ import { Camera, CameraView, useCameraPermissions} from 'expo-camera'
 import { Button, Text, View } from "react-native";
 
 
-
 const Recognize: React.FC = () => {
+    const signRecognizer = new SignRecognizer(new OnnxRunnerMobile(), "url/or/path/to/the/model");
     const [permission, requestPermission] = useCameraPermissions();
     const cameraRef = useRef<CameraView>(null);
+    const loading = useRef(false);
     
     useEffect(() => {
-        
+        cameraRef.current?.takePictureAsync()
     }, []);
 
-    console.log("permission", permission);
+    const captureImage = async () => {
+      const picture = await cameraRef.current?.takePictureAsync()
+
+    }
+
     if (!permission?.granted) {
     // Camera permissions are not granted yet.
     return (
