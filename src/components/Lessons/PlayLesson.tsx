@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import Block from "../Block";
-import { Text, TouchableOpacity, View } from "react-native";
+import AppView from "../Ui/AppView";
+import { Text, TouchableOpacity } from "react-native";
 import Title from "../Title";
 import { completeLessonRequest, getExerciseFromLessonRequest, resetLessonRequest, startLessonRequest, updateLessonRequest } from "@/services/lessons";
 import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
-import CrossIcon from '@assets/Courses/cross.svg'
+import ProgressBar from "./ProgressBar";
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
@@ -63,27 +63,19 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
 
     if (loading) {
         return (
-          <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <AppView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ color: '#fff' }}>Loading...</Text>
-          </Block>
+          </AppView>
         );
       }
     return (
-      <View className="flex-1">
-        <View className="flex-row w-full h-[5%] items-center m-[4%] mb-[2%] gap-[4%]">
-          <TouchableOpacity onPress={() => router.back()}>
-            <CrossIcon width={25} height={25}/>
-          </TouchableOpacity>
-          <View className="w-[79%] bg-gray-300 rounded-full">
-            <View className={`bg-[#45B6FE] w-[${Math.round(index / exercisesList.length * 100)}%] h-[45%] rounded-full`} style={{ width: `${Math.round((index / exercisesList.length) * 100)}%` }}>
-            </View>
-          </View>
-        </View>
-        <View className="flex-1">
+      <AppView className="flex-1">
+        <ProgressBar index={index} maxLength={exercisesList.length}/>
+        <AppView className="flex-1">
           <PlayExercise onNext={(
           ) => setIndex(index + 1)} exercise={exercisesList[index]}/>
-        </View>
-      </View>
+        </AppView>
+      </AppView>
     );
 }
 

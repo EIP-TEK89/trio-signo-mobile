@@ -1,22 +1,17 @@
 import Category from "@/components/Profile/Category";
-import { useAuth } from "@/context/AuthContext";
-import { getLessonsRequest } from "@/services/lessons";
+import AppText from "@/components/Ui/AppText";
+import { useAuth } from "@/context/AuthProvider";
 import { getUserRequest } from "@/services/user";
-import { Lesson } from "@/types/LessonInterface";
 import { User } from "@/types/UserInterface";
-import Block from "@components/Block";
-import CourseButton from "@components/CourseButton";
-import { router } from "expo-router";
 import { useEffect, useState } from "react";
 
 import {
   Image,
   ScrollView,
-  Text,
   TouchableOpacity,
-  View,
   SafeAreaView,
 } from "react-native";
+import AppView from "@/components/Ui/AppView";
 
 export default function ProfileScreen() {
   const [loading, setLoading] = useState(true);
@@ -47,31 +42,29 @@ export default function ProfileScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-black">
-        <Block className="flex-1 justify-center items-center">
-          <Text className="text-white">Loading...</Text>
-        </Block>
-      </SafeAreaView>
+        <AppView className="flex-1 justify-center items-center">
+          <AppText className="text-white">Loading...</AppText>
+        </AppView>
     );
   }
 
   return (
     <SafeAreaView className="flex-1">
-      <ScrollView className="flex-1">
+      <ScrollView className="flex-1 bg-background">
         
-      <View className="flex-1 ">
-        <View className="bg-gray-200 h-[200] mb-2">
-        </View>
-        <Text className="text-xl font-bold"> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</Text>
-        <View className="flex-row items-center">
-          <Text className="color-gray-500">{"@" + user.username}</Text>
-          <Text className="color-gray-500 m-1 mb-2">.</Text>
-          <Text className="color-gray-500">{"Membre depuis " + formatToMonthYear(user.createdAt)}</Text>
-        </View>
-      </View>
+      <AppView className="flex-1 mb-6">
+        <AppView className="bg-gray-200 h-[200] mb-2">
+        </AppView>
+        <AppText className="text-xl font-bold"> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</AppText>
+        <AppView className="flex-row items-center">
+          <AppText className="color-gray-500">{"@" + user.username}</AppText>
+          <AppText className="color-gray-500 m-1 mb-2">.</AppText>
+          <AppText className="color-gray-500">{"Membre depuis " + formatToMonthYear(user.createdAt)}</AppText>
+        </AppView>
+      </AppView>
       
-      <View className="flex-1 items-center">
-        <View className="w-[90%]">
+      <AppView className="flex-1 items-center">
+        <AppView className="w-[90%]">
         <Category
           title="Account"
           objects={
@@ -91,17 +84,17 @@ export default function ProfileScreen() {
             ["Mentions légales", () => {}],
           ]
           }/>
-        <View className="flex-1">
+        <AppView className="flex-1 mt-6">
           <TouchableOpacity 
             onPress={() => onLogout()}
             className="flex-1 p-4 rounded-2xl border-2 border-b-4 border-gray-300">
-              <Text className="text-2l font-black color-[#45B6FE] text-center">
+              <AppText className="text-2l font-black color-[#45B6FE] text-center">
                 SE DECONNECTER
-              </Text>
+              </AppText>
           </TouchableOpacity>
-        </View>
-      </View>
-      </View>
+        </AppView>
+      </AppView>
+      </AppView>
       </ScrollView>
     </SafeAreaView>
   );

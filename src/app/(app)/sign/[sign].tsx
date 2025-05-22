@@ -1,4 +1,4 @@
-import Block from "@/components/Block";
+import AppView from "@/components/Ui/AppView";
 import { getSignRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
@@ -28,14 +28,14 @@ export default function SignScreen() {
 
   if (loading) {
     return (
-      <Block className="flex-1 justify-center items-center">
+      <AppView className="flex-1 justify-center items-center">
         <Text className="text-white">Chargement...</Text>
-      </Block>
+      </AppView>
     );
   }
 
   return (
-    <Block className="flex-1 items-center justify-center px-4 relative">
+    <AppView className="flex-1 items-center justify-center px-4 relative">
       <TouchableOpacity
         onPress={() => router.push("/(app)/(tabs)/dictionary")}
         className="absolute top-8 left-4 bg-white/10 rounded-xl p-2"
@@ -51,6 +51,6 @@ export default function SignScreen() {
       <Text className="text-white text-4xl font-bold">
         {signDisplayed?.word}
       </Text>
-    </Block>
+    </AppView>
   );
 }

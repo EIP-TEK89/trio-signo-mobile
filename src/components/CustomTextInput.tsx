@@ -4,7 +4,7 @@ import {
   TextInputProps,
   TouchableOpacity,
 } from "react-native";
-import Block from "./Block";
+import AppView from "./Ui/AppView";
 import { View } from "react-native";
 import { twMerge } from "tailwind-merge"; // facultatif si tu veux merger des classes proprement
 import { useState } from "react";
@@ -20,7 +20,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
   ...props
 }) => {
   return (
-    <Block className="w-4/5 items-center mb-4">
+    <AppView className="w-4/5 items-center mb-4">
       <TextInput
         {...props}
         placeholderTextColor="#8A9299"
@@ -34,7 +34,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
           <Text className="text-[#45B6FE] text-xs font-medium">OUBLIÉ ?</Text>
         </TouchableOpacity>
       )}
-    </Block>
+    </AppView>
   );
 };
 

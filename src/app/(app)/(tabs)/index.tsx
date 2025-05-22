@@ -1,9 +1,7 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/AuthProvider";
 import { getLessonsRequest } from "@/services/lessons";
 import { getUserRequest } from "@/services/user";
 import { Lesson } from "@/types/LessonInterface";
-import Block from "@components/Block";
-import CourseButton from "@components/CourseButton";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import HeartIcon from '@assets/CoursesJourney/Home/Header/life.svg'
@@ -12,15 +10,13 @@ import FlameIgniteIcon from '@assets/CoursesJourney/Home/Header/flameIgnite.svg'
 import GemsIcon from '@assets/CoursesJourney/Home/Header/gems.svg'
 
 import {
-  Image,
   ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
   SafeAreaView,
 } from "react-native";
 import LessonButton from "@/components/Home/LessonButton";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "@/context/ThemeProvider";
+import AppText from "@/components/Ui/AppText";
+import AppView from "@/components/Ui/AppView";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
@@ -57,68 +53,65 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <SafeAreaView className="flex-1 bg-black">
-        <Block className="flex-1 justify-center items-center">
-          <Text className="text-white">Loading...</Text>
-        </Block>
+        <AppView className="flex-1 justify-center items-center">
+          <AppText className="text-white">Loading...</AppText>
+        </AppView>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <Block className="flex-1">
+    <SafeAreaView className="flex-1">
+      <AppView className="flex-1">
         {/* Header */}
         
-        <View className="flex-row w-full h-12 justify-between px-4 items-center">
-          <View>
-            <Text className="text-white font-bold text-xl">Trio Signo</Text>
-          </View>
+        <AppView className="flex-row w-full h-12 justify-between px-4 items-center">
+          <AppView>
+            <AppText className="font-bold text-xl text-text">Trio Signo</AppText>
+          </AppView>
           {streak <= 0 ? 
-          <View className="flex-row items-center gap-2">
+          <AppView className="flex-row items-center gap-2">
             <FlameIcon width={30} height={30} />
-            <Text className="text-gray-500 font-bold text-xl">{streak}</Text>
-          </View>
+            <AppText className="text-gray-500 font-bold text-xl text-[text]">{streak}</AppText>
+          </AppView>
           :
-          <View className="flex-row items-center gap-2">
+          <AppView className="flex-row items-center gap-2">
             <FlameIgniteIcon width={30} height={30} />
-            <Text className="text-yellow-500 font-bold text-xl">{streak}</Text>
-          </View>}
-          <View className="flex-row items-center gap-2">
+            <AppText className="text-yellow-500 font-bold text-xl">{streak}</AppText>
+          </AppView>}
+          <AppView className="flex-row items-center gap-2">
             <GemsIcon width={25} height={25} />
-            <Text className="text-blue-500 font-bold text-xl">{life}</Text>
-          </View>
-          <View className="flex-row items-center gap-2">
+            <AppText className="text-blue-500 font-bold text-xl">{life}</AppText>
+          </AppView>
+          <AppView className="flex-row items-center gap-2">
             <HeartIcon width={30} height={30} />
-            <Text className="text-red-500 font-bold text-xl">{life}</Text>
-          </View>
-        </View>
-        <View className="w-full h-24 items-center">
-          <View 
-            style={{ backgroundColor: theme.colors.duoGreen }}
-            className="w-[90%] h-full rounded-2xl p-4"
+            <AppText className="text-red-500 font-bold text-xl">{life}</AppText>
+          </AppView>
+        </AppView>
+        <AppView className="w-full h-24 items-center">
+          <AppView
+            className="w-[90%] h-full rounded-2xl p-4 bg-duoGreen"
             >
-            <Text
-              style={{ color: theme.colors.background }}
-              className="text-l font-bold">
+            <AppText
+              className="text-l font-bold text-text">
               Chapitre 1, Unité 1
-            </Text>
-            <Text 
-              style={{ color: theme.colors.background }}
-              className="text-xl font-black">
+            </AppText>
+            <AppText 
+              className="text-xl font-black text-text">
               Introduction à la langue des signes
-            </Text>
-          </View>
-        </View>
+            </AppText>
+          </AppView>
+        </AppView>
 
         {/* Scrollable lesson list */}
-        <View className="flex-1 mt-6">
+        <AppView className="flex-1 mt-6">
         <ScrollView contentContainerClassName="w-full items-center pt-3" showsVerticalScrollIndicator={true}>
           {lessons.map((lesson, index) => {
             const position = Math.sin((index / (lessons.length - 1)) * (2 * Math.PI));
             const translateX = 70 * position
 
             return (
-              <View 
+              <AppView 
                 key={lesson.id}
                 className="items-center"
                 style={{
@@ -141,11 +134,11 @@ export default function HomeScreen() {
                   })
                 }
               />
-            </View>
+            </AppView>
           )})}
         </ScrollView>
-        </View>
-      </Block>
+        </AppView>
+      </AppView>
     </SafeAreaView>
   );
 }

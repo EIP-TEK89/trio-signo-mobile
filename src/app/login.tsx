@@ -1,10 +1,10 @@
-import { useAuth } from "@context/AuthContext";
+import { useAuth } from "@/context/AuthProvider";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View } from "react-native";
 import CustomTextInput from "@components/CustomTextInput";
 import CustomButton from "@components/CustomButton";
-import Block from "@components/Block";
+import AppView from "@/components/Ui/AppView";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <Block className="flex-1 bg-[#0D1117] p-5 justify-center items-center">
+    <AppView className="flex-1 bg-[#0D1117] p-5 justify-center items-center">
       <Text className="text-2xl font-semibold text-white mb-8">Connexion</Text>
 
       <CustomTextInput
@@ -48,6 +48,6 @@ export default function LoginScreen() {
         onPress={() => router.replace("/register")}
         style={{ backgroundColor: "#afafaf" }}
       />
-    </Block>
+    </AppView>
   );
 }
