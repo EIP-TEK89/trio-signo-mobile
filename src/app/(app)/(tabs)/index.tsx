@@ -11,12 +11,12 @@ import GemsIcon from '@assets/CoursesJourney/Home/Header/gems.svg'
 
 import {
   ScrollView,
-  SafeAreaView,
 } from "react-native";
 import LessonButton from "@/components/Home/LessonButton";
 import { useTheme } from "@/context/ThemeProvider";
 import AppText from "@/components/Ui/AppText";
 import AppView from "@/components/Ui/AppView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,8 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-background"
+    edges={['top']}>
       <AppView className="flex-1">
         {/* Header */}
         

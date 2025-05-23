@@ -49,7 +49,7 @@ export default function ProfileScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-background">
       <ScrollView className="flex-1 bg-background">
         
       <AppView className="flex-1 mb-6">

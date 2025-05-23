@@ -1,45 +1,13 @@
 import { vars } from "nativewind";
+import { lightColors, darkColors  } from "./colors";
 
 export const themes = {
-  light: vars({
-    "--duo-blue": "#1cb0f6",
-    "--darkened-duo-blue": "#1a9ae0",
-    "--duo-green": "#58cc02",
-    "--darkened-duo-green": "#4cae02",
-    "--duo-purple": "#ce82ff",
-    "--darkened-duo-purple": "#b76de0",
-    "--duo-red": "#ff4b4b",
-    "--darkened-duo-red": "#e03a3a",
-    "--duo-orange": "#ff9600",
-    "--darkened-duo-orange": "#e08c00",
-    "--duo-yellow": "#ffc800",
-    "--darkened-duo-yellow": "#e0b800",
-    "--foreground": "#333",
-    "--muted-foreground": "#666",
-    "--background": "#fff",
-    "--text": "#000",
-    "--muted": "#f5f5f5",
-    "--border": "#e5e5e7",
-  }),
+  light: vars(lightColors),
 
-  dark: vars({
-    "--duo-blue": "#1cb0f6",
-    "--darkened-duo-blue": "#1a9ae0",
-    "--duo-green": "#58cc02",
-    "--darkened-duo-green": "#4cae02",
-    "--duo-purple": "#ce82ff",
-    "--darkened-duo-purple": "#b76de0",
-    "--duo-red": "#ff4b4b",
-    "--darkened-duo-red": "#e03a3a",
-    "--duo-orange": "#ff9600",
-    "--darkened-duo-orange": "#e08c00",
-    "--duo-yellow": "#ffc800",
-    "--darkened-duo-yellow": "#e0b800",
-    "--foreground": "#eee",
-    "--muted-foreground": "#aaa",
-    "--background": "#1a1a1a",
-    "--text": "#fff",
-    "--muted": "#2a2a2a",
-    "--border": "#444",
-  }),
+  dark: vars(darkColors),
+};
+
+export const themeValues = {
+  light: lightColors,
+  dark: darkColors,
 };
