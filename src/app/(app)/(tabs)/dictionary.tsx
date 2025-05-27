@@ -1,0 +1,75 @@
+import AppText from "@/components/Ui/AppText";
+import { getSignsRequest } from "@/services/dictionnary";
+import { Sign } from "@/types/LessonInterface";
+import { router } from "expo-router";
+import { useEffect, useState } from "react";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
+import AppView from "@/components/Ui/AppView";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function Dictionary() {
+  const [signs, setSigns] = useState<Sign[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const loadSigns = async () => {
+      const response = await getSignsRequest();
+
+      const sorted = response.sort((a, b) =>
+        a.word.localeCompare(b.word, "fr", { sensitivity: "base" })
+      );
+
+      setSigns(sorted);
+      setLoading(false);
+    };
+
+    loadSigns();
+  }, []);
+
+  if (loading) {
+    return (
+      <SafeAreaView>
+      <AppView className="flex-1 justify-center items-center">
+        <AppText className="text-white">Chargement du dictionnaire...</AppText>
+      </AppView>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView className="flex-1 bg-background">
+    <AppView className="flex-1 w-full px-4">
+      <AppText className="text-2xl font-bold mt-6 mb-4">
+        Apprendre les signes
+      </AppText>
+      <AppText className="text-base mb-4">
+        Apprennez à connaitre les signes de la langue des signes française (LSF).
+      </AppText>
+
+      <ScrollView
+        className="mt-5"
+        showsVerticalScrollIndicator={false}
+      >
+        <AppView className="w-[95%] flex-row flex-wrap items-center mx-auto gap-6">
+          {signs.map((letter, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                router.push({
+                  pathname: "/(app)/sign/[sign]",
+                  params: { sign: letter.word },
+                })
+              }
+              className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoBlue"
+            >
+              <AppText className="text-white text-xl font-semibold">
+                {letter.word}
+              </AppText>
+            </TouchableOpacity>
+          ))}
+          </AppView>
+      </ScrollView>
+    </AppView>
+    </SafeAreaView>
+  );
+}
