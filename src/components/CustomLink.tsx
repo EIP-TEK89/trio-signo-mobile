@@ -1,6 +1,6 @@
 import { Href, Link, Redirect } from "expo-router";
 import { Button, ButtonProps, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
-import Block from "./Block";
+import AppView from "./Ui/AppView";
 
 interface CustomLinkProps {
     title: string;
@@ -10,15 +10,15 @@ interface CustomLinkProps {
 
 const CustomLink: React.FC<CustomLinkProps> = ({ ...props }) => {
   return (
-    <Block style={styles.inputContainer}>
-    <Block style={StyleSheet.flatten([styles.button, props.style])}>
+    <AppView style={styles.inputContainer}>
+    <AppView style={StyleSheet.flatten([styles.button, props.style])}>
         <Link href={props.href}>
             <Text style={styles.title}>
                 {props.title}
             </Text>
         </Link>
-    </Block>
-    </Block>
+    </AppView>
+    </AppView>
   );
 }
 

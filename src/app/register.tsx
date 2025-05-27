@@ -1,10 +1,10 @@
-import { useAuth } from "@context/AuthContext";
+import { useAuth } from "@/context/AuthProvider";
 import { useState } from "react";
 import { Text, View } from "react-native";
 import CustomTextInput from "@components/CustomTextInput";
 import CustomButton from "@components/CustomButton";
 import { router } from "expo-router";
-import Block from "@/components/Block";
+import AppView from "@/components/Ui/AppView";
 
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
@@ -22,7 +22,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <Block className="flex-1 justify-center items-center px-5 bg-white dark:bg-black">
+    <AppView className="flex-1 justify-center items-center px-5 bg-white dark:bg-black">
       <CustomTextInput
         placeholder="Username"
         value={username}
@@ -52,6 +52,6 @@ export default function LoginScreen() {
         onPress={() => router.replace("/login")}
         style={{ backgroundColor: "#afafaf" }}
       />
-    </Block>
+    </AppView>
   );
 }
