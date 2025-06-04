@@ -54,7 +54,7 @@ export default function HomeScreen() {
     return (
       <SafeAreaView className="flex-1 bg-black">
         <AppView className="flex-1 justify-center items-center">
-          <AppText className="text-white">Loading...</AppText>
+          <AppText className="text-white">Chargement...</AppText>
         </AppView>
       </SafeAreaView>
     );
