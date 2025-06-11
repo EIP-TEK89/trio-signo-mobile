@@ -17,8 +17,8 @@ const Block: React.FC<BlockProps> = ({ ...props }) => {
         {
           backgroundColor:
             systemTheme == "dark"
-              ? theme.colors.background
-              : theme.colors.foreground,
+              ? theme.colors.foreground
+              : theme.colors.background,
         },
         props.style,
       ]}
