@@ -148,6 +148,7 @@ export default function HomeScreen() {
 import ProgressBar from "@/components/ProgressBar";
 import { useAuth } from "@/context/AuthContext";
 import { getLessonsRequest } from "@/services/lessons";
+import { getUserRequest } from "@/services/user";
 import { Lesson } from "@/types/LessonInterface";
 import Block from "@components/Block";
 import CourseButton from "@components/CourseButton";
@@ -156,6 +157,7 @@ import axios from "axios";
 import { Link, router } from "expo-router";
 import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native";
+import * as SecureStore from 'expo-secure-store';
 
 export default function HomeScreen() {
     const [loading, setLoading] = useState(true);
@@ -163,12 +165,25 @@ export default function HomeScreen() {
     const { onLogout } = useAuth();
 
       useEffect(() => {
+        const checkLogin = async () => {
+            const response = await getUserRequest();
+            if (response === null) {
+              onLogout();
+              return;
+            }
+        }
+
         const loadLessons = async () => {
             const response = await getLessonsRequest();
             setLessons(response);
         }
-        loadLessons();
-        setLoading(false);
+
+        const init = async () => {
+            await checkLogin();
+            await loadLessons();
+            setLoading(false);
+        }
+        init();
       }, []);
 
     if (loading) {
@@ -191,7 +206,7 @@ export default function HomeScreen() {
                 </View>
             <ScrollView  contentContainerStyle={styles.scrollView}>
             {lessons.map((lesson) => (
-                <CourseButton key={lesson.id} title={lesson.title} onPress={() => router.push(`/courses`)} />
+                <CourseButton key={lesson.id} title={lesson.title} onPress={() => router.push({pathname: '/(app)/lesson/[lesson]', params: {lesson: lesson.id}})} />
             ))}
             </ScrollView>
         </Block>
