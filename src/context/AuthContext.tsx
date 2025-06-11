@@ -43,7 +43,16 @@ export const AuthProvider = ({children}: any) => {
 
   const register = async (username: string, email: string, password: string) => {
     try {
-      return await axios.post(API_URL + "/auth/sign-up", {username, email, password});
+      const result = await axios.post(process.env.EXPO_PUBLIC_API_URL + "/auth/register", {username, email, password});
+      setAuthState({
+        token: result.data.token,
+        authenticated: true
+      });
+      axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.accessToken}`;
+
+      await SecureStore.setItemAsync('token', result.data.accessToken);
+
+      return result;
     } catch (e) {
       return {error: true, msg: e.message} 
     }
@@ -51,7 +60,7 @@ export const AuthProvider = ({children}: any) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const result = await axios.post(API_URL + "/auth/login", {email, password});
+      const result = await axios.post(process.env.EXPO_PUBLIC_API_URL + "/auth/login", {email, password});
       setAuthState({
         token: result.data.token,
         authenticated: true
@@ -59,7 +68,6 @@ export const AuthProvider = ({children}: any) => {
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.accessToken}`;
 
-      console.log(result.data.accessToken)
       await SecureStore.setItemAsync('token', result.data.accessToken);
 
       return result;
