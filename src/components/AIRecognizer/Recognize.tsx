@@ -6,6 +6,7 @@ import { Camera, CameraView, useCameraPermissions} from 'expo-camera'
 import { Button, Text, View } from "react-native";
 
 
+<<<<<<< HEAD
 const Recognize: React.FC = () => {
     const signRecognizer = new SignRecognizer(new OnnxRunnerMobile(), "url/or/path/to/the/model");
     const [permission, requestPermission] = useCameraPermissions();
@@ -21,6 +22,18 @@ const Recognize: React.FC = () => {
 
     }
 
+=======
+
+const Recognize: React.FC = () => {
+    const [permission, requestPermission] = useCameraPermissions();
+    const cameraRef = useRef<CameraView>(null);
+    
+    useEffect(() => {
+        
+    }, []);
+
+    console.log("permission", permission);
+>>>>>>> 10dd296 (Feat(Recognize): Implement camera permission handling and UI for AI recognition)
     if (!permission?.granted) {
     // Camera permissions are not granted yet.
     return (
