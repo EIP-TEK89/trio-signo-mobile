@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import AccurencyIcon from '@assets/Courses/accurency.svg'
 import AppView from "../Ui/AppView";
 import AppText from "../Ui/AppText";
+import { runOnJS, useAnimatedReaction, Easing, useSharedValue, withTiming } from "react-native-reanimated";
 
 interface LessonCompleteProps {
   lesson: LessonWithExercises;
@@ -16,19 +17,36 @@ interface LessonCompleteProps {
 const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress}) => {
     const [loading, setLoading] = useState(true);
     const [index, setIndex] = useState<number>(0);
+    const progress = useSharedValue(0);
+    const [displayedProgress, setDisplayedProgress] = useState(0);
+    
+      useEffect(() => {
+        progress.value = withTiming(lessonProgress.score, {
+          duration: 600,
+          easing: Easing.inOut(Easing.ease),
+        });
+      }, [lessonProgress.score]);
+    
+      useAnimatedReaction(
+        () => progress.value,
+        (current, previous) => {
+          runOnJS(setDisplayedProgress)(Math.round(current));
+        }
+      )
 
     return (
       <AppView className="flex-1">
         <AppView className="flex-1 justify-center items-center">
           <AppView className="w-full h-[20%] items-center justify-center">
-            <AppText className="text-3xl font-extrabold text-center">Training finished !</AppText>
+            <AppText className="text-3xl font-extrabold text-center">Entrainement terminée !</AppText>
           </AppView>
           <AppView className="w-full h-[20%] flex-row flex-wrap justify-center gap-5">
-            <AppView className="w-[30%] h-[50%] bg-[#45B6FE] rounded-2xl items-center pb-1 pl-1 pr-1">
-              <AppText className="font-extrabold text-center">ACCURACY</AppText>
-              <AppView className="flex-1 w-full bg-white rounded-2xl items-center justify-center flex-row">
+            <AppView className="w-[30%] h-[50%] bg-duoBlue rounded-2xl items-center pb-1 pl-1 pr-1">
+              <AppText className="font-extrabold text-center color-background">Précision</AppText>
+              <AppView className="flex-1 w-full rounded-2xl items-center justify-center flex-row">
                 <AccurencyIcon width={25} height={25} />
-                <AppText className="texl-2l font-extrabold text-center">{lessonProgress.score}%</AppText>
+                <AppText className="texl-2l font-extrabold text-center">{displayedProgress}%</AppText>
+
               </AppView>
             </AppView>
           </AppView>
