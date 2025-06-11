@@ -1,29 +1,17 @@
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
-<<<<<<< HEAD
 import AppView from "./Ui/AppView";
-=======
-import Block from "./Block";
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
 
 
 const CustomTouchableOpacity: React.FC<TouchableOpacityProps> = ({ ...props }) => {
 
   return (
-<<<<<<< HEAD
     <AppView style={styles.inputContainer}>
-=======
-    <Block style={styles.inputContainer}>
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
       <TouchableOpacity
           {...props}
           style={StyleSheet.flatten([styles.button, props.style])}
 
     />
-<<<<<<< HEAD
     </AppView>
-=======
-    </Block>
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
   );
 }
 

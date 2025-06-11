@@ -29,7 +29,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength }) => {
     });
   }, [progressPercentage]);
 
-  console.log(progress.value)
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: `${progress.value}%`,

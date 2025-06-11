@@ -1,9 +1,5 @@
 import { Button, ButtonProps, Image, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
-<<<<<<< HEAD
 import AppView from "./Ui/AppView";
-=======
-import Block from "./Block";
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
 import Star from "@assets/CoursesJourney/Home/star.svg";
 
 interface CourseButtonProps extends ButtonProps {
@@ -13,11 +9,7 @@ interface CourseButtonProps extends ButtonProps {
 const CourseButton: React.FC<CourseButtonProps> = ({ ...props }) => {
 
   return (
-<<<<<<< HEAD
     <AppView style={styles.inputContainer}>
-=======
-    <Block style={styles.inputContainer}>
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
          
         <TouchableOpacity
             {...props}
@@ -25,11 +17,7 @@ const CourseButton: React.FC<CourseButtonProps> = ({ ...props }) => {
              <Star
               width={50} height={50} backgroundColor={"#333"}/>
         </TouchableOpacity>
-<<<<<<< HEAD
     </AppView>
-=======
-    </Block>
->>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
   );
 }
 
