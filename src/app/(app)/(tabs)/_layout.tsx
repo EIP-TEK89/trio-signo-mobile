@@ -115,6 +115,12 @@ export default function TabLayout() {
 >>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+        }}
+      />
     </Tabs>
   );
 }
