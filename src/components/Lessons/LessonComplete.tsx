@@ -46,6 +46,7 @@ const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress})
               <AppView className="flex-1 w-full rounded-2xl items-center justify-center flex-row">
                 <AccurencyIcon width={25} height={25} />
                 <AppText className="texl-2l font-extrabold text-center">{displayedProgress}%</AppText>
+
               </AppView>
             </AppView>
           </AppView>

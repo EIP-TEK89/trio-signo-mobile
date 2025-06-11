@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { TouchableOpacity } from "react-native";
 import AppView from "../Ui/AppView";
@@ -9,6 +10,7 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
+
 
 interface ProgressBarProps {
   index: number;
