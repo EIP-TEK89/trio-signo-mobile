@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
 export interface Sign {
     id: string;
     word: string;
