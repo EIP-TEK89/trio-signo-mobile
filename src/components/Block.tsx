@@ -1,13 +1,5 @@
 import { useTheme } from "@context/ThemeContext";
-import { Link } from "expo-router";
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, useColorScheme, View, ViewStyle } from "react-native";
 
 interface BlockProps {
   children?: React.ReactNode;
@@ -38,15 +30,3 @@ const Block: React.FC<BlockProps> = ({ ...props }) => {
 };
 
 export default Block;
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    width: "80%",
-    alignItems: "center",
-  },
-
-  title: {
-    color: "",
-    fontWeight: "bold",
-  },
-});
