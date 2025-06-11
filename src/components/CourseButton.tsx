@@ -1,5 +1,5 @@
 import { Button, ButtonProps, Image, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
-import Block from "./Block";
+import AppView from "./Ui/AppView";
 import Star from "@assets/CoursesJourney/Home/star.svg";
 
 interface CourseButtonProps extends ButtonProps {
@@ -9,7 +9,7 @@ interface CourseButtonProps extends ButtonProps {
 const CourseButton: React.FC<CourseButtonProps> = ({ ...props }) => {
 
   return (
-    <Block style={styles.inputContainer}>
+    <AppView style={styles.inputContainer}>
          
         <TouchableOpacity
             {...props}
@@ -17,7 +17,7 @@ const CourseButton: React.FC<CourseButtonProps> = ({ ...props }) => {
              <Star
               width={50} height={50} backgroundColor={"#333"}/>
         </TouchableOpacity>
-    </Block>
+    </AppView>
   );
 }
 

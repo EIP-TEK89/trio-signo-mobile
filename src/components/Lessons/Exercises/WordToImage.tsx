@@ -1,4 +1,4 @@
-import Block from "@/components/Block";
+import AppView from "@/components/Ui/AppView";
 import CustomButton from "@/components/CustomButton";
 import Title from "@/components/Title";
 import { getSignImageRequest } from "@/services/dictionnary";
@@ -6,8 +6,9 @@ import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
+import AppText from "@/components/Ui/AppText";
 
 interface WordToImageProps {
     onNext: () => void;
@@ -51,19 +52,19 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     
     if (loading) {
         return (
-          <Block style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: '#fff' }}>Loading...</Text>
-          </Block>
+          <AppView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <AppText style={{ color: '#fff' }}>Loading...</AppText>
+          </AppView>
         );
       }
 
     return (
-      <View className="flex-1">
-        <View className="flex-1 flex-col gap-[15%]">
-          <Text className="text-2xl font-black ml-[2%]">{exercise.prompt}</Text>
-          <View className="flex-1 flex-row flex-wrap justify-center gap-5">
+      <AppView className="flex-1">
+        <AppView className="flex-1 flex-col gap-[15%]">
+          <AppText className="text-2xl font-black ml-[2%]">{exercise.prompt}</AppText>
+          <AppView className="flex-1 flex-row flex-wrap justify-center gap-5">
             {responses.map((response, index) => (
-              <View key={index} className="w-[45%] aspect-square">
+              <AppView key={index} className="w-[45%] aspect-square">
                 <TouchableOpacity key={index} onPress={() => { !checked && CheckExercise(response.word)}}
                 disabled={responded} className="flex-1"
                   >
@@ -73,20 +74,20 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
                       alt={response.word}
                     />
                 </TouchableOpacity>
-              </View>
+              </AppView>
             ))}
-          </View>
-        </View>
-        <View className="absolute bottom-6 left-0 w-full items-center">
+          </AppView>
+        </AppView>
+        <AppView className="absolute bottom-6 left-0 w-full items-center">
           <TouchableOpacity 
             className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-[#45B6FE]'}`}
             disabled={!responded} onPress={() => onNext()}>
-              <Text className="text-2l font-black text-center">
+              <AppText className="text-2l font-black text-center">
                 VALIDER
-              </Text>
+              </AppText>
           </TouchableOpacity>
-        </View>
-      </View>
+        </AppView>
+      </AppView>
     );
 }
 

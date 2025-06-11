@@ -1,4 +1,3 @@
-import Block from '@/components/Block';
 import LessonComplete from '@/components/Lessons/LessonComplete';
 import PlayLesson from '@/components/Lessons/PlayLesson';
 import { getLessonRequest } from '@/services/lessons';

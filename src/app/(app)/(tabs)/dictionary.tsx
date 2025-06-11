@@ -1,9 +1,11 @@
+import AppText from "@/components/Ui/AppText";
 import { getSignsRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
-import Block from "@components/Block";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
+import AppView from "@/components/Ui/AppView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -26,39 +28,48 @@ export default function Dictionary() {
 
   if (loading) {
     return (
-      <Block className="flex-1 justify-center items-center">
-        <Text className="text-white">Chargement du dictionnaire...</Text>
-      </Block>
+      <SafeAreaView>
+      <AppView className="flex-1 justify-center items-center">
+        <AppText className="text-white">Chargement du dictionnaire...</AppText>
+      </AppView>
+      </SafeAreaView>
     );
   }
 
   return (
-    <Block className="flex-1 w-full px-4">
-      <Text className="text-white text-2xl font-bold mt-6 mb-4 text-center">
-        Dictionnaire des signes
-      </Text>
+    <SafeAreaView className="flex-1 bg-background">
+    <AppView className="flex-1 w-full px-4">
+      <AppText className="text-2xl font-bold mt-6 mb-4">
+        Apprendre les signes
+      </AppText>
+      <AppText className="text-base mb-4">
+        Apprennez à connaitre les signes de la langue des signes française (LSF).
+      </AppText>
 
       <ScrollView
-        contentContainerClassName="flex-row flex-wrap justify-center gap-4 pb-10"
+        className="mt-5"
         showsVerticalScrollIndicator={false}
       >
-        {signs.map((letter, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() =>
-              router.push({
-                pathname: "/(app)/sign/[sign]",
-                params: { sign: letter.word },
-              })
-            }
-            className="w-20 h-20 bg-white/10 rounded-xl justify-center items-center"
-          >
-            <Text className="text-white text-xl font-semibold">
-              {letter.word}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        <AppView className="w-[95%] flex-row flex-wrap items-center mx-auto gap-6">
+          {signs.map((letter, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                router.push({
+                  pathname: "/(app)/sign/[sign]",
+                  params: { sign: letter.word },
+                })
+              }
+              className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoBlue"
+            >
+              <AppText className="text-white text-xl font-semibold">
+                {letter.word}
+              </AppText>
+            </TouchableOpacity>
+          ))}
+          </AppView>
       </ScrollView>
-    </Block>
+    </AppView>
+    </SafeAreaView>
   );
 }
