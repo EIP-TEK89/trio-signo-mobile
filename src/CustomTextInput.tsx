@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TextInput, TextInputProps, Touchable, TouchableOpacity, View } from "react-native";
+import Block from "./Block";
 
 interface CustomTextInputProps extends TextInputProps {
   type?: 'default' | 'password';
@@ -7,7 +8,7 @@ interface CustomTextInputProps extends TextInputProps {
 const CustomTextInput: React.FC<CustomTextInputProps> = ({ type = 'default', ...props}) => {
 
   return (
-    <View style={styles.inputContainer}>
+    <Block style={styles.inputContainer}>
       <TextInput
           {...props}
           placeholderTextColor="#8A9299"
@@ -17,7 +18,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({ type = 'default', ...
     <TouchableOpacity style={styles.forgotButton}>
         <Text style={styles.forgotText}>OUBLIÉ ?</Text>
     </TouchableOpacity>}
-    </View>
+    </Block>
   );
 }
 

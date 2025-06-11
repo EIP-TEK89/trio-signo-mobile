@@ -1,16 +1,17 @@
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import Block from "./Block";
 
 
 const CustomTouchableOpacity: React.FC<TouchableOpacityProps> = ({ ...props }) => {
 
   return (
-    <View style={styles.inputContainer}>
+    <Block style={styles.inputContainer}>
       <TouchableOpacity
           {...props}
           style={StyleSheet.flatten([styles.button, props.style])}
 
     />
-    </View>
+    </Block>
   );
 }
 

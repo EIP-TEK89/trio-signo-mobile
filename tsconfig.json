@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "paths": {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "@/*": [
         "./src/*"
       ],
@@ -28,6 +29,14 @@
       "@assets/*": ["./assets/*"],
       "@hooks/*": ["./hooks/*"]
 >>>>>>> fd80094 (feat(assets): add new images and remove unused assets; update TypeScript paths)
+=======
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@context/*": ["./src/context/*"],
+>>>>>>> 89fc775 (feat: add new components and assets for lesson exercises)
     }
   },
   "include": [

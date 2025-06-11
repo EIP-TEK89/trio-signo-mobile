@@ -1,4 +1,5 @@
 import { Button, ButtonProps, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
+import Block from "./Block";
 
 interface CustomButtonProps extends ButtonProps {
     style?: StyleProp<ViewStyle>;
@@ -7,7 +8,7 @@ interface CustomButtonProps extends ButtonProps {
 const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
 
   return (
-    <View style={styles.inputContainer}>
+    <Block style={styles.inputContainer}>
         <TouchableOpacity
             {...props}
             style={StyleSheet.flatten([styles.button, props.style])}>
@@ -15,7 +16,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ ...props }) => {
                 {props.title}
             </Text>
         </TouchableOpacity>
-    </View>
+    </Block>
   );
 }
 
