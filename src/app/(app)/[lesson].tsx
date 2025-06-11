@@ -1,23 +1,24 @@
 import Block from '@/components/Block';
-import { getSignRequest } from '@/services/dictionnary';
-import { Sign } from '@/types/LessonInterface';
+import PlayLesson from '@/components/Lessons/PlayLesson';
+import { getLessonRequest } from '@/services/lessons';
+import { Lesson, LessonWithExercises, Sign } from '@/types/LessonInterface';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-export default function SignScreen() {
-    const { word } = useLocalSearchParams();
+export default function LessonScreen() {
+    const { lesson } = useLocalSearchParams();
     const [loading, setLoading] = useState<boolean>(true);
-    const [sign, setSign] = useState<Sign | undefined>(undefined);
+    const [lessonWithExercises, setLessonWithExercises] = useState<LessonWithExercises | undefined>(undefined);
 
     useEffect(() => {
         const loadSign = async () => {
-            const response = await getSignRequest(word as string);
+            const response = await getLessonRequest(lesson as string);
             if (response === null) {
               router.back();
               return;
             }
-            setSign(response[0]);
+            setLessonWithExercises(response[0]);
             setLoading(false);
         }
         loadSign();
@@ -33,8 +34,7 @@ export default function SignScreen() {
 
     return (
       <View>
-        <Image source={{uri: sign?.mediaUrl}}  style={{ width: 200, height: 200 }}/>
-        <Text>{word}</Text>
+        <PlayLesson lessonId={lessonWithExercises.id}/>
       </View>
     );
 }
