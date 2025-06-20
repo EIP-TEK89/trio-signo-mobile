@@ -2,10 +2,10 @@ import LessonComplete from '@/components/Lessons/LessonComplete';
 import PlayLesson from '@/components/Lessons/PlayLesson';
 import AppView from '@/components/Ui/AppView';
 import { getLessonRequest } from '@/services/lessons';
-import { Lesson, LessonProgress, LessonWithExercises, Sign } from '@/types/LessonInterface';
-import { Link, router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { LessonProgress, LessonWithExercises } from '@/types/LessonInterface';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function LessonScreen() {
@@ -25,12 +25,11 @@ export default function LessonScreen() {
             setLoading(false);
         }
         loadSign();
-    }, []);
+    }, [lesson]);
 
-    const lessonCompleted = (lessonProgress : LessonProgress) => {
+    const lessonCompleted = useCallback((lessonProgress : LessonProgress) => {
         setLessonResult(lessonProgress);
-
-    }
+    }, [])
 
     if (loading){
         return (
@@ -49,10 +48,3 @@ export default function LessonScreen() {
     );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

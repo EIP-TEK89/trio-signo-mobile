@@ -1,5 +1,4 @@
-import { useTheme } from "@/context/ThemeProvider";
-import { StyleProp, Text, TextProps, useColorScheme, View, ViewStyle } from "react-native";
+import { Text, TextProps } from "react-native";
 
 
 const AppText: React.FC<TextProps> = ({ ...props }) => {

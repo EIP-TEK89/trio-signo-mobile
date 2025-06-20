@@ -13,7 +13,6 @@ import {
   ScrollView,
 } from "react-native";
 import LessonButton from "@/components/Home/LessonButton";
-import { useTheme } from "@/context/ThemeProvider";
 import AppText from "@/components/Ui/AppText";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -21,10 +20,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const [lessons, setLessons] = useState<Lesson[]>([]);
-  const [streak, setStreak] = useState<number>(0);
-  const [life, setLife] = useState<number>(5);
-  const [gems, setGems] = useState<number>(5);
-  const theme = useTheme();
+  const [streak, ] = useState<number>(0);
+  const [life, ] = useState<number>(5);
   const { onLogout } = useAuth();
 
   useEffect(() => {
@@ -48,7 +45,7 @@ export default function HomeScreen() {
     };
 
     init();
-  }, []);
+  }, [onLogout]);
 
   if (loading) {
     return (

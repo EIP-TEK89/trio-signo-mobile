@@ -1,5 +1,4 @@
-import { Button, StyleSheet, View } from "react-native";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 
@@ -21,7 +20,6 @@ export const AuthProvider = ({children}: any) => {
     token: null,
     authenticated: null
   });
-  const API_URL = process.env.EXPO_PUBLIC_API_URL;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -77,7 +75,7 @@ export const AuthProvider = ({children}: any) => {
     }
   };
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     await SecureStore.deleteItemAsync('token');
 
     axios.defaults.headers.common['Authorization'] = '';
@@ -86,7 +84,7 @@ export const AuthProvider = ({children}: any) => {
       token: null,
       authenticated: false
     });
-  };
+  }, []);
 
   const value = {
     onRegister: register,
@@ -104,25 +102,3 @@ export const AuthProvider = ({children}: any) => {
 }
 
 export const useAuth = () => useContext(AuthContext);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  stepContainer: {
-    backgroundColor: 'purple',
-    color: 'white',
-    alignItems: 'center',
-  },
-  input: {
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 20,
-    paddingLeft: 10,
-    fontSize: 16,
-  },
-});

@@ -1,4 +1,4 @@
-import { Button, ButtonProps, Image, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
+import { ButtonProps, StyleProp, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 import AppView from "./Ui/AppView";
 import Star from "@assets/CoursesJourney/Home/star.svg";
 
