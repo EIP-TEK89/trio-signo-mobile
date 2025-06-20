@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput } from 'react-native';
-import { View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput , View } from 'react-native';
+
 
 function Signup() {
-  const [username, setUsername] = useState('');
+  const [username, ] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState<string>('');
   const [passConfirmation, setpassConfirmation] = useState('');

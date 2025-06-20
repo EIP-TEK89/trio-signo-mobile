@@ -1,4 +1,4 @@
-import { Button, ButtonProps, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
+import { ButtonProps, StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
 import AppView from "./Ui/AppView";
 
 interface CustomButtonProps extends ButtonProps {

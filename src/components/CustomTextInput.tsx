@@ -2,12 +2,10 @@ import {
   Text,
   TextInput,
   TextInputProps,
-  TouchableOpacity,
-} from "react-native";
+  TouchableOpacity } from "react-native";
 import AppView from "./Ui/AppView";
-import { View } from "react-native";
+
 import { twMerge } from "tailwind-merge";
-import { useState } from "react";
 
 interface CustomTextInputProps extends TextInputProps {
   type?: "default" | "password";

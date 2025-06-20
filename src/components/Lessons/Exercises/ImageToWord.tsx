@@ -1,11 +1,9 @@
 import AppView from "@/components/Ui/AppView";
-import CustomButton from "@/components/CustomButton";
-import Title from "@/components/Title";
 import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
-import { Image, StyleSheet, TouchableOpacity} from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import { Image, TouchableOpacity} from "react-native";
 import AppText from "@/components/Ui/AppText";
 
 interface ImageToWordProps {
@@ -21,14 +19,14 @@ export interface responseStatus {
 }
 
 const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
-    const [loading, setLoading] = useState(false);
     const [responded, setResponded] = useState(false);
     const [checked, setChecked] = useState(false);
     const [responses, setResponses] = useState<responseStatus[]>([]);
+    const exerciseOptions = useMemo(() => exercise.options, [exercise.options]);
 
     useEffect(() => {
-      setResponses(exercise.options.map((word) => ({ word, valid: word === exercise.sign.word, responded: false })));
-    }, []);
+      setResponses(exerciseOptions.map((word) => ({ word, valid: word === exercise.sign.word, responded: false })));
+    }, [exerciseOptions, exercise.sign.word]);
 
     const CheckExercise = async (word: string) => {
         setChecked(true);
@@ -44,14 +42,6 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
             }
         });
         setChecked(false);
-    }
-
-    if (loading) {
-        return (
-          <AppView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <AppText style={{ color: '#fff' }}>Loading...</AppText>
-          </AppView>
-        );
     }
 
     return (

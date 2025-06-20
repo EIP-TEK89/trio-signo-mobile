@@ -1,8 +1,5 @@
 import { useEffect, useRef } from "react";
-import Block from "../Block"
-import { SignRecognizer } from "triosigno-lib";
-import { OnnxRunnerMobile } from "triosigno-mobile"
-import { Camera, CameraView, useCameraPermissions} from 'expo-camera'
+import { CameraView, useCameraPermissions} from 'expo-camera'
 import { Button, Text, View } from "react-native";
 
 

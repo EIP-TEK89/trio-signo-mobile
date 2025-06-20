@@ -1,5 +1,5 @@
 // src/shared-components/providers/ThemeProvider.tsx
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext } from "react";
 import { View } from "react-native";
 import { themes } from "@utils/ColorTheme";
 import { useColorScheme } from "nativewind";

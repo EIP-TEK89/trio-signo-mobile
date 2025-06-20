@@ -1,5 +1,4 @@
-import { Href, Link, Redirect } from "expo-router";
-import { Button, ButtonProps, StyleProp, StyleSheet, Text, TextProps, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
+import { StyleSheet, Text, TextProps } from "react-native";
 
 const Title: React.FC<TextProps> = ({ ...props }) => {
 

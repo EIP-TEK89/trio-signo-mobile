@@ -1,7 +1,6 @@
 import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import WhiteOkIcon from "@assets/CoursesJourney/Home/whiteOk.svg";
 import WhiteStarIcon from "@assets/CoursesJourney/Home/whiteStar.svg";
-import { useTheme } from "@/context/ThemeProvider";
 
 interface LessonButtonProps extends TouchableOpacityProps {
     completed: boolean;
@@ -9,7 +8,6 @@ interface LessonButtonProps extends TouchableOpacityProps {
 }
 
 const LessonButton: React.FC<LessonButtonProps> = ({completed, position, ...props}) => {
-    const theme = useTheme();
     const buttonColor = completed ? "bg-duoBlue" : "bg-mutedForeground"
     const shadowColor = completed ? "bg-darkenedDuoBlue" : "bg-mutedForeground" 
 

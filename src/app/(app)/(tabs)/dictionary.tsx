@@ -3,7 +3,7 @@ import { getSignsRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
 

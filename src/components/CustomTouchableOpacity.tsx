@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import AppView from "./Ui/AppView";
 
 
