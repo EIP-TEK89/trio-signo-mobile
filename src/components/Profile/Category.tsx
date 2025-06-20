@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import AppText from "../Ui/AppText";
 import AppView from "../Ui/AppView";
 

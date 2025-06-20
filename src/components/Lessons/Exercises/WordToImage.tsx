@@ -1,12 +1,10 @@
 import AppView from "@/components/Ui/AppView";
-import CustomButton from "@/components/CustomButton";
-import Title from "@/components/Title";
 import { getSignImageRequest } from "@/services/dictionnary";
 import { CheckExerciseRequest } from "@/services/lessons";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
-import { Button, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import { Image, TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
 import AppText from "@/components/Ui/AppText";
 
@@ -20,11 +18,12 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     const [responded, setResponded] = useState(false);
     const [checked, setChecked] = useState(false);
     const [responses, setResponses] = useState<responseStatus[]>([]);
+    const exerciseOptions = useMemo(() => exercise.options, [exercise.options]);
 
     useEffect(() => {
         const loadSign = async () => {
           const responsesWithImage = await Promise.all(
-                exercise.options.map(async (word) => {
+                exerciseOptions.map(async (word) => {
                   const mediaUrl = await getSignImageRequest(word);
                   return ({word, valid: exercise.sign.word === word, responded: false, mediaUrl});
                 })
@@ -33,7 +32,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
             setLoading(false);
         };
         loadSign();
-    }, []);
+    }, [exerciseOptions, exercise.sign.word]);
 
     const CheckExercise = async (word: string) => {
             setChecked(true);

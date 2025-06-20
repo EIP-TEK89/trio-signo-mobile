@@ -24,7 +24,7 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
             setLoading(false);
         }
         loadExercise()
-    }, [])
+    }, [exercise.id]);
 
     if (loading) {
         return (

@@ -27,7 +27,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength }) => {
       duration: 600,
       easing: Easing.inOut(Easing.ease),
     });
-  }, [progressPercentage]);
+  }, [progressPercentage, progress]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {

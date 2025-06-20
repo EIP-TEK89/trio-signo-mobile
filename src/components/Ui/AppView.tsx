@@ -1,5 +1,4 @@
-import { useTheme } from "@/context/ThemeProvider";
-import { StyleProp, useColorScheme, View, ViewProps, ViewStyle } from "react-native";
+import { View, ViewProps } from "react-native";
 
 const AppView: React.FC<ViewProps> = ({ ...props }) => {
   const defaultStyle = "bg-background"
