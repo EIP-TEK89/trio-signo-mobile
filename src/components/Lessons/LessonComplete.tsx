@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
-import Title from "../Title";
-import { completeLessonRequest, getExerciseFromLessonRequest, resetLessonRequest, startLessonRequest, updateLessonRequest } from "@/services/lessons";
-import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
+import { LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import AccurencyIcon from '@assets/Courses/accurency.svg'
 import AppView from "../Ui/AppView";
@@ -15,8 +13,6 @@ interface LessonCompleteProps {
 }
 
 const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress}) => {
-    const [loading, setLoading] = useState(true);
-    const [index, setIndex] = useState<number>(0);
     const progress = useSharedValue(0);
     const [displayedProgress, setDisplayedProgress] = useState(0);
     
@@ -25,7 +21,7 @@ const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress})
           duration: 600,
           easing: Easing.inOut(Easing.ease),
         });
-      }, [lessonProgress.score]);
+      }, [lessonProgress.score, progress]);
     
       useAnimatedReaction(
         () => progress.value,

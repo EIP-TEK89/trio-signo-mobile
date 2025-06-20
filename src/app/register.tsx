@@ -1,6 +1,6 @@
 import { useAuth } from "@/context/AuthProvider";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import CustomTextInput from "@components/CustomTextInput";
 import CustomButton from "@components/CustomButton";
 import { router } from "expo-router";

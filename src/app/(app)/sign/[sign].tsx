@@ -2,7 +2,7 @@ import AppView from "@/components/Ui/AppView";
 import { getSignRequest } from "@/services/dictionnary";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, Image, TouchableOpacity } from "react-native";
 import CrossIcon from"@assets/Courses/cross.svg";
 
@@ -28,7 +28,7 @@ export default function SignScreen() {
       setLoading(false);
     };
     loadSign();
-  }, []);
+  }, [sign]);
 
   if (loading) {
     return (

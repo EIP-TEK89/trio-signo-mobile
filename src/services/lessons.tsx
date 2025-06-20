@@ -1,4 +1,4 @@
-import { ExerciceAnswerResult, Exercise, ExerciseWithSign, Lesson, LessonProgress, LessonWithExercises, SubmitExerciseAnswerDto } from "@/types/LessonInterface";
+import { ExerciceAnswerResult, Exercise, ExerciseWithSign, Lesson, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import axios from "axios";
 
 export const getLessonsRequest = async (): Promise<Lesson[]>  => {

@@ -1,13 +1,12 @@
 
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform, TouchableOpacity, TouchableWithoutFeedbackComponent, View} from 'react-native';
+import { Platform, TouchableOpacity, View} from 'react-native';
 import HomeIcon from '@assets/components/Navbar/home.svg';
 import TrainingIcon from '@assets/components/Navbar/training.svg';
 import PlusIcon from '@assets/components/Navbar/plus.svg';
 import { useColorScheme } from 'nativewind';
 import { themeValues } from '@/utils/ColorTheme';
-import { useTheme } from '@/context/ThemeProvider';
 
 export default function TabLayout() {
   const {colorScheme} = useColorScheme();

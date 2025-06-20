@@ -6,7 +6,6 @@ import { User } from "@/types/UserInterface";
 import { useEffect, useState } from "react";
 
 import {
-  Image,
   ScrollView,
   TouchableOpacity,
   SafeAreaView,
@@ -30,7 +29,7 @@ export default function ProfileScreen() {
     };
 
     getUser();
-  }, []);
+  }, [onLogout]);
 
   const formatToMonthYear = (isoString) => {
     const date = new Date(isoString);

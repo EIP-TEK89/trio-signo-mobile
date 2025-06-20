@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Button, StyleSheet, TextInput } from 'react-native';
-import { View } from 'react-native';
+import { Button, StyleSheet, TextInput , View } from 'react-native';
+
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ username?: string; email?: string; password?: string; apiError?: string }>({});
+  const [, setErrors] = useState<{ username?: string; email?: string; password?: string; apiError?: string }>({});
 
   const handleConnexion = async () => {
     try {

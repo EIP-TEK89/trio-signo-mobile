@@ -1,5 +1,5 @@
-import { Href, Link, Redirect } from "expo-router";
-import { Button, ButtonProps, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from "react-native";
+import { Href, Link } from "expo-router";
+import { StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
 import AppView from "./Ui/AppView";
 
 interface CustomLinkProps {
