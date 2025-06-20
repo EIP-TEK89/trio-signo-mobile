@@ -1,50 +1,75 @@
-# Welcome to your Expo app 👋
+# 👐 Triosigno - Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![ReactNative](https://img.shields.io/badge/ReactNative-%2361DAFB.svg?style=for-the-badge&logo=react&logoColor=black)
+![Expo](https://img.shields.io/badge/Expo-%231C2024.svg?style=for-the-badge&logo=expo&logoColor=white)
+![NativeWind](https://img.shields.io/badge/NativeWind-%2306B6D4.svg?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-## Get started
+**Triosigno** is an interactive platform dedicated to learning French Sign Language (LSF). With a modern and accessible interface, we offer a fun experience, supported by artificial intelligence, to help users learn LSF in an engaging way.
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+## 🌟 Key Features
 
-2. Start the app
+- **AI-based sign recognition**: Users receive real-time feedback on their gestures.
+- **Gamification**: Points, levels, and leaderboards to encourage progress.
+- **Multi-platform accessibility**: Available on Web and Mobile.
+- **Personalized reminders**: Notifications to encourage daily practice.
 
-   ```bash
-    npx expo start
-   ```
+## 🖥️ Technologies Used
 
-In the output, you'll find options to open the app in a
+The mobile is built with the following technologies:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **React Native** via [Expo](https://expo.dev/)
+- **TypeScript** for type-safe development
+- **NativeWind** (TailwindCSS for React Native)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ⚙️ Prerequisites
 
-## Get a fresh project
+- **Node.js** v14 or higher
+- **npm** or **yarn**
 
-When you're ready, run:
+## 🚀 Installation
 
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com:EIP-TEK89/trio-signo-mobile.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd trio-signo-mobile
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+## 🔧 Environment Variables
+Create a ```.env``` file in the root folder with the following variables:
+```ini
+EXPO_PUBLIC_API_URL=https://your-api-url.com
+```
+>You can customize these according to you frontend environment.
+
+## 🧪 Testing
+
+To run unit tests:
 ```bash
-npm run reset-project
+npm test
+```
+>Jest is recommended for testing components and logic
+
+## 📂 Project Structure
+```bash
+.
+├── app/				 # App entry point
+├── assets/            	 # Static assets
+├── components/          # Reusable UI components
+├── context/			 # Context providers
+├── services/            # API services
+├── types/ 				 # Types and interfaces
+├── utils/               # Utility functions
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 👥 Contributing
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+The steps for contributing to the project are described in the file [CONTRIBUTING.md](https://github.com/EIP-TEK89/trio-signo-fullstack/blob/main/Contributing.md).
