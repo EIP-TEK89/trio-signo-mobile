@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, isAxiosError } from 'axios';
 import { API_ROUTES, API_URL} from '@constants/apiRoutes';
 import * as SecureStore from "expo-secure-store";
 import { router } from 'expo-router';
@@ -136,7 +136,7 @@ apiClient.interceptors.response.use(
 
 // Error handling
 const handleError = (error: any) => {
-  if (axios.isAxiosError(error)) {
+  if (isAxiosError(error)) {
     if (error.response?.status === 401) {
       // Handle 401 for specific API calls if needed
       console.error('Authentication error:', error.response?.data?.message || 'Authentication failed');

@@ -1,9 +1,7 @@
 import Category from "@/components/Profile/Category";
 import AppText from "@/components/Ui/AppText";
 import { useAuth } from "@/context/AuthProvider";
-import { getCurrentUser } from "@/services/userServices";
-import { User } from "@/types/UserInterface";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 
 import {
   ScrollView,

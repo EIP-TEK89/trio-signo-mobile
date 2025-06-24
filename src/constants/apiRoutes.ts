@@ -5,8 +5,6 @@
  * Update these to match your backend API structure.
  */
 
-import { getAllLessonsForAdmin } from "@/services/lessonsServices";
-
 export const API_URL: string = process.env.EXPO_PUBLIC_API_URL;
 
 export const API_ROUTES = {

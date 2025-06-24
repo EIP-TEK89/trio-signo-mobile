@@ -1,5 +1,5 @@
 import { API_ROUTES } from "@/constants/apiRoutes";
-import { CreateExerciseDto, CreateLessonDto, ExerciceAnswerResult, Exercise, ExerciseWithSign, Lesson, LessonProgress, LessonWithExercises, SubmitExerciseAnswerDto, UpdateExerciseDto, UpdateLessonProgressDto } from "@/types/LessonInterface";
+import { CreateExerciseDto, ExerciceAnswerResult, Exercise, ExerciseWithSign, SubmitExerciseAnswerDto, UpdateExerciseDto } from "@/types/LessonInterface";
 import { del, get, post, put } from "./apiClient";
 
 /**

@@ -1,7 +1,6 @@
-import { loginDto, registerDto, UpdateUserDto, User } from '@/types/UserInterface';
-import { get, post} from './apiClient';
+import { loginDto, registerDto } from '@/types/UserInterface';
+import { post} from './apiClient';
 import { API_ROUTES } from '@constants/apiRoutes';
-import * as SecureStore from "expo-secure-store";
 import { AuthResponse } from '@/types/LessonInterface';
 
 /**

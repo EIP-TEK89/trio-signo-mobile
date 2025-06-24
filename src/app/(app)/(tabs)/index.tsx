@@ -1,6 +1,5 @@
 import { useAuth } from "@/context/AuthProvider";
 import { getAllLessons } from "@/services/lessonsServices";
-import { getCurrentUser } from "@/services/userServices";
 import { Lesson } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
