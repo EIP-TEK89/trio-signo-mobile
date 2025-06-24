@@ -6,7 +6,6 @@ import { getLessonById } from '@/services/lessonsServices';
 import { LessonProgress, LessonWithExercises } from '@/types/LessonInterface';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function LessonScreen() {

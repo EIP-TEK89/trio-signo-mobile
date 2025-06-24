@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import AppView from "../Ui/AppView";
-import { Text } from "react-native";
 import { completeLessonProgress, resetLessonProgress, startLessonProgress, updateLessonProgress } from "@/services/lessonProgressServices";
 import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
