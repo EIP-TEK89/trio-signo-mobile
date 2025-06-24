@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import WordToImage from "./WordToImage";
 import ImageToWord from "./ImageToWord";
+import Loading from "@/components/Ui/Loading";
 
 interface PlayExerciseProps {
     exercise: Exercise;
@@ -30,9 +31,7 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
 
     if (loading) {
         return (
-            <View>
-                <Text>Loading...</Text>
-            </View>
+            <Loading />
         )
     }
 

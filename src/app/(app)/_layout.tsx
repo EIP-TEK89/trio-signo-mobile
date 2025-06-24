@@ -1,5 +1,6 @@
 
 import AppView from '@/components/Ui/AppView';
+import Loading from '@/components/Ui/Loading';
 import { useAuth } from '@/context/AuthProvider';
 import { Redirect, Slot } from 'expo-router';
 import React from 'react';
@@ -10,9 +11,7 @@ export default function LogLayout() {
 
   if (loading) {
     return (
-      <AppView style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{color: '#fff'}}>Loading...</Text>
-      </AppView>
+      <Loading />
     );
   }
   return (
