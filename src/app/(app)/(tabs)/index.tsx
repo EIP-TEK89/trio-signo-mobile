@@ -1,6 +1,5 @@
 import { useAuth } from "@/context/AuthProvider";
-import { getLessonsRequest } from "@/services/lessons";
-import { getUserRequest } from "@/services/user";
+import { getAllLessons } from "@/services/lessonsServices";
 import { Lesson } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -25,21 +24,12 @@ export default function HomeScreen() {
   const { onLogout } = useAuth();
 
   useEffect(() => {
-    const checkLogin = async () => {
-      const response = await getUserRequest();
-      if (response === null) {
-        onLogout();
-        return;
-      }
-    };
-
     const loadLessons = async () => {
-      const response = await getLessonsRequest();
+      const response = await getAllLessons();
       setLessons(response);
     };
 
     const init = async () => {
-      await checkLogin();
       await loadLessons();
       setLoading(false);
     };
@@ -110,7 +100,7 @@ export default function HomeScreen() {
 
             return (
               <AppView 
-                key={lesson.id}
+                key={lesson?.id}
                 className="items-center"
                 style={{
                   flex: 1,
@@ -128,7 +118,7 @@ export default function HomeScreen() {
                 onPress={() =>
                   router.push({
                     pathname: "/(app)/lesson/[lesson]",
-                    params: { lesson: lesson.id },
+                    params: { lesson: lesson?.id },
                   })
                 }
               />

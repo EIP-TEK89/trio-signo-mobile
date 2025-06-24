@@ -1,9 +1,7 @@
 import Category from "@/components/Profile/Category";
 import AppText from "@/components/Ui/AppText";
 import { useAuth } from "@/context/AuthProvider";
-import { getUserRequest } from "@/services/user";
-import { User } from "@/types/UserInterface";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 
 import {
   ScrollView,
@@ -13,39 +11,17 @@ import {
 import AppView from "@/components/Ui/AppView";
 
 export default function ProfileScreen() {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User>(null);
-  const { onLogout } = useAuth();
+  const { onLogout, authState } = useAuth();
+  const user = authState.user;
 
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await getUserRequest();
-      if (response === null) {
-        onLogout();
-        return;
-      }
-      setUser(response);
-      setLoading(false);
-    };
-
-    getUser();
-  }, [onLogout]);
-
-  const formatToMonthYear = (isoString) => {
+  const formatToMonthYear = useCallback((isoString) => {
     const date = new Date(isoString);
     return new Intl.DateTimeFormat('fr-FR', {
       year: 'numeric',
       month: 'long',
     }).format(date);
-  };
+  }, []);
 
-  if (loading) {
-    return (
-        <AppView className="flex-1 justify-center items-center">
-          <AppText className="text-white">Loading...</AppText>
-        </AppView>
-    );
-  }
 
   return (
     <SafeAreaView className="flex-1 bg-background">

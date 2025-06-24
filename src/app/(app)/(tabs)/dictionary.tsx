@@ -1,5 +1,5 @@
 import AppText from "@/components/Ui/AppText";
-import { getSignsRequest } from "@/services/dictionnary";
+import { getAllSigns } from "@/services/dictionnaryServices";
 import { Sign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -13,12 +13,10 @@ export default function Dictionary() {
 
   useEffect(() => {
     const loadSigns = async () => {
-      const response = await getSignsRequest();
-
+      const response = await getAllSigns();
       const sorted = response.sort((a, b) =>
         a.word.localeCompare(b.word, "fr", { sensitivity: "base" })
       );
-
       setSigns(sorted);
       setLoading(false);
     };
@@ -26,13 +24,12 @@ export default function Dictionary() {
     loadSigns();
   }, []);
 
+
   if (loading) {
     return (
-      <SafeAreaView>
-      <AppView className="flex-1 justify-center items-center">
-        <AppText className="text-white">Chargement du dictionnaire...</AppText>
-      </AppView>
-      </SafeAreaView>
+        <AppView className="flex-1 justify-center items-center">
+          <AppText className="text-white">Chargement...</AppText>
+        </AppView>
     );
   }
 

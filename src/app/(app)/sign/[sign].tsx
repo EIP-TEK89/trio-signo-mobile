@@ -1,5 +1,5 @@
 import AppView from "@/components/Ui/AppView";
-import { getSignRequest } from "@/services/dictionnary";
+import { getSignByName } from "@/services/dictionnaryServices";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
@@ -15,16 +15,12 @@ export default function SignScreen() {
 
   useEffect(() => {
     const loadSign = async () => {
-      const response = await getSignRequest(sign as string);
+      const response = await getSignByName(sign as string);
       if (response === null) {
         router.back();
         return;
       }
       setSignDisplayed(response[0]);
-      const url = response[0].mediaUrl;
-      if (url) {
-        await Image.prefetch(url);
-      }
       setLoading(false);
     };
     loadSign();

@@ -1,4 +1,4 @@
-import { getExerciseWithSignRequest } from "@/services/lessons";
+import { getExerciseById } from "@/services/exercisesServices";
 import { Exercise, ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
@@ -17,14 +17,16 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
 
     useEffect(() => {
         const loadExercise = async () => {
-            const result = await getExerciseWithSignRequest(exercise.id)
-            if (result === null)
-                router.back()
-            setExercisesWithSign(result)
-            setLoading(false);
+           
+                const result = await getExerciseById(exercise?.id)
+                if (result === null){
+                    router.back()
+                }
+                setExercisesWithSign(result)
+                setLoading(false);
         }
         loadExercise()
-    }, [exercise.id]);
+    }, [exercise?.id]);
 
     if (loading) {
         return (

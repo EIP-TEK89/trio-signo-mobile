@@ -1,5 +1,5 @@
 import AppView from "@/components/Ui/AppView";
-import { CheckExerciseRequest } from "@/services/lessons";
+import { checkExercise } from "@/services/exercisesServices";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
@@ -30,7 +30,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
 
     const CheckExercise = async (word: string) => {
         setChecked(true);
-        const result = await CheckExerciseRequest(exercise.id, word, true)
+        const result = await checkExercise(exercise?.id, {answer: word, mutlipleChoice: true})
         if (result === null)
           router.back()
         if (result.isCorrect){
@@ -57,7 +57,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
           <AppView className="flex-1 flex-row flex-wrap justify-center gap-9">
             {responses.map((response, index) => (
               <AppView key={index} 
-              className={`w-[34%] aspect-[2] rounded-2xl bg-black-500 p-2 border-2 ${response.responded ? ( response.valid ? "border-[#45B6FE0]" : 'border-red-500'): "border-gray-300"}`}>
+              className={`w-[34%] aspect-[2] rounded-2xl bg-black-500 p-2 border-2 ${response.responded ? ( response.valid ? "border-[#45B6FE]" : 'border-red-500'): "border-gray-300"}`}>
                 <TouchableOpacity key={index} disabled={responded} onPress={() => {!checked && CheckExercise(response.word)}} className="flex-1 rounded-full p-2 justify-center items-center">
                     <AppText className="font-black color-[#45B6FE]">{response.word}</AppText>
                 </TouchableOpacity>

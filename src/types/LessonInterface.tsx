@@ -1,3 +1,58 @@
+import { User } from "./UserInterface";
+
+export interface CreateSignDto {
+    word: string;
+    definition: string;
+    mediaUrl: string;
+}
+
+export interface CreateLessonDto {
+    title: string;
+    description: string;
+    level: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCE';
+    isPublished: boolean;
+}
+
+export interface UpdateLessonProgressDto {
+    currentStep: number;
+    completed: boolean;
+}
+
+export interface CreateExerciseDto {
+    lessonId: string;
+    prompt: string;
+    signId: string;
+    type: 'WORD_TO_IMAGE' | 'IMAGE_TO_WORD' | 'SIGN_RECOGNITION';
+}
+
+export interface UpdateExerciseDto {
+    prompt?: string;
+    signId?: string;
+    type?: 'WORD_TO_IMAGE' | 'IMAGE_TO_WORD' | 'SIGN_RECOGNITION';
+}
+export interface AuthResponse {
+    accessToken: string;
+    refreshToken: string;
+    user: User;
+}
+
+export interface UserLessonWithProgress {
+    id: string;
+    title: string;
+    description: string;
+    level: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCE';
+    isPublished: boolean;
+    progress: LessonProgress;
+}
+
+export interface ProgressStats {
+    completedLessons: number;
+    totalLessons: number;
+    completionPercentage: number;
+    averageScore: number;
+    inProgessLessons: number;
+}
+
 export interface Sign {
     id: string;
     word: string;

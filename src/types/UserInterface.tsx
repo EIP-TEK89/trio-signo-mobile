@@ -31,3 +31,12 @@ export interface loginDto {
     email: string;
     password: string;
 }
+
+export interface PaginatedResponse<T> {
+    data: T[];
+    meta: {
+        total: number,
+        page: number,
+        take: number,
+    }
+}
