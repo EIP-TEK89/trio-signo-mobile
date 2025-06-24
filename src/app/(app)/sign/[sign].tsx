@@ -3,9 +3,10 @@ import { getSignByName } from "@/services/dictionnaryServices";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, Image, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import CrossIcon from"@assets/Courses/cross.svg";
 import Loading from "@/components/Ui/Loading";
+import Image from "@/components/Ui/Image";
 
 export default function SignScreen() {
   const { sign } = useLocalSearchParams();
@@ -43,7 +44,8 @@ export default function SignScreen() {
       </TouchableOpacity>
 
       <Image
-        source={{ uri: signDisplayed?.mediaUrl }}
+        source={signDisplayed?.mediaUrl}
+        contentFit="cover"
         className="w-60 h-60 rounded-xl mb-6"
       />
 

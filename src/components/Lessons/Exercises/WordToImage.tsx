@@ -4,10 +4,11 @@ import { checkExercise } from "@/services/exercisesServices";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { Image, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
 import AppText from "@/components/Ui/AppText";
 import Loading from "@/components/Ui/Loading";
+import Image from "@/components/Ui/Image";
 
 interface WordToImageProps {
     onNext: () => void;
