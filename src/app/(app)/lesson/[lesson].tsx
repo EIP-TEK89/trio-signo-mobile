@@ -1,6 +1,7 @@
 import LessonComplete from '@/components/Lessons/LessonComplete';
 import PlayLesson from '@/components/Lessons/PlayLesson';
 import AppView from '@/components/Ui/AppView';
+import Loading from '@/components/Ui/Loading';
 import { getLessonById } from '@/services/lessonsServices';
 import { LessonProgress, LessonWithExercises } from '@/types/LessonInterface';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -33,9 +34,7 @@ export default function LessonScreen() {
 
     if (loading){
         return (
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: '#fff' }}>Chargement...</Text>
-          </View>
+          <Loading />
         );
       }
 

@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
 import AppText from "@/components/Ui/AppText";
+import Loading from "@/components/Ui/Loading";
 
 interface WordToImageProps {
     onNext: () => void;
@@ -52,9 +53,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     
     if (loading) {
         return (
-          <AppView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <AppText style={{ color: '#fff' }}>Loading...</AppText>
-          </AppView>
+          <Loading />
         );
       }
 

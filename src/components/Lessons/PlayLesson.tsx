@@ -6,6 +6,7 @@ import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInt
 import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
 import ProgressBar from "./ProgressBar";
+import Loading from "../Ui/Loading";
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
@@ -60,9 +61,7 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
 
     if (loading) {
         return (
-          <AppView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: '#fff' }}>Chargement...</Text>
-          </AppView>
+          <Loading />
         );
       }
     return (
