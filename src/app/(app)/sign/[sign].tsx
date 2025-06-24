@@ -5,6 +5,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, Image, TouchableOpacity } from "react-native";
 import CrossIcon from"@assets/Courses/cross.svg";
+import Loading from "@/components/Ui/Loading";
 
 export default function SignScreen() {
   const { sign } = useLocalSearchParams();
@@ -28,9 +29,7 @@ export default function SignScreen() {
 
   if (loading) {
     return (
-      <AppView className="flex-1 justify-center items-center">
-        <Text className="text-white">Chargement...</Text>
-      </AppView>
+      <Loading />
     );
   }
 

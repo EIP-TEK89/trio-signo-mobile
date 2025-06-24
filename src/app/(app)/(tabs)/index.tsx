@@ -15,6 +15,7 @@ import LessonButton from "@/components/Home/LessonButton";
 import AppText from "@/components/Ui/AppText";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Loading from "@/components/Ui/Loading";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
@@ -39,11 +40,7 @@ export default function HomeScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-black">
-        <AppView className="flex-1 justify-center items-center">
-          <AppText className="text-white">Loading...</AppText>
-        </AppView>
-      </SafeAreaView>
+      <Loading />
     );
   }
 

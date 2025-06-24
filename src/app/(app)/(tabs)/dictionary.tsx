@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Loading from "@/components/Ui/Loading";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -27,9 +28,7 @@ export default function Dictionary() {
 
   if (loading) {
     return (
-        <AppView className="flex-1 justify-center items-center">
-          <AppText className="text-white">Chargement...</AppText>
-        </AppView>
+        <Loading />
     );
   }
 
