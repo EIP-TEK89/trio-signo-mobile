@@ -11,7 +11,7 @@ const Loading: React.FC = () => {
       withTiming(360, { duration: 1000, easing: Easing.linear }),
       -1
     );
-  }, []);
+  }, [rotation]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],

@@ -2,7 +2,7 @@ import { getExerciseById } from "@/services/exercisesServices";
 import { Exercise, ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import WordToImage from "./WordToImage";
 import ImageToWord from "./ImageToWord";
 import Loading from "@/components/Ui/Loading";
