@@ -1,7 +1,7 @@
 // src/shared-components/providers/ThemeProvider.tsx
 import React, { createContext, useContext } from "react";
 import { View } from "react-native";
-import { themes } from "@utils/ColorTheme";
+import { themes } from "@/constants/colorTheme";
 import { useColorScheme } from "nativewind";
 
 type Theme = "light" | "dark";

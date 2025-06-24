@@ -6,7 +6,7 @@ import HomeIcon from '@assets/components/Navbar/home.svg';
 import TrainingIcon from '@assets/components/Navbar/training.svg';
 import PlusIcon from '@assets/components/Navbar/plus.svg';
 import { useColorScheme } from 'nativewind';
-import { themeValues } from '@/utils/ColorTheme';
+import { themeValues } from '@/constants/colorTheme';
 
 export default function TabLayout() {
   const {colorScheme} = useColorScheme();

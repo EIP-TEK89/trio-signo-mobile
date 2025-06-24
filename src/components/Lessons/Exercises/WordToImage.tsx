@@ -1,6 +1,6 @@
 import AppView from "@/components/Ui/AppView";
-import { getSignImageRequest } from "@/services/dictionnary";
-import { CheckExerciseRequest } from "@/services/lessons";
+import { getSignByName } from "@/services/dictionnaryServices";
+import { checkExercise } from "@/services/exercisesServices";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
@@ -24,7 +24,8 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
         const loadSign = async () => {
           const responsesWithImage = await Promise.all(
                 exerciseOptions.map(async (word) => {
-                  const mediaUrl = await getSignImageRequest(word);
+                  const result = await getSignByName(word);
+                  const mediaUrl = result ? result[0].mediaUrl : ''; 
                   return ({word, valid: exercise.sign.word === word, responded: false, mediaUrl});
                 })
             );
@@ -34,9 +35,9 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
         loadSign();
     }, [exerciseOptions, exercise.sign.word]);
 
-    const CheckExercise = async (word: string) => {
+    const submitResponse = async (word: string) => {
             setChecked(true);
-            const result = await CheckExerciseRequest(exercise.id, word, true)
+            const result = await checkExercise(exercise?.id, {answer: word, mutlipleChoice: true})
             if (result === null)
               router.back()
             if (result.isCorrect)
@@ -64,7 +65,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
           <AppView className="flex-1 flex-row flex-wrap justify-center gap-5">
             {responses.map((response, index) => (
               <AppView key={index} className="w-[45%] aspect-square">
-                <TouchableOpacity key={index} onPress={() => { !checked && CheckExercise(response.word)}}
+                <TouchableOpacity key={index} onPress={() => { !checked && submitResponse(response.word)}}
                 disabled={responded} className="flex-1"
                   >
                     <Image

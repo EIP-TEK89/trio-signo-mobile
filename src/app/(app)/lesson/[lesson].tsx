@@ -1,7 +1,7 @@
 import LessonComplete from '@/components/Lessons/LessonComplete';
 import PlayLesson from '@/components/Lessons/PlayLesson';
 import AppView from '@/components/Ui/AppView';
-import { getLessonRequest } from '@/services/lessons';
+import { getLessonById } from '@/services/lessonsServices';
 import { LessonProgress, LessonWithExercises } from '@/types/LessonInterface';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ export default function LessonScreen() {
 
     useEffect(() => {
         const loadSign = async () => {
-            const response = await getLessonRequest(lesson as string);
+            const response = await getLessonById(lesson as string);
             if (response === null) {
               router.back();
               return;
