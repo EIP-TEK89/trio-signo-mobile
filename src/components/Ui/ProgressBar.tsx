@@ -1,23 +1,23 @@
 
 import React, { useEffect } from "react";
-import { TouchableOpacity } from "react-native";
 import AppView from "../Ui/AppView";
-import { router } from "expo-router";
-import CrossIcon from '@assets/Courses/cross.svg';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   Easing,
 } from "react-native-reanimated";
+import { twMerge } from "tailwind-merge";
 
 
 interface ProgressBarProps {
   index: number;
   maxLength: number;
+  className?: string;
+  color?: "duoBlue" | "duoGreen" | "duoRed" | "duoYellow";
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength, className, color="duoBlue" }) => {
 
   const progress = useSharedValue(index > 0 ? (((index - 1) / maxLength) * 100) : 0);
   const progressPercentage = (index / maxLength) * 100;
@@ -36,13 +36,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength }) => {
   });
 
   return (
-    <AppView className="flex-row w-full h-[5%] items-center m-[4%] mb-[2%] gap-[4%]">
-      <TouchableOpacity onPress={() => router.back()}>
-        <CrossIcon width={25} height={25} />
-      </TouchableOpacity>
-      <AppView className="w-[79%] bg-gray-300 rounded-full">
+    <AppView className={twMerge("flex-1 flex-row h-6", className)}>
+      <AppView className="flex-1 bg-gray-300 rounded-full">
         <Animated.View
-          className="bg-duoBlue h-[45%] rounded-full"
+          className={`flex-1 ${"bg-" + color} rounded-full`}
           style={animatedStyle}
         />
       </AppView>

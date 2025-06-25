@@ -4,11 +4,12 @@ import * as SecureStore from "expo-secure-store";
 import { loginUser, logoutUser, registerUser } from "@/services/authServices";
 import { User } from "@/types/UserInterface";
 import apiClient from "@/services/apiClient";
+import { router } from "expo-router";
 
 interface AuthProps {
   authState?: {accessToken: string | null; refreshToken: string | null; user: User | null, authenticated: boolean | null};
   loading?: boolean;
-  onRegister?: (username: string, email: string, password: string) => Promise<any>;
+  onRegister?: (username: string, email: string, password: string, firstName?: string, lastName?: string) => Promise<any>;
   onLogin?: (email: string, password: string) => Promise<any>;
   onLogout?: () => Promise<any>;
 }
@@ -50,48 +51,49 @@ export const AuthProvider = ({children}: any) => {
     loadToken();
   }, []);
 
-  const register = useCallback(async (username: string, email: string, password: string) => {
-    try {
-      const result = await registerUser({username, email, password});
-      setAuthState({
-        accessToken: result.accessToken,
-        refreshToken: result.refreshToken,
-        user: result.user,
-        authenticated: true
-      });
-      axios.defaults.headers.common['Authorization'] = `Bearer ${result.accessToken}`;
-
-      await SecureStore.setItemAsync('token', result.accessToken);
-      await SecureStore.setItemAsync('refreshToken', result.refreshToken);
-      await SecureStore.setItemAsync('user', JSON.stringify(result.user));
-
-      return result;
-    } catch (e) {
-      return {error: true, msg: e.message} 
+  const register = useCallback(async (username: string, email: string, password: string, firstName?: string, lastName?: string) => {
+    const result = await registerUser({username, email, password, firstName, lastName});
+    
+    if (result === null) {
+      return null;
     }
+    
+    setAuthState({
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
+      user: result.user,
+      authenticated: true
+    });
+    axios.defaults.headers.common['Authorization'] = `Bearer ${result.accessToken}`;
+
+    await SecureStore.setItemAsync('token', result.accessToken);
+    await SecureStore.setItemAsync('refreshToken', result.refreshToken);
+    await SecureStore.setItemAsync('user', JSON.stringify(result.user));
+
+    router.push("/(app)/(tabs)")
+    return result;
   }, []);
 
   const login = useCallback(async (email: string, password: string) => {
-    try {
-      const result = await loginUser({email, password});
-      setAuthState({
-        accessToken: result.accessToken,
-        refreshToken: result.refreshToken,
-        user: result.user,
-        authenticated: true
-      });
-
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${result.accessToken}`;
-
-      await SecureStore.setItemAsync('token', result.accessToken);
-      await SecureStore.setItemAsync('refreshToken', result.refreshToken);
-      await SecureStore.setItemAsync('user', JSON.stringify(result.user));
-
-      return result;
-    } catch (e) {
-      console.error(e)
-      return {error: true, msg: e.message} 
+    const result = await loginUser({email, password});
+    if (result === null) {
+      return null;
     }
+    setAuthState({
+      accessToken: result.accessToken,
+      refreshToken: result.refreshToken,
+      user: result.user,
+      authenticated: true
+    });
+
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${result.accessToken}`;
+
+    await SecureStore.setItemAsync('token', result.accessToken);
+    await SecureStore.setItemAsync('refreshToken', result.refreshToken);
+    await SecureStore.setItemAsync('user', JSON.stringify(result.user));
+
+    router.push("/(app)/(tabs)")
+    return result;
   }, []);
 
   const logout = useCallback(async () => {

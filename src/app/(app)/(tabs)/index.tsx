@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from "react-native";
 import LessonButton from "@/components/Home/LessonButton";
-import AppText from "@/components/Ui/AppText";
+import Text from "@/components/Ui/Text";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Loading from "@/components/Ui/Loading";
@@ -52,39 +52,39 @@ export default function HomeScreen() {
         
         <AppView className="flex-row w-full h-12 justify-between px-4 items-center">
           <AppView>
-            <AppText className="font-bold text-xl text-text">Trio Signo</AppText>
+            <Text className="font-bold text-xl text-text">Trio Signo</Text>
           </AppView>
           {streak <= 0 ? 
           <AppView className="flex-row items-center gap-2">
             <FlameIcon width={30} height={30} />
-            <AppText className="text-gray-500 font-bold text-xl text-[text]">{streak}</AppText>
+            <Text className="text-gray-500 font-bold text-xl text-[text]">{streak}</Text>
           </AppView>
           :
           <AppView className="flex-row items-center gap-2">
             <FlameIgniteIcon width={30} height={30} />
-            <AppText className="text-yellow-500 font-bold text-xl">{streak}</AppText>
+            <Text className="text-yellow-500 font-bold text-xl">{streak}</Text>
           </AppView>}
           <AppView className="flex-row items-center gap-2">
             <GemsIcon width={25} height={25} />
-            <AppText className="text-blue-500 font-bold text-xl">{life}</AppText>
+            <Text className="text-blue-500 font-bold text-xl">{life}</Text>
           </AppView>
           <AppView className="flex-row items-center gap-2">
             <HeartIcon width={30} height={30} />
-            <AppText className="text-red-500 font-bold text-xl">{life}</AppText>
+            <Text className="text-red-500 font-bold text-xl">{life}</Text>
           </AppView>
         </AppView>
         <AppView className="w-full h-24 items-center">
           <AppView
             className="w-[90%] h-full rounded-2xl p-4 bg-duoGreen"
             >
-            <AppText
+            <Text
               className="text-l font-bold text-text">
               Chapitre 1, Unité 1
-            </AppText>
-            <AppText 
+            </Text>
+            <Text 
               className="text-xl font-black text-text">
               Introduction à la langue des signes
-            </AppText>
+            </Text>
           </AppView>
         </AppView>
 

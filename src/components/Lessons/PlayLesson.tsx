@@ -4,7 +4,7 @@ import { completeLessonProgress, resetLessonProgress, startLessonProgress, updat
 import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../Ui/ProgressBar";
 import Loading from "../Ui/Loading";
 
 interface PlayLessonProps {

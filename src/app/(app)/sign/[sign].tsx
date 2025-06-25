@@ -3,10 +3,11 @@ import { getSignByName } from "@/services/dictionnaryServices";
 import { Sign } from "@/types/LessonInterface";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import CrossIcon from"@assets/Courses/cross.svg";
 import Loading from "@/components/Ui/Loading";
 import Image from "@/components/Ui/Image";
+import Text from "@/components/Ui/Text";
 
 export default function SignScreen() {
   const { sign } = useLocalSearchParams();

@@ -1,31 +1,28 @@
 import {
   Text,
-  TextInput,
-  TextInputProps,
+  TextInput as NativeTextInput,
+  TextInputProps as NativeTextInputProps,
   TouchableOpacity } from "react-native";
-import AppView from "./Ui/AppView";
+import AppView from "./AppView";
 
 import { twMerge } from "tailwind-merge";
 
-interface CustomTextInputProps extends TextInputProps {
+interface TextInputProps extends NativeTextInputProps {
   type?: "default" | "password";
   className?: string;
 }
 
-const CustomTextInput: React.FC<CustomTextInputProps> = ({
+const TextInput: React.FC<TextInputProps> = ({
   type = "default",
   className,
   ...props
 }) => {
   return (
-    <AppView className="w-4/5 items-center mb-4">
-      <TextInput
+    <AppView className={twMerge("bg-white/10 rounded-xl justify-center", className, )}>
+      <NativeTextInput
         {...props}
         placeholderTextColor="#8A9299"
-        className={twMerge(
-          "w-full h-12 bg-white/10 rounded-xl px-4 py-3 text-[#CFD8DC] border border-transparent text-base",
-          className
-        )}
+        className={"w-full h-full px-4 py-3 text-[#CFD8DC] border border-transparent text-xl"}
       />
       {type === "password" && (
         <TouchableOpacity className="absolute right-4 top-1/2 -translate-y-2">
@@ -36,4 +33,4 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
   );
 };
 
-export default CustomTextInput;
+export default TextInput;
