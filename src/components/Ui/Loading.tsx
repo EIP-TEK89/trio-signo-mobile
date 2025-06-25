@@ -1,5 +1,5 @@
 import AppView from "./AppView";
-import AppText from "./AppText";
+import Text from "./Text";
 import { useEffect } from 'react';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming, Easing} from 'react-native-reanimated';
 
@@ -23,7 +23,7 @@ const Loading: React.FC = () => {
           className="w-[50px] h-[50px] rounded-full border-[5px] border-t-duoGreen   mb-5"
           style={animatedStyle}
         />
-        <AppText className="text-white">Chargement...</AppText>
+        <Text className="text-white">Chargement...</Text>
     </AppView>
   );
 };

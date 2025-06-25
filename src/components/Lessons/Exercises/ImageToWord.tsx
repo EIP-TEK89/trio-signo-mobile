@@ -4,7 +4,7 @@ import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { TouchableOpacity} from "react-native";
-import AppText from "@/components/Ui/AppText";
+import Text from "@/components/Ui/Text";
 import Image from "@/components/Ui/Image";
 
 interface ImageToWordProps {
@@ -48,7 +48,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
     return (
       <AppView className="flex-1">
       <AppView className="flex-1 flex-col gap-[5%]">
-          <AppText className="text-2xl font-bold ml-[2%]">{exercise.prompt}</AppText>
+          <Text className="text-2xl font-bold ml-[2%]">{exercise.prompt}</Text>
           <AppView className="flex-1 items-center justify-center">
             <Image
               source={{ uri: exercise.sign.mediaUrl }}
@@ -60,7 +60,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
               <AppView key={index} 
               className={`w-[34%] aspect-[2] rounded-2xl bg-black-500 p-2 border-2 ${response.responded ? ( response.valid ? "border-[#45B6FE]" : 'border-red-500'): "border-gray-300"}`}>
                 <TouchableOpacity key={index} disabled={responded} onPress={() => {!checked && CheckExercise(response.word)}} className="flex-1 rounded-full p-2 justify-center items-center">
-                    <AppText className="font-black color-[#45B6FE]">{response.word}</AppText>
+                    <Text className="font-black color-[#45B6FE]">{response.word}</Text>
                 </TouchableOpacity>
               </AppView>
             ))}
@@ -70,9 +70,9 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
         <TouchableOpacity 
           className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-[#45B6FE]'}`}
           disabled={!responded} onPress={() => onNext()}>
-            <AppText className="text-2l font-black text-center">
-              VALIDER
-            </AppText>
+            <Text className="text-2l font-black text-center">
+              CONTINUER
+            </Text>
         </TouchableOpacity>
       </AppView>
     </AppView>

@@ -1,4 +1,3 @@
-import AppText from "@/components/Ui/AppText";
 import { getAllSigns } from "@/services/dictionnaryServices";
 import { Sign } from "@/types/LessonInterface";
 import { router } from "expo-router";
@@ -7,6 +6,7 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Loading from "@/components/Ui/Loading";
+import Text from "@/components/Ui/Text";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -35,12 +35,12 @@ export default function Dictionary() {
   return (
     <SafeAreaView className="flex-1 bg-background">
     <AppView className="flex-1 w-full px-4">
-      <AppText className="text-2xl font-bold mt-6 mb-4">
+      <Text className="text-2xl font-bold mt-6 mb-4">
         Apprendre les signes
-      </AppText>
-      <AppText className="text-base mb-4">
+      </Text>
+      <Text className="text-base mb-4">
         Apprennez à connaitre les signes de la langue des signes française (LSF).
-      </AppText>
+      </Text>
 
       <ScrollView
         className="mt-5"
@@ -58,9 +58,9 @@ export default function Dictionary() {
               }
               className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoBlue"
             >
-              <AppText className="text-white text-xl font-semibold">
+              <Text className="text-white text-xl font-semibold">
                 {letter.word}
-              </AppText>
+              </Text>
             </TouchableOpacity>
           ))}
           </AppView>

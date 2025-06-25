@@ -6,21 +6,21 @@ import { AuthResponse } from '@/types/LessonInterface';
 /**
  * Sign up a new user
  */
-export const registerUser = async (userData: registerDto): Promise<AuthResponse> => {
+export const registerUser = async (userData: registerDto): Promise<AuthResponse | null> => {
   return await post(API_ROUTES.signUp, userData);
 };
 
 /**
  * Log in a user
  */
-export const loginUser = async (userData: loginDto): Promise<AuthResponse> => {
+export const loginUser = async (userData: loginDto): Promise<AuthResponse | null> => {
   return await post(API_ROUTES.login, userData);
 };
 
 /**
  * Refresh tokens
  */
-export const refreshToken = async (refreshToken: string): Promise<AuthResponse> => {
+export const refreshToken = async (refreshToken: string): Promise<AuthResponse | null> => {
   return await post(API_ROUTES.refreshToken, { refreshToken });
 };
 
