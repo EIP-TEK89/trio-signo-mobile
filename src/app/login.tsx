@@ -21,7 +21,7 @@ export default function LoginScreen() {
       setError("Invalid email or password");
       return;
     }
-  }, [email, password, onLogin, router]);
+  }, [email, password, onLogin]);
 
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top', 'bottom']}>

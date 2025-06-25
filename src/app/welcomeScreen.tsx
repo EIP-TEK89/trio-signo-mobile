@@ -1,9 +1,7 @@
 import AppView from "@/components/Ui/AppView";
 import Button from "@/components/Ui/Button";
 import Text from "@/components/Ui/Text";
-import { lightColors } from "@/constants/colors";
 import { themeValues } from "@/constants/colorTheme";
-import { useTheme } from "@/context/ThemeProvider";
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -24,7 +22,7 @@ export default function welcomeScreen() {
         </AppView>
         <AppView className="border-b border-gray-300" />
         <AppView style={{ gap: 20 }}>
-        <Text className="text-3xl font-black text-center mt-2">Tu viens d'arriver ?</Text>
+        <Text className="text-3xl font-black text-center mt-2">Tu viens d&apos;arriver ?</Text>
         <Button
           title="C'EST PARTI !"
           onPress={() => router.replace("/register")}

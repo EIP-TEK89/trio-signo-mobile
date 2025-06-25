@@ -42,38 +42,13 @@ export default function LoginScreen() {
       setError(result.msg);
     }
     router.push("/(app)/(tabs)");
-  }, [onRegister, username, email, password, router]);
-
-  const goNext = useCallback(() => {
-    if (step === Step.Email && !checkEmailValidity(email)) {
-      return;
-    }
-    if (step === Step.Password && !checkPasswordValidity(password, confirmPassword)) {
-      return;
-    }
-    if (step < Step.Completed) {
-      setStep(step + 1);
-    } else {
-      register();
-    }
-  }, [step, router, email]);
-
-  const goBack = useCallback(() => {
-    setError(undefined);
-    if (step > Step.Username) {
-      setStep(step - 1);
-    } else {
-      router.replace("/welcomeScreen");
-    }
-  }, [step]);
+  }, [onRegister, username, email, password]);
 
   const checkEmailValidity = useCallback((email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (re.test(email)) {
       return true;
     }
-    console.log("Email is not valid:", email);
-    console.log(re.test(email));
     setError("L'email n'est pas valide");
     return false;
   }, []);
@@ -89,6 +64,29 @@ export default function LoginScreen() {
     }
     return true;
   }, []);
+
+  const goNext = useCallback(() => {
+    if (step === Step.Email && !checkEmailValidity(email)) {
+      return;
+    }
+    if (step === Step.Password && !checkPasswordValidity(password, confirmPassword)) {
+      return;
+    }
+    if (step < Step.Completed) {
+      setStep(step + 1);
+    } else {
+      register();
+    }
+  }, [step, email, password, confirmPassword, register, checkEmailValidity, checkPasswordValidity]);
+
+  const goBack = useCallback(() => {
+    setError(undefined);
+    if (step > Step.Username) {
+      setStep(step - 1);
+    } else {
+      router.replace("/welcomeScreen");
+    }
+  }, [step]);
 
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top', 'bottom']}>
@@ -115,13 +113,13 @@ export default function LoginScreen() {
                 onChangeText={setLastName}
                 className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
               />
-              <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(firstName != "" && lastName != "")} />
+              <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(firstName !== "" && lastName !== "")} />
             </AppView>
           </AppView>
         )}
       {step === Step.Email && (
       <AppView className="flex-1">
-        <Text className="text-3xl font-black text-white mt-5 mb-8">Maintenant entre un nom d'utilisateur et email</Text>
+        <Text className="text-3xl font-black text-white mt-5 mb-8">Maintenant entre un nom d&apos;utilisateur et email</Text>
         <TextInput
           placeholder="Identifiant"
           value={username}
@@ -135,7 +133,7 @@ export default function LoginScreen() {
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
         />
         {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-        <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(username != "" && email != "")} />
+        <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(username !== "" && email !== "")} />
       </AppView>
       )}
       {step === Step.Password && (
@@ -156,7 +154,7 @@ export default function LoginScreen() {
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
           />
           {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-          <Button title="CREER TON PROFIL" color="duoBlue" onPress={() => {goNext();}} disabled={!(password != "" && confirmPassword != "")} />
+          <Button title="CREER TON PROFIL" color="duoBlue" onPress={() => {goNext();}} disabled={!(password !== "" && confirmPassword !== "")} />
       </AppView>
       )}
       <UserConditions />

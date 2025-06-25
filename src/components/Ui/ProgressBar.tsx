@@ -7,7 +7,6 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import Image from "./Image";
 import { twMerge } from "tailwind-merge";
 
 
