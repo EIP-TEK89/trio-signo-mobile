@@ -13,6 +13,6 @@ export default function LogLayout() {
     );
   }
   return (
-      !authState?.authenticated ? <Redirect href={"/login"}/> : <Slot />
+      !authState?.authenticated ? <Redirect href={"/welcomeScreen"}/> : <Slot />
   );
 }

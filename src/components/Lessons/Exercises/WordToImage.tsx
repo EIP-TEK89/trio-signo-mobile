@@ -6,7 +6,7 @@ import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
-import AppText from "@/components/Ui/AppText";
+import Text from "@/components/Ui/Text";
 import Loading from "@/components/Ui/Loading";
 import Image from "@/components/Ui/Image";
 
@@ -61,7 +61,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     return (
       <AppView className="flex-1">
         <AppView className="flex-1 flex-col gap-[15%]">
-          <AppText className="text-2xl font-black ml-[2%]">{exercise.prompt}</AppText>
+          <Text className="text-2xl font-black ml-[2%]">{exercise.prompt}</Text>
           <AppView className="flex-1 flex-row flex-wrap justify-center gap-5">
             {responses.map((response, index) => (
               <AppView key={index} className="w-[45%] aspect-square">
@@ -82,9 +82,9 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
           <TouchableOpacity 
             className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-[#45B6FE]'}`}
             disabled={!responded} onPress={() => onNext()}>
-              <AppText className="text-2l font-black text-center">
+              <Text className="text-2l font-black text-center">
                 VALIDER
-              </AppText>
+              </Text>
           </TouchableOpacity>
         </AppView>
       </AppView>

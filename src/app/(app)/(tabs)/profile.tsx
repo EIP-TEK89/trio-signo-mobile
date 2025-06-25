@@ -1,5 +1,5 @@
 import Category from "@/components/Profile/Category";
-import AppText from "@/components/Ui/AppText";
+import Text from "@/components/Ui/Text";
 import { useAuth } from "@/context/AuthProvider";
 import { useCallback } from "react";
 
@@ -30,11 +30,11 @@ export default function ProfileScreen() {
       <AppView className="flex-1 mb-6">
         <AppView className="bg-gray-200 h-[200] mb-2">
         </AppView>
-        <AppText className="text-xl font-bold"> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</AppText>
+        <Text className="text-xl font-bold"> {(user?.firstName ?? '') + ' ' + (user?.lastName ?? '')}</Text>
         <AppView className="flex-row items-center">
-          <AppText className="color-gray-500">{"@" + user.username}</AppText>
-          <AppText className="color-gray-500 m-1 mb-2">.</AppText>
-          <AppText className="color-gray-500">{"Membre depuis " + formatToMonthYear(user.createdAt)}</AppText>
+          <Text className="color-gray-500">{"@" + user.username}</Text>
+          <Text className="color-gray-500 m-1 mb-2">.</Text>
+          <Text className="color-gray-500">{"Membre depuis " + formatToMonthYear(user.createdAt)}</Text>
         </AppView>
       </AppView>
       
@@ -63,9 +63,9 @@ export default function ProfileScreen() {
           <TouchableOpacity 
             onPress={() => onLogout()}
             className="flex-1 p-4 rounded-2xl border-2 border-b-4 border-gray-300">
-              <AppText className="text-2l font-black color-[#45B6FE] text-center">
+              <Text className="text-2l font-black color-[#45B6FE] text-center">
                 SE DECONNECTER
-              </AppText>
+              </Text>
           </TouchableOpacity>
         </AppView>
       </AppView>
