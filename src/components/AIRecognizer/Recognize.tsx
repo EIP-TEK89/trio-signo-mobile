@@ -8,8 +8,12 @@ const Recognize: React.FC = () => {
   const [hasPermission, setHasPermission] = useState(false);
   const device = useCameraDevice('back')
   let pickedDevice: number = 3; // front cam for my phone but maybe different for others
-  const onnx_runner: OnnxRunnerMobile = new OnnxRunnerMobile();
-  const mediapipe_runner: MediapipeRunnerMobile = new MediapipeRunnerMobile()
+  const onnx_runner: OnnxRunnerMobile = new OnnxRunnerMobile("models/alphabet.zip");
+  const mediapipe_runner: MediapipeRunnerMobile = new MediapipeRunnerMobile(
+    "$assets/models/hand_detector.tflite",
+    "$assets/models/hand_landmarker.tflite"
+  )
+
   const sign_recon: SignRecognizer<Frame> = new SignRecognizer<Frame>(onnx_runner, mediapipe_runner)
 
   useEffect(() => {
@@ -36,7 +40,7 @@ const Recognize: React.FC = () => {
   }, []);
 
   const logFrameSize = (width: number, height: number) => {
-    console.log(`Frame: ${width}x${height}`);
+    // console.log(`Frame: ${width}x${height}`);
   };
 
   const logFrameSizeJS = Worklets.createRunOnJS(logFrameSize);
@@ -73,6 +77,8 @@ const Recognize: React.FC = () => {
     </View>
   );
 }
+
+export default Recognize
 
 const styles = StyleSheet.create({
   container: {

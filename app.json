@@ -68,6 +68,9 @@
     "owner": "trio_signo24",
     "updates": {
       "url": "https://u.expo.dev/fecad8a1-4e91-494a-a1ed-e97c29c46489"
-    }
+    },
+    "permissions": [
+      "CAMERA"
+    ]
   }
 }

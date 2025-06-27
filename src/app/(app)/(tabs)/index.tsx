@@ -16,7 +16,6 @@ import Text from "@/components/Ui/Text";
 import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Loading from "@/components/Ui/Loading";
-import Recognize from "@/components/AIRecognizer/Recognize";
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
@@ -50,12 +49,12 @@ export default function HomeScreen() {
     edges={['top']}>
       <AppView className="flex-1">
         {/* Header */}
-        
+
         <AppView className="flex-row w-full h-12 justify-between px-4 items-center">
           <AppView>
             <Text className="font-bold text-xl text-text">Trio Signo</Text>
           </AppView>
-          {streak <= 0 ? 
+          {streak <= 0 ?
           <AppView className="flex-row items-center gap-2">
             <FlameIcon width={30} height={30} />
             <Text className="text-gray-500 font-bold text-xl text-[text]">{streak}</Text>
@@ -82,13 +81,12 @@ export default function HomeScreen() {
               className="text-l font-bold text-text">
               Chapitre 1, Unité 1
             </Text>
-            <Text 
+            <Text
               className="text-xl font-black text-text">
               Introduction à la langue des signes
             </Text>
           </AppView>
         </AppView>
-        <Recognize/>
         {/* Scrollable lesson list */}
         <AppView className="flex-1 mt-6">
         <ScrollView contentContainerClassName="w-full items-center pt-3" showsVerticalScrollIndicator={true}>
@@ -97,7 +95,7 @@ export default function HomeScreen() {
             const translateX = 70 * position
 
             return (
-              <AppView 
+              <AppView
                 key={lesson?.id}
                 className="items-center"
                 style={{
