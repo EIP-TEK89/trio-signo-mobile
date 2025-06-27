@@ -50,7 +50,7 @@ export default function SignScreen() {
         className="w-60 h-60 rounded-xl mb-6"
       />
 
-      <Text className="text-white text-4xl font-bold">
+      <Text className="text-4xl font-bold">
         {signDisplayed?.word}
       </Text>
     </AppView>

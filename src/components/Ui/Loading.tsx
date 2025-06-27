@@ -23,7 +23,7 @@ const Loading: React.FC = () => {
           className="w-[50px] h-[50px] rounded-full border-[5px] border-t-duoGreen   mb-5"
           style={animatedStyle}
         />
-        <Text className="text-white">Chargement...</Text>
+        <Text>Chargement...</Text>
     </AppView>
   );
 };

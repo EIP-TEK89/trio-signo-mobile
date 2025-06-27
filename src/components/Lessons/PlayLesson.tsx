@@ -6,6 +6,9 @@ import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
 import ProgressBar from "../Ui/ProgressBar";
 import Loading from "../Ui/Loading";
+import CrossIcon from"@assets/Courses/cross.svg";
+import { TouchableOpacity } from "react-native";
+import Image from "../Ui/Image";
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
@@ -65,7 +68,15 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
       }
     return (
       <AppView className="flex-1">
-        <ProgressBar index={index} maxLength={exercisesList.length}/>
+        <AppView className="flex-row items-center gap-2 mt-5 mb-3 px-2">
+          <TouchableOpacity
+          onPress={() => router.push("/(app)/(tabs)/dictionary")}
+          className="rounded-xl p-2"
+          >
+            <CrossIcon width={30} height={30} />
+          </TouchableOpacity>
+          <ProgressBar index={index} maxLength={exercisesList.length} />
+        </AppView>
         <AppView className="flex-1">
           <PlayExercise onNext={(
           ) => setIndex(index + 1)} exercise={exercisesList[index]}/>

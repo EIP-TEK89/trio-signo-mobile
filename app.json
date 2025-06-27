@@ -8,17 +8,21 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
-      },
+      "edgeToEdgeEnabled": true,
       "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.anonymous.triosignomobile"
+      "package": "com.anonymous.triosignomobile",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -30,8 +34,14 @@
         "expo-splash-screen",
         {
           "imageWidth": 200,
+          "image": "./assets/splash.png",
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "dark": {
+            "image": "./assets/splash.png",
+            "imageWidth": 200,
+            "backgroundColor": "#1a1a1a"
+          },
+          "backgroundColor": "#fff"
         }
       ],
       "expo-secure-store",
@@ -55,6 +65,9 @@
         "projectId": "fecad8a1-4e91-494a-a1ed-e97c29c46489"
       }
     },
-    "owner": "trio_signo24"
+    "owner": "trio_signo24",
+    "updates": {
+      "url": "https://u.expo.dev/fecad8a1-4e91-494a-a1ed-e97c29c46489"
+    }
   }
 }

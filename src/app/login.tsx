@@ -32,7 +32,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </AppView>
       <AppView className="flex-1 justify-center px-5">
-      <Text className="text-4xl font-semibold text-white mb-8">Connexion</Text>
+      <Text className="text-4xl font-semibold mb-8">Connexion</Text>
 
       <TextInput
         placeholder="E-mail"

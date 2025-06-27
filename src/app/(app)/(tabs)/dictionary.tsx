@@ -58,7 +58,7 @@ export default function Dictionary() {
               }
               className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoBlue"
             >
-              <Text className="text-white text-xl font-semibold">
+              <Text className="text-xl font-semibold">
                 {letter.word}
               </Text>
             </TouchableOpacity>

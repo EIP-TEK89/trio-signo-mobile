@@ -72,7 +72,7 @@ export default function LoginScreen() {
     if (step === Step.Password && !checkPasswordValidity(password, confirmPassword)) {
       return;
     }
-    if (step < Step.Completed) {
+    if (step < Step.Password) {
       setStep(step + 1);
     } else {
       register();
@@ -99,7 +99,7 @@ export default function LoginScreen() {
         </AppView>
         {step === Step.Username && (
           <AppView className="flex-1">
-            <Text className="text-3xl font-black text-white mt-5 mb-8"> Quel est ton nom?</Text>
+            <Text className="text-3xl font-black mt-5 mb-8"> Quel est ton nom?</Text>
             <AppView className="flex-1 flex-col">
               <TextInput
                 placeholder="Prénom"
@@ -119,7 +119,7 @@ export default function LoginScreen() {
         )}
       {step === Step.Email && (
       <AppView className="flex-1">
-        <Text className="text-3xl font-black text-white mt-5 mb-8">Maintenant entre un nom d&apos;utilisateur et email</Text>
+        <Text className="text-3xl font-black mt-5 mb-8">Maintenant entre un nom d&apos;utilisateur et email</Text>
         <TextInput
           placeholder="Identifiant"
           value={username}
@@ -138,7 +138,7 @@ export default function LoginScreen() {
       )}
       {step === Step.Password && (
         <AppView className="flex-1">
-          <Text className="text-3xl font-black text-white mt-5 mb-8">Choisis un mot de passe</Text>
+          <Text className="text-3xl font-black mt-5 mb-8">Choisis un mot de passe</Text>
           <TextInput
             placeholder="Mot de passe"
             value={password}
