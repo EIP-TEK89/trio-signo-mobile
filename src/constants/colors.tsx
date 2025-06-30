@@ -2,7 +2,7 @@
 export const lightColors = {
     "--duo-blue": "#1cb0f6",
     "--darkened-duo-blue": "#1a9ae0",
-    "--duo-green": "#58cc02",
+    "--duo-green": "#48bb78",
     "--darkened-duo-green": "#4cae02",
     "--duo-purple": "#ce82ff",
     "--darkened-duo-purple": "#b76de0",
@@ -12,7 +12,7 @@ export const lightColors = {
     "--darkened-duo-orange": "#e08c00",
     "--duo-yellow": "#ffc800",
     "--darkened-duo-yellow": "#e0b800",
-    "--foreground": "#333",
+    "--foreground": "#0a141c",
     "--muted-foreground": "#666",
     "--background": "#fff",
     "--text": "#000",
@@ -23,7 +23,7 @@ export const lightColors = {
 export const darkColors = {
     "--duo-blue": "#1cb0f6",
     "--darkened-duo-blue": "rgba(28, 176, 246, 0.1)",
-    "--duo-green": "#58cc02",
+    "--duo-green": "#48bb78",
     "--darkened-duo-green": "rgba(88, 204, 2, 0.1)",
     "--duo-purple": "#ce82ff",
     "--darkened-duo-purple": "rgba(206, 130, 255, 0.1)",
@@ -35,8 +35,8 @@ export const darkColors = {
     "--darkened-duo-yellow": "rgba(255, 200, 0, 0.1)",
     "--foreground": "#eee",
     "--muted-foreground": "#aaa",
-    "--background": "#1a1a1a",
-    "--text": "#fff",
+    "--background": "#0a141c",
+    "--text": "#e2e8f0",
     "--muted": "#2a2a2a",
     "--border": "#444",
 };

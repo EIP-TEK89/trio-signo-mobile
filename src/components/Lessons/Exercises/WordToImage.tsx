@@ -3,7 +3,7 @@ import { getSignByName } from "@/services/dictionnaryServices";
 import { checkExercise } from "@/services/exercisesServices";
 import { ExerciseWithSign } from "@/types/LessonInterface";
 import { router } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { responseStatus } from "./ImageToWord";
 import Text from "@/components/Ui/Text";
@@ -14,6 +14,10 @@ interface WordToImageProps {
     onNext: () => void;
     exercise: ExerciseWithSign
 }
+
+export const ImageRef = React.memo(({uri, className} : {uri: string, className: string}) => <Image source={{ uri: uri }} className={className}/>)
+
+ImageRef.displayName = "ImageRef"
 
 const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
     const [loading, setLoading] = useState(true);
@@ -35,28 +39,29 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
             setLoading(false);
         };
         loadSign();
-    }, [exerciseOptions, exercise.sign.word]);
+    }, [exercise.sign.word, exerciseOptions]);
 
-    const submitResponse = async (word: string) => {
-            setChecked(true);
-            const result = await checkExercise(exercise?.id, {answer: word, mutlipleChoice: true})
-            if (result === null)
-              router.back()
-            if (result.isCorrect)
-                setResponded(true);
-            responses.forEach((response) => {
-                if (response.word === word) {
-                    response.responded = true;
-                }
-            });
-            setChecked(false);
-        }
+    const submitResponse = useCallback(async (word: string) => {
+      setChecked(true);
+      const result = await checkExercise(exercise?.id, {answer: word, mutlipleChoice: true})
+      if (result === null)
+        router.back()
+      setResponded(true);
+      setResponses(prev =>
+        prev.map(response =>
+          response.word === word
+          ? { ...response, responded: true }
+            : response
+        )
+      );
+      setChecked(false);
+    }, [exercise?.id])
     
     if (loading) {
-        return (
-          <Loading />
-        );
-      }
+      return (
+        <Loading />
+      );
+    }
 
     return (
       <AppView className="flex-1">
@@ -66,13 +71,11 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
             {responses.map((response, index) => (
               <AppView key={index} className="w-[45%] aspect-square">
                 <TouchableOpacity key={index} onPress={() => { !checked && submitResponse(response.word)}}
-                disabled={responded} className="flex-1"
-                  >
-                    <Image
-                      source={{ uri: response.mediaUrl }}
-                      className={`flex-1 rounded-full ${response.responded && ( response.valid ? "border-2 border-[#45B6FE]" : 'border-2 border-red-500')}`}
-                      alt={response.word}
-                    />
+                 className={`flex-1 rounded-full ${response.responded && ( response.valid ? "border-2 border-duoGreen" : 'border-2 border-red-500')}`}>
+                  <ImageRef
+                    uri={response.mediaUrl}
+                    className="flex-1 rounded-full"
+                  />
                 </TouchableOpacity>
               </AppView>
             ))}
@@ -80,7 +83,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
         </AppView>
         <AppView className="absolute bottom-6 left-0 w-full items-center">
           <TouchableOpacity 
-            className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-[#45B6FE]'}`}
+            className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-duoGreen'}`}
             disabled={!responded} onPress={() => onNext()}>
               <Text className="text-2l font-black text-center">
                 VALIDER

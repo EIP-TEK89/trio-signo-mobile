@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, StyleSheet, Text, SafeAreaView, Platform } from 'react-native';
-import { SignRecognizer, DataGestures, OnnxRunner, ModelConfig, DataSample, FIELDS, FIELD_DIMENSION } from "triosignolib/core";
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, SafeAreaView } from 'react-native';
+import { SignRecognizer } from "triosignolib/core";
 import { OnnxRunnerMobile, MediapipeRunnerMobile } from "triosignolib/mobile"
-import { Camera, Frame, useFrameProcessor, useCameraDevice, getCameraDevice } from "react-native-vision-camera"
+import { Camera, Frame, useFrameProcessor, useCameraDevice } from "react-native-vision-camera"
 
 const Recognize: React.FC = () => {
   const [hasPermission, setHasPermission] = useState(false);

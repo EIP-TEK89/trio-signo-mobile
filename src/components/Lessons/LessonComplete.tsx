@@ -37,7 +37,7 @@ const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress})
             <Text className="text-3xl font-extrabold text-center">Entrainement terminée !</Text>
           </AppView>
           <AppView className="w-full h-[20%] flex-row flex-wrap justify-center gap-5">
-            <AppView className="w-[30%] h-[50%] bg-duoBlue rounded-2xl items-center pb-1 pl-1 pr-1">
+            <AppView className="w-[30%] h-[50%] bg-duoGreen rounded-2xl items-center pb-1 pl-1 pr-1">
               <Text className="font-extrabold text-center color-background">Précision</Text>
               <AppView className="flex-1 w-full rounded-2xl items-center justify-center flex-row">
                 <AccurencyIcon width={25} height={25} />
@@ -49,10 +49,10 @@ const LessonComplete: React.FC<LessonCompleteProps> = ({lesson, lessonProgress})
         </AppView>
         <AppView className="absolute bottom-6 left-0 w-full items-center">
         <TouchableOpacity 
-          className="p-4 w-[90%] rounded-2xl bg-[#45B6FE]"
+          className="p-4 w-[90%] rounded-2xl bg-duoGreen"
           onPress={() => {router.back()}}>
             <Text className="text-2l font-extrabold text-center">
-              BACK TO LESSONS
+              Retour aux Leçons
             </Text>
         </TouchableOpacity>
       </AppView>

@@ -5,6 +5,7 @@ import { loginUser, logoutUser, registerUser } from "@/services/authServices";
 import { User } from "@/types/UserInterface";
 import apiClient from "@/services/apiClient";
 import { router } from "expo-router";
+import { updateCurrentUser } from "@/services/userServices";
 
 interface AuthProps {
   authState?: {accessToken: string | null; refreshToken: string | null; user: User | null, authenticated: boolean | null};
@@ -12,6 +13,8 @@ interface AuthProps {
   onRegister?: (username: string, email: string, password: string, firstName?: string, lastName?: string) => Promise<any>;
   onLogin?: (email: string, password: string) => Promise<any>;
   onLogout?: () => Promise<any>;
+  onUpdate?: (username: string, email: string, firstName?: string, lastName?: string, avatarUrl?: string) => Promise<any>;
+  onDelete?: () => Promise<any>;
 }
 
 const AuthContext = createContext<AuthProps>({})
@@ -19,7 +22,7 @@ const AuthContext = createContext<AuthProps>({})
 export const AuthProvider = ({children}: any) => {
   const [authState, setAuthState] = useState<{
     accessToken: string | null;
-    refreshToken?: string | null;
+    refreshToken: string | null;
     user: User | null;
     authenticated: boolean | null
   }>({
@@ -51,12 +54,43 @@ export const AuthProvider = ({children}: any) => {
     loadToken();
   }, []);
 
+  const updateUser = useCallback(async (username: string, email: string, firstName?: string, lastName?: string, avatarUrl?: string) => {
+    const result = await updateCurrentUser({avatarUrl, firstName, lastName, username, email})
+  
+    if (result === null)
+      return null
+
+    setAuthState({
+      ...authState,
+      user: result
+    })
+    await SecureStore.setItemAsync('user', JSON.stringify(result));
+    return result
+  }, [authState])
+
+  const deleteUser = useCallback(async () => {
+    const result = await deleteUser()
+
+    await SecureStore.deleteItemAsync('token');
+    await SecureStore.deleteItemAsync('refreshToken');
+    await SecureStore.deleteItemAsync('user');
+
+    axios.defaults.headers.common['Authorization'] = '';
+
+    setAuthState({
+      accessToken: null,
+      refreshToken: null,
+      user: null,
+      authenticated: false
+    });
+    return (result)
+  }, [])
+
   const register = useCallback(async (username: string, email: string, password: string, firstName?: string, lastName?: string) => {
     const result = await registerUser({username, email, password, firstName, lastName});
     
-    if (result === null) {
+    if (result === null)
       return null;
-    }
     
     setAuthState({
       accessToken: result.accessToken,
@@ -117,6 +151,8 @@ export const AuthProvider = ({children}: any) => {
     onRegister: register,
     onLogin: login,
     onLogout: logout,
+    onUpdate: updateUser,
+    onDelete: deleteUser,
     authState,
     loading,
   };

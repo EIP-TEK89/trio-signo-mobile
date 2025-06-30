@@ -2,11 +2,9 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, TouchableOpacity, View} from 'react-native';
-import HomeIcon from '@assets/components/Navbar/home.svg';
-import TrainingIcon from '@assets/components/Navbar/training.svg';
-import PlusIcon from '@assets/components/Navbar/plus.svg';
 import { useColorScheme } from 'nativewind';
 import { themeValues } from '@/constants/colorTheme';
+import { Home, Puzzle, MoreHorizontal } from 'lucide-react-native';
 
 export default function TabLayout() {
   const {colorScheme} = useColorScheme();
@@ -42,8 +40,8 @@ export default function TabLayout() {
             );
           },
           tabBarIcon: ({ focused }) => (
-            <View className={focused && "p-1 rounded-xl border-2 border-duoBlue bg-darkenedDuoBlue "}>
-              <HomeIcon width={40} height={40}/>
+            <View className={focused && "p-1 rounded-xl border-2 border-duoGreen bg-darkenedDuoGreen "}>
+              <Home size={30} color={"#4ADE80"}/>
             </View>
           ),
         }}
@@ -60,8 +58,8 @@ export default function TabLayout() {
             );
           },
           tabBarIcon: ({ focused }) => (
-            <View className={focused && "p-1 rounded-xl border-2 border-duoBlue bg-darkenedDuoBlue "}>
-              <TrainingIcon width={40} height={40}/>
+            <View className={focused && "p-1 rounded-xl border-2 border-duoGreen bg-darkenedDuoGreen "}>
+              <Puzzle size={30} color={"#63b3ed"}/>
             </View>
           ),
         }}
@@ -78,8 +76,8 @@ export default function TabLayout() {
             );
           },
           tabBarIcon: ({ focused }) => (
-            <View className={focused && "p-1 rounded-xl border-2 border-duoBlue bg-darkenedDuoBlue "}>
-              <PlusIcon width={40} height={40}/>
+            <View className={focused && "p-1 rounded-xl border-2 border-duoGreen bg-darkenedDuoGreen "}>
+              <MoreHorizontal size={30} color={"#b794f4"}/>
             </View>
           ),
         }}

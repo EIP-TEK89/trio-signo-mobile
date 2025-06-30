@@ -43,10 +43,10 @@ export default function Dictionary() {
       </Text>
 
       <ScrollView
-        className="mt-5"
+        className="mt-5 mx-auto w-[95%]"
         showsVerticalScrollIndicator={false}
       >
-        <AppView className="w-[95%] flex-row flex-wrap items-center mx-auto gap-6">
+        <AppView className="flex-row flex-wrap items-center justify-center gap-6">
           {signs.map((letter, index) => (
             <TouchableOpacity
               key={index}
@@ -56,7 +56,7 @@ export default function Dictionary() {
                   params: { sign: letter.word },
                 })
               }
-              className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoBlue"
+              className="w-20 h-20 rounded-xl justify-center items-center border-2 border-duoGreen"
             >
               <Text className="text-xl font-semibold">
                 {letter.word}

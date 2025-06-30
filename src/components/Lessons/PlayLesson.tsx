@@ -8,7 +8,6 @@ import ProgressBar from "../Ui/ProgressBar";
 import Loading from "../Ui/Loading";
 import CrossIcon from"@assets/Courses/cross.svg";
 import { TouchableOpacity } from "react-native";
-import Image from "../Ui/Image";
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
@@ -70,7 +69,7 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
       <AppView className="flex-1">
         <AppView className="flex-row items-center gap-2 mt-5 mb-3 px-2">
           <TouchableOpacity
-          onPress={() => router.push("/(app)/(tabs)/dictionary")}
+          onPress={() => router.push("/(app)/(tabs)")}
           className="rounded-xl p-2"
           >
             <CrossIcon width={30} height={30} />

@@ -6,7 +6,7 @@ import AppView from "@/components/Ui/AppView";
 import Button from "@/components/Ui/Button";
 import TextInput from "@/components/Ui/TextInput";
 import { TouchableOpacity } from "react-native";
-import BackArrowIcon from '@assets/CoursesJourney/Home/backArrow.svg';
+import BackArrowIcon from '@assets/Home/backArrow.svg';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen() {

@@ -8,7 +8,7 @@ import Button from "@/components/Ui/Button";
 import ProgressBar from "@/components/Ui/ProgressBar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
-import BackArrowIcon from '@assets/CoursesJourney/Home/backArrow.svg';
+import BackArrowIcon from '@assets/Home/backArrow.svg';
 import UserConditions from "@/components/Authentification/UserConditions";
 
 enum Step {
@@ -113,7 +113,7 @@ export default function LoginScreen() {
                 onChangeText={setLastName}
                 className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
               />
-              <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(firstName !== "" && lastName !== "")} />
+              <Button title="CONTINUER" color="duoGreen" onPress={() => {goNext();}} disabled={!(firstName !== "" && lastName !== "")} />
             </AppView>
           </AppView>
         )}
@@ -133,7 +133,7 @@ export default function LoginScreen() {
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
         />
         {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-        <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(username !== "" && email !== "")} />
+        <Button title="CONTINUER" color="duoGreen" onPress={() => {goNext();}} disabled={!(username !== "" && email !== "")} />
       </AppView>
       )}
       {step === Step.Password && (
@@ -154,7 +154,7 @@ export default function LoginScreen() {
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
           />
           {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-          <Button title="CREER TON PROFIL" color="duoBlue" onPress={() => {goNext();}} disabled={!(password !== "" && confirmPassword !== "")} />
+          <Button title="CREER TON PROFIL" color="duoGreen" onPress={() => {goNext();}} disabled={!(password !== "" && confirmPassword !== "")} />
       </AppView>
       )}
       <UserConditions />

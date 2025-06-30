@@ -14,10 +14,10 @@ interface ProgressBarProps {
   index: number;
   maxLength: number;
   className?: string;
-  color?: "duoBlue" | "duoGreen" | "duoRed" | "duoYellow";
+  color?: "duoGreen" | "duoGreen" | "duoRed" | "duoYellow";
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength, className, color="duoBlue" }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ index, maxLength, className, color="duoGreen" }) => {
 
   const progress = useSharedValue(index > 0 ? (((index - 1) / maxLength) * 100) : 0);
   const progressPercentage = (index / maxLength) * 100;
