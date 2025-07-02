@@ -1,6 +1,6 @@
 import AppView from "@/components/Ui/AppView";
 import { router } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import BackArrowIcon from '@assets/Home/backArrow.svg';
 import { useAuth } from "@/context/AuthProvider";
@@ -10,15 +10,20 @@ import Text from "@/components/Ui/Text";
 
 export default function UserEditorScreen() {
   const { authState, onUpdate } = useAuth()
-  const [firstName, setFirstName] = useState<string>(authState.user.firstName)
-  const [lastName, setLastName] = useState<string>(authState.user.lastName)
-  const [username, setUsername] = useState<string>(authState.user.username)
-  const [email, setEmail] = useState<string>(authState.user.email)
+  const [firstName, setFirstName] = useState<string>(authState.user?.firstName)
+  const [lastName, setLastName] = useState<string>(authState.user?.lastName)
+  const [username, setUsername] = useState<string>(authState.user?.username)
+  const [email, setEmail] = useState<string>(authState.user?.email)
+
+  useEffect(() => {
+    if (authState.user === null)
+      router.navigate("/(app)/(tabs)/profile")
+  }, [authState.user])
 
   const goBack = useCallback(async () => {
-    await onUpdate(username, email, firstName, lastName, authState.user.avatarUrl)
+    await onUpdate(username, email, firstName, lastName, authState.user?.avatarUrl)
     router.navigate("/(app)/(tabs)/profile")
-  }, [username, email, firstName, lastName, authState.user.avatarUrl, onUpdate])
+  }, [username, email, firstName, lastName, authState.user?.avatarUrl, onUpdate])
 
   return (
     <SafeAreaView className="flex-1 bg-background">

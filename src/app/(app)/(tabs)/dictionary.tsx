@@ -7,6 +7,7 @@ import AppView from "@/components/Ui/AppView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Loading from "@/components/Ui/Loading";
 import Text from "@/components/Ui/Text";
+import Image from "@/components/Ui/Image";
 
 export default function Dictionary() {
   const [signs, setSigns] = useState<Sign[]>([]);
@@ -33,7 +34,13 @@ export default function Dictionary() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-background">
+    <SafeAreaView className="flex-1 bg-background" edges={['top']}>
+      {/* Header */}
+        <AppView className="w-full flex-row items-center justify-center h-16 mb-3 gap-2 border-b border-gray-800/50">
+          <Image source={require("@assets/logo.png")} contentFit="contain"
+            className="w-10 aspect-square bg-red"/>
+          <Text className="text-green-400 text-2xl font-bold">TrioSigno</Text>
+        </AppView>
     <AppView className="flex-1 w-full px-4">
       <Text className="text-2xl font-bold mt-6 mb-4">
         Apprendre les signes

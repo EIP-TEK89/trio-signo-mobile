@@ -1,7 +1,7 @@
 import { useAuth } from "@/context/AuthProvider";
 import { UserLessonWithProgress } from "@/types/LessonInterface";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   ScrollView,
   TouchableOpacity,
@@ -13,7 +13,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Loading from "@/components/Ui/Loading";
 import Image from "@/components/Ui/Image";
 import { getAllLessonProgress } from "@/services/lessonProgressServices";
-import { Star, Play } from 'lucide-react-native';
+import { Star, Play, Clock, Circle, CheckCircle } from 'lucide-react-native';
+
+enum LessonStatus {
+  NOT_STARTED = "NOT_STARTED",
+  IN_PROGRESS = "IN_PROGRESS",
+  COMPLETED = "COMPLETED",
+}
 
 export default function HomeScreen() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +40,14 @@ export default function HomeScreen() {
     init();
   }, [onLogout]);
 
+  const getLessonStatus = useCallback((lesson: UserLessonWithProgress) => {
+    if (lesson.progress === null)
+      return (LessonStatus.NOT_STARTED);
+    if (lesson.progress.completed === true)
+      return (LessonStatus.COMPLETED);
+    return (LessonStatus.IN_PROGRESS);
+  }, []);
+
   if (loading) {
     return (
       <Loading />
@@ -44,8 +58,8 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-background"
     edges={['top']}>
       <AppView className="flex-1">
-        {/* Header */}
 
+        {/* Header */}
         <AppView className="w-full flex-row items-center justify-center h-16 mb-3 gap-2 border-b border-gray-800/50">
           <Image source={require("@assets/logo.png")} contentFit="contain"
             className="w-10 aspect-square bg-red"/>
@@ -65,6 +79,8 @@ export default function HomeScreen() {
         <AppView className="flex-1">
         <ScrollView contentContainerClassName="w-full items-center pt-3" showsVerticalScrollIndicator={true}>
           {lessons.map((lesson, index) => {
+            const lessonStatus = getLessonStatus(lesson);
+
             return (
               <AppView
                 key={lesson?.id}
@@ -107,11 +123,20 @@ export default function HomeScreen() {
                 </View>
                 <TouchableOpacity className="flex-1 flex-row items-center justify-center bg-green-500 rounded-3xl ml-5 gap-2" onPress={() => router.push({pathname: "/(app)/lesson/[lesson]", params: {lesson: lesson?.id}})}>
                   <Play size={16} color={"white"}/>
-                  <Text className="font-bold text-center text-sm"> Commencer La Leçon</Text>
+                  {lessonStatus === LessonStatus.IN_PROGRESS && <Text className="font-bold text-center text-sm">Continuer La Leçon</Text>}
+                  {lessonStatus === LessonStatus.NOT_STARTED && <Text className="font-bold text-center text-sm">Démarrer La Leçon</Text>}
+                  {lessonStatus === LessonStatus.COMPLETED && <Text className="font-bold text-center text-sm">Revoir La Leçon</Text>}
                 </TouchableOpacity>
                 </View>
+                <View className="flex-row items-center justify-between">
                 <View>
                   <Text className="text-gray-200 text-lg font-medium">{lesson.title}</Text>
+                </View>
+                <View>
+                  {lessonStatus === LessonStatus.NOT_STARTED && <View className="flex-row gap-2"><Circle color={"#CBD5E0"} size={20} /><Text className="text-gray-400">Prête</Text></View>}
+                  {lessonStatus === LessonStatus.IN_PROGRESS && <View className="flex-row gap-2"><Clock color={"#FFF176"} size={20} /><Text className="text-yellow-300">En cours</Text></View>}
+                  {lessonStatus === LessonStatus.COMPLETED && <View className="flex-row gap-2"><CheckCircle color={"#68d391"} size={20} /><Text className="text-green-400">Complétée</Text></View>}
+                </View>
                 </View>
               </View>
             </AppView>

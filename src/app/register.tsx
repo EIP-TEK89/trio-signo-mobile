@@ -37,7 +37,7 @@ export default function LoginScreen() {
   const [error, setError] = useState<string | undefined>(undefined);
 
   const register = useCallback(async () => {
-    const result = await onRegister!(username, email, password);
+    const result = await onRegister!(username, email, password, firstName, lastName);
     if (result && result.error) {
       setError(result.msg);
     }
@@ -95,7 +95,7 @@ export default function LoginScreen() {
           <TouchableOpacity onPress={goBack} className="">
             <BackArrowIcon width={25} height={25} />
           </TouchableOpacity>
-          <ProgressBar index={step} maxLength={Step.Completed} color="duoBlue"/>
+          <ProgressBar index={step} maxLength={Step.Completed} color="duoGreen"/>
         </AppView>
         {step === Step.Username && (
           <AppView className="flex-1">
@@ -123,12 +123,14 @@ export default function LoginScreen() {
         <TextInput
           placeholder="Identifiant"
           value={username}
+          type="default"
           onChangeText={setUsername}
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-t-2xl"
         />
         <TextInput
           placeholder="Email"
           value={email}
+          type="default"
           onChangeText={setEmail}
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
         />
@@ -143,6 +145,7 @@ export default function LoginScreen() {
             placeholder="Mot de passe"
             value={password}
             onChangeText={setPassword}
+            type="password"
             secureTextEntry
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-t-2xl"
           />
@@ -150,6 +153,7 @@ export default function LoginScreen() {
             placeholder="Répéter le mot de passe"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
+            type="password"
             secureTextEntry
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
           />
