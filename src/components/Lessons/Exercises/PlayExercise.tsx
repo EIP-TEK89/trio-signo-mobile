@@ -18,13 +18,12 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
 
     useEffect(() => {
         const loadExercise = async () => {
-           
-                const result = await getExerciseById(exercise?.id)
-                if (result === null){
-                    router.back()
-                }
-                setExercisesWithSign(result)
-                setLoading(false);
+            const result = await getExerciseById(exercise?.id)
+            if (result === null){
+                router.back()
+            }
+            setExercisesWithSign(result)
+            setLoading(false);
         }
         loadExercise()
     }, [exercise?.id]);

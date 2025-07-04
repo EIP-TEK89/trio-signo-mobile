@@ -20,6 +20,9 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
+# Android Studio
+.idea/
+
 # debug
 npm-debug.*
 yarn-debug.*
@@ -37,3 +40,4 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+package-lock.json
