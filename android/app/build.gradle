@@ -82,9 +82,9 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 android {
-    ndkVersion rootProject.ext.ndkVersion
+    ndkVersion '27.0.12077973'
 
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    buildToolsVersion '36.0.0'
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace 'com.anonymous.triosignomobile'
@@ -92,6 +92,7 @@ android {
         applicationId 'com.anonymous.triosignomobile'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        buildConfigField "String", "EXPO_PUBLIC_API_URL", "\"https://triosigno.com\""
         versionCode 1
         versionName "1.0.0"
     }

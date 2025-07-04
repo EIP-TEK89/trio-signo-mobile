@@ -9,7 +9,7 @@ interface ButtonProps extends NativeButtonProps {
   style?: StyleProp<ViewStyle>;
 };
 
-const Button: React.FC<ButtonProps> = ({ color = "duoBlue", textColor = "white", ...props }) => {
+const Button: React.FC<ButtonProps> = ({ color = "duoGreen", textColor = "white", ...props }) => {
 
   return (
     <TouchableOpacity

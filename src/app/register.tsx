@@ -8,7 +8,7 @@ import Button from "@/components/Ui/Button";
 import ProgressBar from "@/components/Ui/ProgressBar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
-import BackArrowIcon from '@assets/CoursesJourney/Home/backArrow.svg';
+import BackArrowIcon from '@assets/Home/backArrow.svg';
 import UserConditions from "@/components/Authentification/UserConditions";
 
 enum Step {
@@ -37,7 +37,7 @@ export default function LoginScreen() {
   const [error, setError] = useState<string | undefined>(undefined);
 
   const register = useCallback(async () => {
-    const result = await onRegister!(username, email, password);
+    const result = await onRegister!(username, email, password, firstName, lastName);
     if (result && result.error) {
       setError(result.msg);
     }
@@ -72,7 +72,7 @@ export default function LoginScreen() {
     if (step === Step.Password && !checkPasswordValidity(password, confirmPassword)) {
       return;
     }
-    if (step < Step.Completed) {
+    if (step < Step.Password) {
       setStep(step + 1);
     } else {
       register();
@@ -95,11 +95,11 @@ export default function LoginScreen() {
           <TouchableOpacity onPress={goBack} className="">
             <BackArrowIcon width={25} height={25} />
           </TouchableOpacity>
-          <ProgressBar index={step} maxLength={Step.Completed} color="duoBlue"/>
+          <ProgressBar index={step} maxLength={Step.Completed} color="duoGreen"/>
         </AppView>
         {step === Step.Username && (
           <AppView className="flex-1">
-            <Text className="text-3xl font-black text-white mt-5 mb-8"> Quel est ton nom?</Text>
+            <Text className="text-3xl font-black mt-5 mb-8"> Quel est ton nom?</Text>
             <AppView className="flex-1 flex-col">
               <TextInput
                 placeholder="Prénom"
@@ -113,36 +113,39 @@ export default function LoginScreen() {
                 onChangeText={setLastName}
                 className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
               />
-              <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(firstName !== "" && lastName !== "")} />
+              <Button title="CONTINUER" color="duoGreen" onPress={() => {goNext();}} disabled={!(firstName !== "" && lastName !== "")} />
             </AppView>
           </AppView>
         )}
       {step === Step.Email && (
       <AppView className="flex-1">
-        <Text className="text-3xl font-black text-white mt-5 mb-8">Maintenant entre un nom d&apos;utilisateur et email</Text>
+        <Text className="text-3xl font-black mt-5 mb-8">Maintenant entre un nom d&apos;utilisateur et email</Text>
         <TextInput
           placeholder="Identifiant"
           value={username}
+          type="default"
           onChangeText={setUsername}
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-t-2xl"
         />
         <TextInput
           placeholder="Email"
           value={email}
+          type="default"
           onChangeText={setEmail}
           className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
         />
         {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-        <Button title="CONTINUER" color="duoBlue" onPress={() => {goNext();}} disabled={!(username !== "" && email !== "")} />
+        <Button title="CONTINUER" color="duoGreen" onPress={() => {goNext();}} disabled={!(username !== "" && email !== "")} />
       </AppView>
       )}
       {step === Step.Password && (
         <AppView className="flex-1">
-          <Text className="text-3xl font-black text-white mt-5 mb-8">Choisis un mot de passe</Text>
+          <Text className="text-3xl font-black mt-5 mb-8">Choisis un mot de passe</Text>
           <TextInput
             placeholder="Mot de passe"
             value={password}
             onChangeText={setPassword}
+            type="password"
             secureTextEntry
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-t-2xl"
           />
@@ -150,11 +153,12 @@ export default function LoginScreen() {
             placeholder="Répéter le mot de passe"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
+            type="password"
             secureTextEntry
             className="w-full h-[9%] border border-b border-gray-400 bg-white/10 rounded-none rounded-b-2xl mb-8"
           />
           {error && <Text className="text-red-500 mb-3 text-center">{error}</Text>}
-          <Button title="CREER TON PROFIL" color="duoBlue" onPress={() => {goNext();}} disabled={!(password !== "" && confirmPassword !== "")} />
+          <Button title="CREER TON PROFIL" color="duoGreen" onPress={() => {goNext();}} disabled={!(password !== "" && confirmPassword !== "")} />
       </AppView>
       )}
       <UserConditions />

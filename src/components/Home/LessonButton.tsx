@@ -1,15 +1,21 @@
 import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
-import WhiteOkIcon from "@assets/CoursesJourney/Home/whiteOk.svg";
-import WhiteStarIcon from "@assets/CoursesJourney/Home/whiteStar.svg";
+import WhiteOkIcon from "@assets/Home/whiteOk.svg";
+import WhiteStarIcon from "@assets/Home/whiteStar.svg";
 
+export enum LessonStatus{
+    ToStart = 0,
+    Played = 1,
+    Finished = 2
+}
 interface LessonButtonProps extends TouchableOpacityProps {
-    completed: boolean;
+    status: LessonStatus;
     position: number;
 }
 
-const LessonButton: React.FC<LessonButtonProps> = ({completed, position, ...props}) => {
-    const buttonColor = completed ? "bg-duoBlue" : "bg-mutedForeground"
-    const shadowColor = completed ? "bg-darkenedDuoBlue" : "bg-mutedForeground" 
+const LessonButton: React.FC<LessonButtonProps> = ({status, position, ...props}) => {
+    const active = status !== LessonStatus.ToStart
+    const buttonColor = active ? "bg-duoGreen" : "bg-mutedForeground"
+    const shadowColor = active ? "bg-darkenedDuoGreen" : "bg-mutedForeground" 
 
     return (
     <View className="w-[20%] aspect-[18/17] items-center">
@@ -19,7 +25,8 @@ const LessonButton: React.FC<LessonButtonProps> = ({completed, position, ...prop
             {...props}
             className={`w-[90%] aspect-[18/17] rounded-full items-center justify-center ${buttonColor}`}
         >
-            {completed ? <WhiteOkIcon /> : <WhiteStarIcon />}
+            {status === LessonStatus.Finished && <WhiteOkIcon />}
+            {status === LessonStatus.ToStart && <WhiteStarIcon />}
         </TouchableOpacity>
     </View>
     );

@@ -2,7 +2,6 @@
 import React, { createContext, useContext } from "react";
 import { View } from "react-native";
 import { themes } from "@/constants/colorTheme";
-import { useColorScheme } from "nativewind";
 
 type Theme = "light" | "dark";
 
@@ -13,7 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const { colorScheme } = useColorScheme();
+  const colorScheme = "dark"
 
   return (
     <ThemeContext.Provider value={{ theme: colorScheme }}>

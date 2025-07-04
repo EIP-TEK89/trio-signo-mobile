@@ -13,7 +13,7 @@ export const API_ROUTES = {
   login: API_URL + '/api/auth/login',
   logout: API_URL + '/api/auth/logout',
   refreshToken: API_URL + '/api/auth/refresh',
-  currentUser: API_URL + '/api/auth/me',
+  currentUser: API_URL + '/api/users/me',
 
   // User management
   users: API_URL + '/api/users',

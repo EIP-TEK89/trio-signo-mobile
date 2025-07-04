@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AppView from "../Ui/AppView";
 import { completeLessonProgress, resetLessonProgress, startLessonProgress, updateLessonProgress } from "@/services/lessonProgressServices";
 import { Exercise, LessonProgress, LessonWithExercises } from "@/types/LessonInterface";
@@ -6,6 +6,8 @@ import { router } from "expo-router";
 import PlayExercise from "./Exercises/PlayExercise";
 import ProgressBar from "../Ui/ProgressBar";
 import Loading from "../Ui/Loading";
+import CrossIcon from"@assets/Courses/cross.svg";
+import { TouchableOpacity } from "react-native";
 
 interface PlayLessonProps {
   lesson: LessonWithExercises;
@@ -32,7 +34,7 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
         startLesson();
     }, [lesson?.id]);
     
-    useEffect(() => {
+    const continueLesson = useCallback(() => {
       const finishLesson = async () => {
         setLoading(true)
         const result = await completeLessonProgress(lesson?.id)
@@ -52,10 +54,12 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
         setLoading(false)
       }
 
-      if (index === exercisesList.length)
-        finishLesson();
-      else
+      if (index + 1  < exercisesList.length){
         updateLesson();
+        setIndex(index + 1);
+      }
+      else
+        finishLesson();
     }, [index, lesson?.id, onComplete, exercisesList.length])
 
     if (loading) {
@@ -65,10 +69,18 @@ const PlayLesson: React.FC<PlayLessonProps> = ({lesson, onComplete}) => {
       }
     return (
       <AppView className="flex-1">
-        <ProgressBar index={index} maxLength={exercisesList.length}/>
+        <AppView className="flex-row items-center gap-4 mt-5 mb-3 px-2">
+          <TouchableOpacity
+          onPress={() => router.push("/(app)/(tabs)")}
+          className="rounded-xl p-2"
+          >
+            <CrossIcon width={30} height={30} />
+          </TouchableOpacity>
+          <ProgressBar index={index} maxLength={exercisesList.length} />
+        </AppView>
         <AppView className="flex-1">
           <PlayExercise onNext={(
-          ) => setIndex(index + 1)} exercise={exercisesList[index]}/>
+          ) => continueLesson()} exercise={exercisesList[index]}/>
         </AppView>
       </AppView>
     );
