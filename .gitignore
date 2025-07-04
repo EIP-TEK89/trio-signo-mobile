@@ -23,6 +23,10 @@ expo-env.d.ts
 # Android Studio
 .idea/
 
+# Build output
+android/
+ios/
+
 # debug
 npm-debug.*
 yarn-debug.*
