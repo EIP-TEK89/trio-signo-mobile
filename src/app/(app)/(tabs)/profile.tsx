@@ -15,10 +15,9 @@ import { getLessonProgressStats } from "@/services/lessonProgressServices";
 import Button from "@/components/Ui/Button";
 import { router } from "expo-router";
 import Image from "@/components/Ui/Image";
-import { getCurrentUser } from "@/services/userServices";
 
 export default function ProfileScreen() {
-  const { onLogout, authState } = useAuth();
+  const { onDelete, onLogout, authState } = useAuth();
   const user = authState.user
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
@@ -26,7 +25,6 @@ export default function ProfileScreen() {
   useEffect(() => {
     const loadStats = async () => {
       const statsResponse = await getLessonProgressStats();
-      const user = await getCurrentUser();
       setStats(statsResponse);
       setLoading(false);
     };
@@ -116,7 +114,7 @@ export default function ProfileScreen() {
             </View>
             </View>
             <Button title="Editer son Profile" onPress={() => router.navigate("/(app)/userEditor/user")} className="bg-duoGreen"/>
-            {/* <Button title="Supprimer son compte" onPress={() => {onDelete(); router.replace("/login")}} className="border border-red-500 bg-background"/> */}
+            <Button title="Supprimer son compte" onPress={() => {onDelete()}} className="border border-red-500 bg-background"/>
           </View>
         </AppView>
         <AppView className="w-[95%] my-6 rounded-2xl">

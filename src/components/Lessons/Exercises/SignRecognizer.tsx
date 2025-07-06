@@ -1,11 +1,8 @@
 import AppView from "@/components/Ui/AppView";
-import { checkExercise } from "@/services/exercisesServices";
 import { ExerciseWithSign } from "@/types/LessonInterface";
-import { router } from "expo-router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity} from "react-native";
 import Text from "@/components/Ui/Text";
-import { ImageRef } from "./WordToImage";
 import Recognize from "@/components/AIRecognizer/Recognize";
 
 interface ImageToWordProps {

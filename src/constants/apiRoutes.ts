@@ -5,6 +5,7 @@
  * Update these to match your backend API structure.
  */
 
+
 export const API_URL: string = process.env.EXPO_PUBLIC_API_URL;
 
 export const API_ROUTES = {
@@ -18,6 +19,7 @@ export const API_ROUTES = {
   // User management
   users: API_URL + '/api/users',
   userById: (id: string) => API_URL + `/api/user/${id}`,
+  userChangePassword: API_URL + '/api/users/me/password',
 
   // OAuth routes
   googleAuth: API_URL + '/api/auth/google',

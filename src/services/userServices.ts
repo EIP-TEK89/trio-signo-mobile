@@ -55,6 +55,16 @@ export const updateCurrentUser = async (data: UpdateUserDto): Promise<User | nul
 /**
  * Delete user account
  */
-export const deleteCurrentUser = async () => {
-  return await del(API_ROUTES.currentUser);
+export const deleteCurrentUser = async (password: string) => {
+  return await del(API_ROUTES.currentUser, { password: password });
+};
+
+/**
+ * Change user password
+ */
+export const changeUserPassword = async (currentPassword: string, newPassword: string): Promise<User | null> => {
+  console.log("Changing password for current user");
+  console.log("Current Password:", currentPassword);
+  console.log("New Password:", newPassword);
+  return await patch(API_ROUTES.userChangePassword, { currentPassword: currentPassword, newPassword: newPassword })
 };

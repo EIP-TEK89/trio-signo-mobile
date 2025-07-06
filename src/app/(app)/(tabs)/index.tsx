@@ -58,7 +58,6 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-background"
     edges={['top']}>
       <AppView className="flex-1">
-
         {/* Header */}
         <AppView className="w-full flex-row items-center justify-center h-16 mb-3 gap-2 border-b border-gray-800/50">
           <Image source={require("@assets/logo.png")} contentFit="contain"
