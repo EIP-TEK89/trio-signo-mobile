@@ -24,7 +24,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
     const [checked, setChecked] = useState(false);
     const [responses, setResponses] = useState<responseStatus[]>([]);
     const exerciseOptions = useMemo(() => exercise.options, [exercise.options]);
-     
+
 
     useEffect(() => {
       setResponses(exerciseOptions.map((word) => ({ word, valid: word === exercise.sign.word, responded: false })));
@@ -57,7 +57,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
           </AppView>
           <AppView className="flex-1 flex-row flex-wrap justify-center gap-9">
             {responses.map((response, index) => (
-              <AppView key={index} 
+              <AppView key={index}
               className={`w-[34%] aspect-[2] rounded-2xl bg-black-500 p-2 border-2 ${response.responded ? ( response.valid ? "border-duoGreen" : 'border-red-500'): "border-gray-300"}`}>
                 <TouchableOpacity key={index} disabled={responded} onPress={() => {!checked && CheckExercise(response.word)}} className="flex-1 rounded-full p-2 justify-center items-center">
                     <Text className="font-black color-duoGreen">{response.word}</Text>
@@ -67,7 +67,7 @@ const ImageToWord: React.FC<ImageToWordProps> = ({ onNext, exercise }) => {
           </AppView>
       </AppView>
       <AppView className="absolute bottom-6 left-0 w-full items-center">
-        <TouchableOpacity 
+        <TouchableOpacity
           className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-duoGreen'}`}
           disabled={!responded} onPress={() => onNext()}>
             <Text className="text-2l font-black text-center">

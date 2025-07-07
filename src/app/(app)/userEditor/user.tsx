@@ -70,7 +70,6 @@ export default function UserEditorScreen() {
             className="w-full h-16 border border-b border-gray-400 bg-white/10 rounded-none rounded-2xl"
           />
         </AppView>
-        <AppView>
       </AppView>
     </AppView>
     </SafeAreaView>
