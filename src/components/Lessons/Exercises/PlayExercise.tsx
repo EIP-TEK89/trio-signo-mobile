@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { View } from "react-native";
 import WordToImage from "./WordToImage";
 import ImageToWord from "./ImageToWord";
+import SignRecognizer from "./SignRecognizer";
 import Loading from "@/components/Ui/Loading";
 
 interface PlayExerciseProps {
@@ -41,6 +42,9 @@ const PlayExercise: React.FC<PlayExerciseProps> = ({exercise, onNext}) => {
             }
             {exerciseWithSign.type === 'IMAGE_TO_WORD' &&
                 <ImageToWord onNext={() => onNext()} exercise={exerciseWithSign}/>
+            }
+            {exerciseWithSign.type === 'SIGN_RECOGNITION' &&
+                <SignRecognizer onNext={() => onNext()} exercise={exerciseWithSign}/>
             }
         </View>
     )

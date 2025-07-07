@@ -31,7 +31,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
           const responsesWithImage = await Promise.all(
                 exerciseOptions.map(async (word) => {
                   const result = await getSignByName(word);
-                  const mediaUrl = result ? result[0].mediaUrl : ''; 
+                  const mediaUrl = result ? result[0].mediaUrl : '';
                   return ({word, valid: exercise.sign.word === word, responded: false, mediaUrl});
                 })
             );
@@ -56,7 +56,7 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
       );
       setChecked(false);
     }, [exercise?.id])
-    
+
     if (loading) {
       return (
         <Loading />
@@ -82,11 +82,11 @@ const WordToImage: React.FC<WordToImageProps> = ({ onNext, exercise }) => {
           </AppView>
         </AppView>
         <AppView className="absolute bottom-6 left-0 w-full items-center">
-          <TouchableOpacity 
+          <TouchableOpacity
             className={`p-4 w-[90%] rounded-2xl ${ !responded ? 'bg-gray-400 opacity-50' : 'bg-duoGreen'}`}
             disabled={!responded} onPress={() => onNext()}>
               <Text className="text-2l font-black text-center">
-                VALIDER
+                CONTINUER
               </Text>
           </TouchableOpacity>
         </AppView>

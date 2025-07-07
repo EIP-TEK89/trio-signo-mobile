@@ -14,6 +14,7 @@ export const registerUser = async (userData: registerDto): Promise<AuthResponse 
  * Log in a user
  */
 export const loginUser = async (userData: loginDto): Promise<AuthResponse | null> => {
+  console.log(API_ROUTES.login)
   return await post(API_ROUTES.login, userData);
 };
 

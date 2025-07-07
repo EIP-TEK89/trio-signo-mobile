@@ -38,7 +38,7 @@ export default function SignScreen() {
   useEffect(() => {
     console.log("Success changed:", sucess);
   }, [sucess]);
-  
+
 
   if (loading) {
     return (
@@ -60,7 +60,7 @@ export default function SignScreen() {
         <BackArrowIcon width={30} height={30} />
       </TouchableOpacity>
     <AppView className="flex-1 mt-[8%] gap-2  px-4">
-      { !practice ? 
+      { !practice ?
       <View className="flex-1 items-center gap-5 ">
       <Text className="text-green-400 text-2xl font-medium mb-2">
         Voici le signe:
@@ -71,24 +71,24 @@ export default function SignScreen() {
         contentFit="cover"
         className="w-72 h-72 rounded-xl mb-6"
       />
-      
+
       <Button title="Reproduire" onPress={() => setPractice(true)} className="absolute bottom-5 w-[95%] "/>
       </View>
-      : 
+      :
       <View className="flex-1 items-center gap-3">
         <Text className="text-6xl font-bold"> {signDisplayed?.word} </Text>
         <Text className="text-green-400 text-2xl font-medium mb-2">
           Essayez de reproduire le signe!
         </Text>
         {!sucess
-        ? <Recognize model="alphabet" sign_to_recognize={signDisplayed?.word.toLowerCase()} onSuccess={setSuccess} className="w-[95%] aspect-square"/>
+        ? <Recognize model="alphabet2.0" sign_to_recognize={signDisplayed?.word.toLowerCase()} onSuccess={setSuccess} className="w-[95%] aspect-square"/>
         : <View className="flex-1 justify-center"><Text className="text-center text-6xl">Bien Joué !</Text></View>}
         <Button title="Revoir le signe" onPress={() => {setPractice(false); setSuccess(false)}} className="absolute bottom-5 w-[95%] bg-background border border-duoGreen"/>
       </View>
-      
-      
+
+
     }
-    
+
     </AppView>
     </SafeAreaView>
   );
