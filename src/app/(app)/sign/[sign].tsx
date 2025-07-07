@@ -12,7 +12,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "@/components/Ui/Button";
 import Recognize from "@/components/AIRecognizer/Recognize";
 
-
 export default function SignScreen() {
   const { sign } = useLocalSearchParams();
   const [loading, setLoading] = useState<boolean>(true);
