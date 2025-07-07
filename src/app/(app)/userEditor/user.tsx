@@ -70,15 +70,6 @@ export default function UserEditorScreen() {
             className="w-full h-16 border border-b border-gray-400 bg-white/10 rounded-none rounded-2xl"
           />
         </AppView>
-        {/* <AppView>
-          <Text className="text-xl font-black mt-5 mb-2">Mot de passe</Text>
-          <TouchableOpacity onPress={() => router.navigate("/(app)/userEditor/password")}
-            className="">
-              <AppView className="bg-white/10 rounded-xl justify-center h-16 w-full px-4 py-3 border border-gray-400">
-                <Text>*******</Text>
-              </AppView>
-          </TouchableOpacity>
-        </AppView> */}
       </AppView>
     </AppView>
     </SafeAreaView>

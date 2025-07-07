@@ -5,7 +5,7 @@ import { loginUser, logoutUser, registerUser } from "@/services/authServices";
 import { User } from "@/types/UserInterface";
 import apiClient from "@/services/apiClient";
 import { router } from "expo-router";
-import { updateCurrentUser } from "@/services/userServices";
+import { deleteCurrentUser, updateCurrentUser } from "@/services/userServices";
 
 interface AuthProps {
   authState?: {accessToken: string | null; refreshToken: string | null; user: User | null, authenticated: boolean | null};
@@ -69,7 +69,7 @@ export const AuthProvider = ({children}: any) => {
   }, [authState])
 
   const deleteUser = useCallback(async () => {
-    const result = await deleteUser()
+    const result = await deleteCurrentUser("")
 
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('refreshToken');

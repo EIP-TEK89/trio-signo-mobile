@@ -42,7 +42,7 @@ export default function LoginScreen() {
       setError(result.msg);
     }
     router.push("/(app)/(tabs)");
-  }, [onRegister, username, email, password]);
+  }, [onRegister, username, email, password, firstName, lastName]);
 
   const checkEmailValidity = useCallback((email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
